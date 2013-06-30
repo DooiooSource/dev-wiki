@@ -1,5 +1,5 @@
 body {
-	padding-top: 40px;
+	padding-top: 90px;
 	font-family: "微软雅黑";
 }
 
@@ -15,10 +15,10 @@ body {
 	margin-top: 10px;
 }
 
-.navbar-inverse .navbar-inner{
+#header .navbar-inner{
 	background: url(/img/header-bg.png) repeat-x;
 }
-.navbar-inverse .brand {
+#header .brand {
 	text-indent: -9999px;
 	width: 251px;
 	height: 90px;
@@ -27,15 +27,38 @@ body {
 	background: url(/img/logo.png) no-repeat;
 }
 
-.navbar .main-nav > li > a{
+#header .main-nav a{
 	height: 85px;
 	line-height: 90px;
-	padding: 0 20px;
+	padding: 0 30px;
 	margin: 0;
 	font-size: 16px;
 	color: #fff;
 	border-bottom: 5px solid transparent;
 }
-.main-nav li a:hover{
+
+#header .main-nav a:hover{
 	border-bottom: 5px solid #a12c2c;
+}
+
+#header .main-nav {
+	margin: 0 0 0 30px;
+}
+
+#header .auth-nav a{
+	padding: 0 10px;
+	height: 90px;	
+	line-height: 90px;
+}
+
+.outline {
+	float: right;
+	min-height: 50px;
+	background: url(/img/outline-bg.png);
+}
+
+.outline-buttom {
+	width: 270px;
+	height: 77px;
+	background: url(/img/outline-buttom.png) center center;
 }

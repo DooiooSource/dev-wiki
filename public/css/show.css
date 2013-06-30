@@ -1,0 +1,291 @@
+div > .syntaxhighlighter {
+	margin: 10px 0 !important;
+}
+
+code {
+	padding: 2px 4px;
+	color: #D14;
+	/*white-space: nowrap;*/
+	word-break: break-word;
+	background-color: #F7F7F9;
+	border: 1px solid #E1E1E8;
+	font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+	font-size: 12px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+blockquote {
+	border-left: 2px solid #ddd;
+	padding: 3px 0 3px 15px;
+	margin: 0 0 15px 0;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+
+
+/* post page style */
+.mdbody ul li{
+	list-style: disc;
+}
+.mdbody {
+    font-size: 15px;
+    line-height: 1.7;
+    overflow: hidden;
+}
+.mdbody>*:first-child {
+    margin-top: 0 !important;
+}
+.mdbody>*:last-child {
+    margin-bottom: 0 !important;
+}
+.mdbody a.absent {
+    color: #c00;
+}
+.mdbody a.anchor {
+    display: block;
+    padding-left: 30px;
+    margin-left: -30px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}
+.mdbody h1, .mdbody h2, .mdbody h3, .mdbody h4, .mdbody h5, .mdbody h6 {
+    margin: 1em 0 15px;
+    padding: 0;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    cursor: text;
+    position: relative;
+}
+.mdbody h1 .octicon-link, .mdbody h2 .octicon-link, .mdbody h3 .octicon-link, .mdbody h4 .octicon-link, .mdbody h5 .octicon-link, .mdbody h6 .octicon-link {
+    display: none;
+    color: #000;
+}
+.mdbody h1:hover a.anchor, .mdbody h2:hover a.anchor, .mdbody h3:hover a.anchor, .mdbody h4:hover a.anchor, .mdbody h5:hover a.anchor, .mdbody h6:hover a.anchor {
+    text-decoration: none;
+    line-height: 1;
+    padding-left: 0;
+    margin-left: -22px;
+    top: 15%}
+.mdbody h1:hover a.anchor .octicon-link, .mdbody h2:hover a.anchor .octicon-link, .mdbody h3:hover a.anchor .octicon-link, .mdbody h4:hover a.anchor .octicon-link, .mdbody h5:hover a.anchor .octicon-link, .mdbody h6:hover a.anchor .octicon-link {
+    display: inline-block;
+}
+.mdbody h1 tt, .mdbody h1 code, .mdbody h2 tt, .mdbody h2 code, .mdbody h3 tt, .mdbody h3 code, .mdbody h4 tt, .mdbody h4 code, .mdbody h5 tt, .mdbody h5 code, .mdbody h6 tt, .mdbody h6 code {
+    font-size: inherit;
+}
+.mdbody h1 {
+    font-size: 2.5em;
+    border-bottom: 1px solid #ddd;
+}
+.mdbody h2 {
+    font-size: 2em;
+    border-bottom: 1px solid #eee;
+}
+.mdbody h3 {
+    font-size: 1.5em;
+}
+.mdbody h4 {
+    font-size: 1.2em;
+}
+.mdbody h5 {
+    font-size: 1em;
+}
+.mdbody h6 {
+    color: #777;
+    font-size: 1em;
+}
+.mdbody p, .mdbody blockquote, .mdbody ul, .mdbody ol, .mdbody dl, .mdbody table, .mdbody pre {
+    margin: 15px 0;
+}
+.mdbody hr {
+    background: transparent url("/images/dirty-shade.png") repeat-x 0 0;
+    border: 0 none;
+    color: #ccc;
+    height: 4px;
+    padding: 0;
+    margin: 15px 0;
+}
+.mdbody li p.first {
+    display: inline-block;
+}
+.mdbody ul, .mdbody ol {
+    padding-left: 30px;
+}
+.mdbody ul.no-list, .mdbody ol.no-list {
+    list-style-type: none;
+    padding: 0;
+}
+.mdbody ul ul, .mdbody ul ol, .mdbody ol ol, .mdbody ol ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.mdbody dl {
+    padding: 0;
+}
+.mdbody dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin-top: 15px;
+}
+.mdbody dl dd {
+    margin-bottom: 15px;
+    padding: 0 15px;
+}
+.mdbody blockquote {
+    border-left: 4px solid #DDD;
+    padding: 0 15px;
+    color: #777;
+}
+.mdbody blockquote>:first-child {
+    margin-top: 0px;
+}
+.mdbody blockquote>:last-child {
+    margin-bottom: 0px;
+}
+.mdbody table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: auto;
+    display: block;
+}
+.mdbody table th {
+    font-weight: bold;
+}
+.mdbody table th, .mdbody table td {
+    border: 1px solid #ddd;
+    padding: 6px 13px;
+}
+.mdbody table tr {
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+}
+.mdbody table tr:nth-child(2n) {
+    background-color: #f8f8f8;
+}
+.mdbody img {
+    max-width: 100%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.mdbody span.frame {
+    display: block;
+    overflow: hidden;
+}
+.mdbody span.frame>span {
+    border: 1px solid #ddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto;
+}
+.mdbody span.frame span img {
+    display: block;
+    float: left;
+}
+.mdbody span.frame span span {
+    clear: both;
+    color: #333;
+    display: block;
+    padding: 5px 0 0;
+}
+.mdbody span.align-center {
+    display: block;
+    overflow: hidden;
+    clear: both;
+}
+.mdbody span.align-center>span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center;
+}
+.mdbody span.align-center span img {
+    margin: 0 auto;
+    text-align: center;
+}
+.mdbody span.align-right {
+    display: block;
+    overflow: hidden;
+    clear: both;
+}
+.mdbody span.align-right>span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right;
+}
+.mdbody span.align-right span img {
+    margin: 0;
+    text-align: right;
+}
+.mdbody span.float-left {
+    display: block;
+    margin-right: 13px;
+    overflow: hidden;
+    float: left;
+}
+.mdbody span.float-left span {
+    margin: 13px 0 0;
+}
+.mdbody span.float-right {
+    display: block;
+    margin-left: 13px;
+    overflow: hidden;
+    float: right;
+}
+.mdbody span.float-right>span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right;
+}
+.mdbody code, .mdbody tt {
+    margin: 0 2px;
+    padding: 0px 5px;
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+}
+.mdbody code {
+    white-space: nowrap;
+    font-size: 13px;
+}
+.mdbody pre>code {
+    margin: 0;
+    padding: 0;
+    white-space: pre;
+    border: none;
+    background: transparent;
+    font-size: 13px;
+}
+.mdbody .highlight pre, .mdbody pre {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    font-size: 13px;
+    line-height: 19px;
+    overflow: auto;
+    padding: 6px 10px;
+    border-radius: 3px;
+}
+.mdbody pre code, .mdbody pre tt {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+
+/*编辑删除按钮*/
+.mdbody h1 span.operate a{
+    font-weight: normal;
+    margin: 35px 0 0 8px; 
+    float: right;
+}
