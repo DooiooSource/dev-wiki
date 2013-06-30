@@ -19,5 +19,6 @@ module.exports = function (app) {
 	var articles = require('../app/controllers/articles')
 	app.get('/', articles.index);
 	app.get('/articles/new', auth.requiresLogin, articles.new);
+	app.get('/articles/:id', articles.show);
 
 }

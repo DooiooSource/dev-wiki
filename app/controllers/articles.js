@@ -16,3 +16,10 @@ exports.new = function(req, res){
 exports.index = function (req, res) {
 	res.render('article/index', {"title": "首页"});
 }
+
+/** 
+* 文章页
+**/
+exports.show = function(req, res){
+	res.render('articles/show')
+}
