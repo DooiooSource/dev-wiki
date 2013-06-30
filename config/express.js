@@ -54,6 +54,12 @@
             })
         }));
 
+        app.use(function(req, res, next){
+          res.locals.empNo = req.session.empNo;
+          res.locals.username = req.session.username;
+          next();
+        });
+
         // connect flash for flash messages - should be declared after sessions
         app.use(flash());
 

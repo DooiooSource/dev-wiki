@@ -6,6 +6,11 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <p>Welcome to <%= title %></p> 
+    <% if(username) { %>
+    	<%= username %> | <a href="/logout">退出</a>
+	<% } else {%>
+		<a href="/login">登录</a> 
+	<%}%>
   </body>
 </html>

@@ -14,6 +14,7 @@ module.exports = function (app) {
 	// home route	
 	var users = require('../app/controllers/users');		
 	app.get('/login', users.login);
+	app.get('/logout', users.logout);
 	app.post('/session', users.session);
 
 
