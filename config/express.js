@@ -3,10 +3,10 @@
  */
 
  var express = require('express')
- , mongoStore = require('connect-mongo')(express)
- , flash = require('connect-flash')
- , helpers = require('view-helpers')
- , pkg = require('../package.json')
+   , mongoStore = require('connect-mongo')(express)
+   , flash = require('connect-flash')
+   , helpers = require('view-helpers')
+   , pkg = require('../package.json')
 
  module.exports = function (app, config) {
 
