@@ -62,9 +62,7 @@
         if (process.env.NODE_ENV !== 'test') {
             app.use(express.csrf());
         }
-
- 
-
+        
         // routes should be at the last
         app.use(app.router);
 

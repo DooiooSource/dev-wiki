@@ -1,7 +1,5 @@
 var path = require('path')
-  , rootPath = path.normalize(__dirname + '/..')
-  , templatePath = path.normalize(__dirname + '/../app/mailer/templates')
- 
+  , rootPath = path.normalize(__dirname + '/..');
 
 module.exports = {
   development: {
@@ -9,9 +7,11 @@ module.exports = {
     root: rootPath
   },
   test: {
-    db: 'mongodb://localhost/dev-wiki'
+    db: 'mongodb://localhost/dev-wiki',
+    root: rootPath
   },
   production: {
-  	db: 'mongodb://localhost/dev-wiki'
+  	db: 'mongodb://localhost/dev-wiki',
+  	root: rootPath
   }
 }
