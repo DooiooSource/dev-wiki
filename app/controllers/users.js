@@ -17,9 +17,16 @@ exports.loginOk = function (req, res) {
 	})
 }
 
+exports.logout = function (req, res) {
+	req.session.usercode = null;
+	req.session.username = null;
+
+    res.redirect('/');
+}
+
 exports.session = function(req, res) {
 	
-	var usercode = req.body.usercode;
+	var usercode = req.body.empNo;
 	var passwordhash = crypto.createHash('md5').update(req.body.password).digest("hex");
 
 	request({url: 'http://100.dooioo.com:10019/account/loginMd5Pass/'+usercode+'/'+passwordhash, json:true}, function (error, response, body){
