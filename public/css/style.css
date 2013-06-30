@@ -1,5 +1,6 @@
 body {
 	padding-top: 40px;
+	font-family: "微软雅黑";
 }
 
 .footer {
@@ -24,4 +25,17 @@ body {
 	padding: 0;
 	margin: 0;
 	background: url(/img/logo.png) no-repeat;
+}
+
+.navbar .main-nav > li > a{
+	height: 85px;
+	line-height: 90px;
+	padding: 0 20px;
+	margin: 0;
+	font-size: 16px;
+	color: #fff;
+	border-bottom: 5px solid transparent;
+}
+.main-nav li a:hover{
+	border-bottom: 5px solid #a12c2c;
 }
