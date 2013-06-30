@@ -18,5 +18,5 @@ dev-wiki
 - [ ] 对于分享类别下所有文章可以进行评论 -- kuang
 
 ### 技术故事 -- hu
-- [ ] 采用[nodejs-express-mongoose-demo](https://github.com/madhums/nodejs-express-mongoose-demo)搭建项目
-- [ ] 提供markdown工具栏
+- [x] 采用[nodejs-express-mongoose-demo](https://github.com/madhums/nodejs-express-mongoose-demo)搭建项目
+- [ ] 提供markdown工具栏 -- hu
