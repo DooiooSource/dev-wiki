@@ -14,7 +14,7 @@
     "underscore": "latest",
     "gzippo": "latest",
     "async": "latest",
-    "view-helpers": "latest",
-    "forever": "latest"
+    "forever": "latest",
+    "request": "latest"
   }
 }
