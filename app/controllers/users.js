@@ -20,10 +20,8 @@ exports.loginOk = function (req, res) {
 
 exports.session = function(req, res) {
 	
-	// var usercode = req.body.usercode;
-	// var passwordhash = crypto.createHash('md5').update(req.body.password).digest("hex");
-	var usercode = 83639;
-	var passwordhash = crypto.createHash('md5').update("dooiookqy").digest("hex");
+	var usercode = req.body.usercode;
+	var passwordhash = crypto.createHash('md5').update(req.body.password).digest("hex");
 
 	request({url: 'http://100.dooioo.com:10019/account/loginMd5Pass/'+usercode+'/'+passwordhash, json:true}, function (error, response, body){
 		if (!error && response.statusCode == 200) {
