@@ -14,6 +14,8 @@ dev-wiki
 - [ ] 其他类别主页（瀑布流）
 - [ ] 每次修改需要记录用户（暂只记录用户操作历史，不进行文章版本记录）
 - [ ] 文章修改历史进行展示
+- [ ] 对于分享类别下所有文章可以进行评论
 
 ### 技术故事
 - [ ] 采用[nodejs-express-mongoose-demo](https://github.com/madhums/nodejs-express-mongoose-demo)搭建项目
+- [ ] 提供markdown工具栏
