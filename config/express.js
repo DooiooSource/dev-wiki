@@ -57,12 +57,6 @@
         // connect flash for flash messages - should be declared after sessions
         app.use(flash());
 
-
-        // adds CSRF support
-        if (process.env.NODE_ENV !== 'test') {
-            app.use(express.csrf());
-        }
-        
         // routes should be at the last
         app.use(app.router);
 
