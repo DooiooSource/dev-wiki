@@ -1,9 +1,11 @@
 module.exports = {
   development: {
-    db: 'mongodb://localhost/noobjs_dev'
+    db: 'mongodb://localhost/dev-wiki'
   },
   test: {
-    db: 'mongodb://localhost/noobjs_test'
+    db: 'mongodb://localhost/dev-wiki'
   },
-  production: {}
+  production: {
+  	db: 'mongodb://localhost/dev-wiki'
+  }
 }
