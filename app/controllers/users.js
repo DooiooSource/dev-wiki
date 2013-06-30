@@ -1,4 +1,3 @@
-
 var request = require('request')
 	, mongoose = require('mongoose')
 	, User = mongoose.model('User')

@@ -1,8 +1,27 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding-top: 40px;
 }
 
-a {
-  color: #00B7FF;
+.footer {
+	background: #ddd;
+	min-height: 50px;
+	line-height: 50px;
+	text-align: center;
+}
+
+.mainbody {
+	min-height: 500px;
+	margin-top: 10px;
+}
+
+.navbar-inverse .navbar-inner{
+	background: url(/img/header-bg.png) repeat-x;
+}
+.navbar-inverse .brand {
+	text-indent: -9999px;
+	width: 251px;
+	height: 90px;
+	padding: 0;
+	margin: 0;
+	background: url(/img/logo.png) no-repeat;
 }
