@@ -4,7 +4,8 @@ body {
 }
 
 .footer {
-	background: #ddd;
+	background: #444444;
+	color: #939393;
 	min-height: 50px;
 	line-height: 50px;
 	text-align: center;
