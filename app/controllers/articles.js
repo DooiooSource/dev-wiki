@@ -3,23 +3,64 @@ var mongoose = require('mongoose')
   , _ = require('underscore')
 
 
+/** 
+* List
+**/
+
+exports.index = function (req, res) {
+
+	Article.list(function(err, articles){
+		if(err) return res.render('500');
+		console.log(articles);
+		Article.count().exec(function(err, count){
+			res.render('articles/index', {
+				title: "首页",
+				articles: articles
+			});
+		})
+	});
+}
+
 /**
  * New article
  */
+
 exports.new = function(req, res){
 	res.render('articles/new', {"title": "发布"});
 }
 
-/** 
-* 首页
-**/
-exports.index = function (req, res) {
-	res.render('articles/index', {"title": "首页"});
+/**
+ * Create an article
+ */
+
+exports.create = function(req, res){
+	var article = new Article(req.body);
+	
+			return res.redirect('/articles/' + article._id);
+	// article.save(function(err){
+	// 	if(!err){
+	// 	}
+	// 	console.log(3);
+	// 	res.render('/articles/new',{
+	// 		article: article
+	// 	});
+	// })	
+
 }
+
 
 /** 
 * 文章页
 **/
 exports.show = function(req, res){
-	res.render('articles/show')
+	res.render('articles/show');
 }
+
+exports.edit = function(req, res){
+	res.render('articles/show');
+}
+
+exports.delete= function(req, res){
+	res.render('articles/show');
+}
+

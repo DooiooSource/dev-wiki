@@ -24,4 +24,22 @@ var ArticleSchema = new Schema({
     updatedAt: {type: Date}    
 });
 
+
+
+ArticleSchema.methods = {
+	save: function(cb){
+		this.save(cb);
+	}
+}
+
+
+ArticleSchema.statics = {
+
+	list: function(cb){
+		this.find()
+			.exec(cb);
+	}
+}
+
+
 mongoose.model('Article', ArticleSchema);

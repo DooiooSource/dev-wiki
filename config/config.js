@@ -3,15 +3,15 @@ var path = require('path')
 
 module.exports = {
   development: {
-    db: 'mongodb://localhost/dev-wiki',
+    db: 'mongodb://127.0.0.1/dev-wiki',
     root: rootPath
   },
   test: {
-    db: 'mongodb://localhost/dev-wiki',
+    db: 'mongodb://127.0.0.1/dev-wiki',
     root: rootPath
   },
   production: {
-  	db: 'mongodb://localhost/dev-wiki',
+  	db: 'mongodb://127.0.0.1/dev-wiki',
   	root: rootPath
   }
 }

@@ -3,20 +3,21 @@
 	<article>
 
 		<ul class="articleList">
+
+			<% articles.forEach(function(article){ %>
 			<li>
-				<a href="">
-					<h4>Markdown语法小计</h4>
+				<a href="/articles/<%= article._id %>">
+					<h4><%= article._title %></h4>
 					<div>
-						Markdown优点在于语法简单、可读性高，
-						一旦会用之后你在写作过程中就可以更加
-						专注于文字的书写而不至于浪费精力在格
-						式的调整上。
+						<%= article.body %>
 					</div>
 					<p>
-						2012-06-26
+						<%= article.createdAt %>
 					</p>
 				</a>
 			</li>
+			<% }) %>
+
 			<li>
 				<a href="">
 					<h4>Markdown语法小计</h4>
