@@ -1,16 +1,27 @@
+<%- include ../includes/header %>
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>User to <%= title %></p>
-    <form action="/session" method="post" id="form_updateArticle" class="form">
-    	empNo: <input type="text" name="empNo"/> <b/>
-    	password: <input type="password" name="password"/> <b/>
-    	<button type="submit">登录</button>
-    </form>	
-  </body>
-</html>
+<div class="row">
+<article class="span9 mdbody">
+    <legend>登录</legend>
+    <form class="form-horizontal" action="/session" method="post" id="form_updateArticle">
+        <div class="control-group">
+        <label class="control-label">工号</label>
+            <div class="controls">
+                <input type="text" name="empNo">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">密码</label>
+            <div class="controls">
+                <input type="password" name="password">
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn">登录</button>
+            </div>
+        </div>
+    </form>
+</article>
+</div>
+<%- include ../includes/footer %>

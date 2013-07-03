@@ -37,11 +37,13 @@
 					</li>
 				</ul>
 				<ul class="nav auth-nav pull-right">
-						<li> <a href="/login">登录</a> </li>
-						<li> <a href="/reg">注册</a> </li>
-						<li> <a href="#">张三</a> </li>
-						<li> <a href="/post"> 发布 </a> </li>
+				    <% if(username) { %>
+						<li> <a href="/articles/new"> 发布 </a> </li>
 						<li> <a href="/logout"> 退出 </a> </li>
+						<li> <a href="#"><%= username %></a> </li>
+					<% } else {%>	
+						<li> <a href="/login"><i class="icon-user icon-white"></i>登录</a> </li>
+					<% } %>
 				</ul>
 			</div>
 		</div>
@@ -49,5 +51,4 @@
 </div>	
 
 <div class="container mainbody">
-
 

@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<%- include ../includes/header %>
+<div class="row span10 offset2">
+	<form class="bs-docs-example">
+        <fieldset>
+          <legend>发布</legend>
+          <label>标题：</label>
+          <input type="text" class="span8" placeholder="Type title here...">
+          <label>正文：</label>
+          <textarea rows="8" class="span8"></textarea><br>
+          <button type="submit" class="btn">提交</button>
+        </fieldset>
+      </form>	
+</div>
+<%- include ../includes/footer %>

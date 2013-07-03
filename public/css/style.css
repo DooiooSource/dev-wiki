@@ -63,3 +63,28 @@ body {
 	height: 77px;
 	background: url(/img/outline-buttom.png) center center;
 }
+
+
+.articleList li {
+	list-style: none;
+	float: left;
+	width: 220px;
+	height: 230px;
+	padding: 20px;
+	margin: 15px;
+	background: #fff;
+	border-radius: 4px;
+	border: 1px solid #fff;	
+	box-shadow: #ccc 0px 0px 5px;
+}
+.articleList li:hover {
+	background: #fffec8;
+	border: 1px solid #cfc08a;	
+	box-shadow: #cfc08a 0px 0px 5px;
+}
+.articleList li div {
+	height: 160px;
+}
+.articleList li a {
+	color: #333333;
+}

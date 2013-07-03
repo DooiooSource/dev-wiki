@@ -7,14 +7,14 @@ var mongoose = require('mongoose')
  * New article
  */
 exports.new = function(req, res){
-	console.log("new articles");
+	res.render('articles/new', {"title": "发布"});
 }
 
 /** 
 * 首页
 **/
 exports.index = function (req, res) {
-	res.render('article/index', {"title": "首页"});
+	res.render('articles/index', {"title": "首页"});
 }
 
 /** 
