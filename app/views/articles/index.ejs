@@ -7,7 +7,7 @@
 			<% articles.forEach(function(article){ %>
 			<li>
 				<a href="/articles/<%= article._id %>">
-					<h4><%= article._title %></h4>
+					<h4><%= article.title %></h4>
 					<div>
 						<%= article.body %>
 					</div>

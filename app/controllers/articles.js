@@ -36,15 +36,14 @@ exports.new = function(req, res){
 exports.create = function(req, res){
 	var article = new Article(req.body);
 	
+	article.saveit(function(err){
+		if(!err){
 			return res.redirect('/articles/' + article._id);
-	// article.save(function(err){
-	// 	if(!err){
-	// 	}
-	// 	console.log(3);
-	// 	res.render('/articles/new',{
-	// 		article: article
-	// 	});
-	// })	
+		}
+		res.render('/articles/new',{
+			article: article
+		});
+	})	
 
 }
 
@@ -53,7 +52,10 @@ exports.create = function(req, res){
 * 文章页
 **/
 exports.show = function(req, res){
-	res.render('articles/show');
+	console.log(req.article);
+	res.render('articles/show',{
+		article: req.article
+	});
 }
 
 exports.edit = function(req, res){

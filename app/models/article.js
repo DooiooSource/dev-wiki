@@ -27,13 +27,17 @@ var ArticleSchema = new Schema({
 
 
 ArticleSchema.methods = {
-	save: function(cb){
+	saveit: function(cb){
 		this.save(cb);
 	}
 }
 
 
 ArticleSchema.statics = {
+  load: function(id, cb){
+    this.findOne({_id: id})
+      .exec(cb);
+  },
 
 	list: function(cb){
 		this.find()
