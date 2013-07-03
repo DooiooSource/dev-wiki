@@ -52,10 +52,10 @@ exports.create = function(req, res){
 * 文章页
 **/
 exports.show = function(req, res){
-	console.log(req.article);
-	res.render('articles/show',{
-		article: req.article
-	});
+	Article.load(req.params.id, function(err, article){
+		if(err) return res.render('500');
+		res.render('articles/show', {article: article});
+	})
 }
 
 exports.edit = function(req, res){

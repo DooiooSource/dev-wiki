@@ -25,6 +25,6 @@ module.exports = function (app) {
 	app.post('/articles', articles.create);
 	app.get('/articles/:id', articles.show);
 
-	app.param('id', articles.load);
+	// app.param('id', articles.load);
 
 }
