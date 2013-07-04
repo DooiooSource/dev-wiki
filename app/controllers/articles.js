@@ -33,6 +33,13 @@ exports.new = function(req, res){
  * Create an article
  */
 
+exports.show = function(req, res){
+	Article.load(req.params.id, function(err, article){
+		if(err) return res.render('500');
+		res.render('articles/show', {article: article});
+	})
+}
+
 exports.create = function(req, res){
 	var article = new Article(req.body);
 	
@@ -43,26 +50,37 @@ exports.create = function(req, res){
 		res.render('/articles/new',{
 			article: article
 		});
-	})	
-
-}
-
-
-/** 
-* 文章页
-**/
-exports.show = function(req, res){
-	Article.load(req.params.id, function(err, article){
-		if(err) return res.render('500');
-		res.render('articles/show', {article: article});
 	})
+
 }
 
 exports.edit = function(req, res){
-	res.render('articles/show');
+	console.log(req.params.id);
+	Article.load(req.params.id, function(err, article){
+		if(err) return res.render('500');
+		console.log(article);
+		res.render('articles/edit', {article: article});
+	})
 }
 
-exports.delete= function(req, res){
-	res.render('articles/show');
+exports.update = function(req, res){
+	Article.load(req.params.id, function(err, article){
+		if(err) return res.render('500');
+		article = _.extend(article, req.body);
+		article.saveit(function(err){
+			if(!err){
+				return res.redirect('/articles/' + article._id);
+			}
+		})
+	})
+}
+
+exports.destroy= function(req, res){
+	Article.load(req.params.id, function(err, article){
+		if(err) return res.render('500');
+		article.remove(function(err){
+			res.redirect('/articles');
+		})
+	})
 }
 

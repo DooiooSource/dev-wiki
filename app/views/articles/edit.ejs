@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<%- include ../includes/header %>
+<div class="row span10 offset2">
+	<form class="bs-docs-example" action="/articles/<%= article.id %>" method="post">
+        <fieldset>
+            <legend>编辑</legend>
+            <label>标题：</label>
+            <input type="text" name="title" class="span8" value="<%= article.title %>" placeholder="Type title here...">
+            <label>正文：</label>
+            <textarea rows="8" name="body" class="span8"><%= article.body %></textarea><br>
+            <input type="hidden" name="_method" value="PUT">
+            <button type="submit" class="btn">提交</button>
+        </fieldset>
+    </form>	
+</div>
+<%- include ../includes/footer %>

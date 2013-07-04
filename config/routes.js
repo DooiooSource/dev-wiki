@@ -19,11 +19,15 @@ module.exports = function (app) {
 
 
 	// app.get('/articles/new', auth.requiresLogin, articles.new);
-	var articles = require('../app/controllers/articles')
+	var articles = require('../app/controllers/articles');
+	app.get('/', articles.index);
 	app.get('/articles', articles.index);
 	app.get('/articles/new', articles.new);
 	app.post('/articles', articles.create);
 	app.get('/articles/:id', articles.show);
+	app.get('/articles/:id/edit', articles.edit)
+	app.put('/articles/:id', articles.update)
+	app.del('/articles/:id', articles.destroy)
 
 	// app.param('id', articles.load);
 

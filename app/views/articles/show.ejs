@@ -12,6 +12,13 @@
 	</aside>	
 	<article class="span9 mdbody">
 		<h1><%= article.title %></h1>
+			<p>
+				<form action="/articles/<%= article.id %>" method="post" class="center form-inline confirm">
+				  	<a href="/articles/<%= article.id %>/edit" title="edit" class="btn">Edit</a>
+				  	<input type="hidden" name="_method" value="DELETE">
+				  	<button type="submit" class="btn btn-danger">delete</button>
+				</form>
+			</p>
 		<section>
 			<%= article.body %>	
 		</section>	
