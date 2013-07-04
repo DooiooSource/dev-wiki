@@ -1,20 +1,22 @@
 {
-  "name": "dev-wiki",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "express": "latest",
-    "mongoose": "*",
-    "connect-mongo": "latest",
-    "connect-flash": "latest",
-    "ejs": "*",
-    "underscore": "latest",
-    "gzippo": "latest",
-    "async": "latest",
-    "forever": "latest",
-    "request": "latest"
-  }
+    "name": "dev-wiki",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "*",
+        "mongoose": "*",
+        "connect-mongo": "*",
+        "connect-flash": "*",
+        "ejs": "*",
+        "underscore": "*",
+        "gzippo": "*",
+        "async": "*",
+        "forever": "*",
+        "request": "*",
+        "marked": "*",
+        "moment": "*"
+    }
 }
