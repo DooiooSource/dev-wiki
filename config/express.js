@@ -24,6 +24,7 @@
 
     app.use(express.favicon());
     app.use(express.static(config.root + '/public'));
+    app.use(express.static(config.root + '/uploads'));
 
     // don't use logger for test env
     if (process.env.NODE_ENV !== 'test') {
@@ -47,6 +48,7 @@
         // bodyParser should be above methodOverride
         app.use(express.bodyParser());
         app.use(express.methodOverride());
+        // app.use(express.bodyParser({uploadDir: config.root +'/uploads'}));
 
         // express/mongo session storage
         app.use(express.session({

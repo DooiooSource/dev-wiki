@@ -24,13 +24,16 @@ module.exports = function (app) {
 	app.get('/articles/new', articles.new);
 	app.post('/articles', articles.create);
 	app.get('/articles/:id', articles.show);
-	app.get('/articles/:id/edit', articles.edit)
-	app.put('/articles/:id', articles.update)
-	app.del('/articles/:id', articles.destroy)
+	app.get('/articles/:id/edit', articles.edit);
+	app.put('/articles/:id', articles.update);
+	app.del('/articles/:id', articles.destroy);
 
 	// app.param('id', articles.load);
 
 
 	var categories = require('../app/controllers/categories')
 	app.get('/categories/:category', categories.index);
+
+	app.post('/parsemd', articles.parseMarkdown);
+	app.post('/fileupload', articles.fileUpload);
 }

@@ -17,6 +17,7 @@
         "forever": "*",
         "request": "*",
         "marked": "*",
-        "moment": "*"
+        "moment": "*",
+        "highlight.js": "*"
     }
 }
