@@ -19,6 +19,9 @@
         level: 9
     }));
 
+
+
+
     app.use(express.favicon());
     app.use(express.static(config.root + '/public'));
 

@@ -11,7 +11,6 @@ var async = require('async')
  */
 module.exports = function (app) {
 
-	// home route	
 	var users = require('../app/controllers/users');		
 	app.get('/login', users.login);
 	app.get('/logout', users.logout);
@@ -31,4 +30,7 @@ module.exports = function (app) {
 
 	// app.param('id', articles.load);
 
+
+	var categories = require('../app/controllers/categories')
+	app.get('/categories/:category', categories.index);
 }

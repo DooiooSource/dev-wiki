@@ -5,6 +5,8 @@
 
 var express = require('express'),
 	fs = require('fs');
+    moment = require('moment');
+
 
 var env = process.env.NODE_ENV || 'development',
 	config = require('./config/config')[env],
@@ -20,6 +22,27 @@ fs.readdirSync(models_path).forEach(function (file) {
 });
 
 var app = express();
+
+var ejs = require('ejs');
+
+ejs.filters.parse_category = function(obj){
+    switch(obj){
+        case "frontend":
+        return "前端";
+        case "backend":
+        return "后端";
+        case "post":
+        return "分享";
+        case "ued":
+        return "交互";
+        case "mobile":
+        return "移动";
+    }
+}
+ejs.filters.format_time = function(obj){
+	return moment(obj).format('YYYY-MM-DD');
+}
+
 
 // express settings
 require('./config/express')(app, config)

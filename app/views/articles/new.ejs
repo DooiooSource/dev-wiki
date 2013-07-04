@@ -5,9 +5,18 @@
             <legend>发布</legend>
             <label>标题：</label>
             <input type="text" name="title" class="span8" placeholder="Type title here...">
+            <label>分类：</label>
+            <select name="category">
+                <option value="frontend">前端</option>
+                <option value="backend">后端</option>
+                <option value="IDC">交互</option>
+                <option value="mobile">移动</option>
+                <option value="PM">产品</option>
+            </select>           
             <label>正文：</label>
             <textarea rows="8" name="body" class="span8"></textarea><br>
-            <button type="submit" class="btn">提交</button>
+            <button type="submit" class="btn btn-primary">提交</button>
+            <a href="/articles" title="cancel" class="btn">Cancel</a>
         </fieldset>
     </form>	
 </div>

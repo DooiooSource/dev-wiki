@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
   , Article = mongoose.model('Article')
-  , _ = require('underscore')
+  , _ = require('underscore');
 
 
 /** 
@@ -11,7 +11,6 @@ exports.index = function (req, res) {
 
 	Article.list(function(err, articles){
 		if(err) return res.render('500');
-		console.log(articles);
 		Article.count().exec(function(err, count){
 			res.render('articles/index', {
 				title: "首页",
@@ -58,7 +57,6 @@ exports.edit = function(req, res){
 	console.log(req.params.id);
 	Article.load(req.params.id, function(err, article){
 		if(err) return res.render('500');
-		console.log(article);
 		res.render('articles/edit', {article: article});
 	})
 }

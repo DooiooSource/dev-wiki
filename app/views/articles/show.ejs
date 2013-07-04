@@ -12,6 +12,8 @@
 	</aside>	
 	<article class="span9 mdbody">
 		<h1><%= article.title %></h1>
+		<h2><%=: article.createdAt | format_time %></h2>
+		<h2><%=: article.category | parse_category  %></h2>
 			<p>
 				<form action="/articles/<%= article.id %>" method="post" class="center form-inline confirm">
 				  	<a href="/articles/<%= article.id %>/edit" title="edit" class="btn">Edit</a>
