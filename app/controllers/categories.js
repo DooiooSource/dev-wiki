@@ -10,13 +10,22 @@
  */
 
  exports.index = function (req, res) {
-    var category = req.params.category;
-    console.log(category);
-
-    Article.find({category: category}, function (err, articles) {
+ 	var criteria = {category: req.params.category};
+ 	var perPage = 5;
+	var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
+ 	var options = {
+ 		perPage: perPage,
+ 		page: page,
+ 		criteria: criteria
+ 	};
+ 	Article.list(options, function(err, articles){
         if (err) return res.render('500')
-        res.render('articles/index', {
-            articles: articles
+        Article.count(criteria).exec(function(err, count){
+        	res.render('articles/index', {
+        		articles: articles,
+				page: page + 1,
+				pages: Math.ceil(count / perPage)
+        	});
         });
-    });
+ 	});
 }

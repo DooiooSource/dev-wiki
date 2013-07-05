@@ -9,11 +9,11 @@ var mongoose = require('mongoose')
 
 
 /**
-* //Todo
-* [] tags
-* [] comments
-* [] editHistory
-*/
+ * //Todo
+ * [] tags
+ * [] comments
+ * [] editHistory
+ */
 
 var ArticleSchema = new Schema({
     title: {type: String, default: '', trim: true},
@@ -24,7 +24,9 @@ var ArticleSchema = new Schema({
     updatedAt: {type: Date}    
 });
 
-
+/**
+ * Methods
+ */
 
 ArticleSchema.methods = {
 	saveit: function(cb){
@@ -32,18 +34,25 @@ ArticleSchema.methods = {
 	}
 }
 
+/**
+ * Statics 
+ */
 
 ArticleSchema.statics = {
   load: function(id, cb){
     this.findOne({_id: id})
-      .exec(cb);
+        .exec(cb);
   },
 
-	list: function(cb){
-		this.find()
-			.exec(cb);
+	list: function(options, cb){
+    var criteria = options.criteria || {};
+		this.find(criteria)
+            .populate('user', 'empNo username')
+            .sort({'createdAt': -1})
+            .limit(options.perPage)
+            .skip(options.perPage * options.page)
+    		.exec(cb);
 	}
 }
-
 
 mongoose.model('Article', ArticleSchema);

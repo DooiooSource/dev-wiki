@@ -18,16 +18,21 @@
 			<% }) %>
 		</ul>
 	</article>
-	<div class="pagination pagination-right">
-        <ul>
-            <li><a href="#">«</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">»</a></li>
-        </ul>
-    </div>
+
+	<% if(pages > 1){ %>
+		<div class="pagination pagination-right">
+	        <ul>
+	        	<li><a href="?page=<%= page-1 %>">«</a></li>
+	        	<% for (var i = 1; i <= pages; i++ ) { %>
+	        		<% if ( page == i ){ %>
+		        		<li class="active"><a href="?page=<%= i %>"><%= i %></a></li>
+	        		<% } else { %>
+		        		<li><a href="?page=<%= i %>"><%= i %></a></li>
+	        		<% } %>
+	        	<% } %>
+	        	<li><a href="?page=<%= page + 1 %>">»</a></li>
+	        </ul>
+	    </div>
+	<% } %>
 </div>
 <%- include ../includes/footer %>

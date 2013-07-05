@@ -1,3 +1,4 @@
+
 /*!
  * Module dependencies.
  */
@@ -31,9 +32,8 @@ module.exports = function (app) {
 	app.post('/parsemd', articles.parseMarkdown);
 	app.post('/fileupload', articles.fileUpload);
 
-	
-	// app.param('id', articles.load);
-
+	// 路由参数预处理
+	app.param('id', articles.load);
 
 	var categories = require('../app/controllers/categories')
 	app.get('/categories/:category', categories.index);
