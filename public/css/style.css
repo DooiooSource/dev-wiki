@@ -1,5 +1,4 @@
 body {
-	padding-top: 90px;
 	font-family: "微软雅黑";
 }
 
@@ -94,6 +93,7 @@ body {
 }
 .breadcrumb {
 	margin: 0 auto;
+	float: none;
 }
 
 

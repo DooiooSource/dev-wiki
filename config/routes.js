@@ -28,12 +28,14 @@ module.exports = function (app) {
 	app.put('/articles/:id', articles.update);
 	app.del('/articles/:id', articles.destroy);
 
+	app.post('/parsemd', articles.parseMarkdown);
+	app.post('/fileupload', articles.fileUpload);
+
+	
 	// app.param('id', articles.load);
 
 
 	var categories = require('../app/controllers/categories')
 	app.get('/categories/:category', categories.index);
 
-	app.post('/parsemd', articles.parseMarkdown);
-	app.post('/fileupload', articles.fileUpload);
 }

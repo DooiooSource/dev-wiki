@@ -46,9 +46,9 @@
         app.use(express.cookieParser());
 
         // bodyParser should be above methodOverride
-        app.use(express.bodyParser());
+        // app.use(express.bodyParser());
+        app.use(express.bodyParser({uploadDir: config.root +'/uploads'}));
         app.use(express.methodOverride());
-        // app.use(express.bodyParser({uploadDir: config.root +'/uploads'}));
 
         // express/mongo session storage
         app.use(express.session({

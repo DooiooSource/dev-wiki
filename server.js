@@ -33,7 +33,7 @@ ejs.filters.parse_category = function(obj){
         return "后端";
         case "post":
         return "分享";
-        case "ued":
+        case "IDC":
         return "交互";
         case "mobile":
         return "移动";

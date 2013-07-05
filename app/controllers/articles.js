@@ -65,7 +65,6 @@ exports.edit = function(req, res){
 }
 
 exports.update = function(req, res){
-	console.log(req.body);
 	Article.load(req.params.id, function(err, article){
 		if(err) return res.render('500');
 		article = _.extend(article, req.body);
@@ -104,24 +103,7 @@ exports.fileUpload = function(req, res){
 			var imgName = req.files.thumbnail.name;
 			
 			res.send({"alt":imgAlt, "url":imgName});
-    	})
-    })
-
-
-
-  //   // 指定文件上传后的目录 - 示例为"images"目录。 
-  //   var target_path = './public/photos/' + req.files.thumbnail.name;
-
-  //   fs.rename(tmp_path, target_path, function(err){
-  //   	if(err) throw err;
-    	
-		// // fs.unlink(tmp_path, function(){
-		// 	if (err) throw err;
-		// 	var imgAlt = req.files.thumbnail.size
-		// 	var imgUrl = target_path;
-			
-		// 	res.send({"alt":imgAlt, "url":imgUrl});
-		// // });
-  //   })
+    	});
+    });
 }
 
