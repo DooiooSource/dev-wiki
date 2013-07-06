@@ -1,14 +1,15 @@
 <%- include ../includes/header %>
+<div class="container mainbody">
 <div class="row">	
 	<article>
-		<ul class="articleList">
+		<ul class="articleList clearfix">
 
 			<% articles.forEach(function(article){ %>
 			<li>
 				<a href="/articles/<%= article._id %>">
 					<h4><%= article.title %></h4>
 					<div>
-						<%= article.body %>
+						<%=: article.body | truncate:140 %>
 					</div>
 					<p>
 						<%=: article.createdAt | format_time %>
@@ -22,7 +23,10 @@
 	<% if(pages > 1){ %>
 		<div class="pagination pagination-right">
 	        <ul>
-	        	<li><a href="?page=<%= page-1 %>">«</a></li>
+	        	<% if( page > 1 ){ %>
+		        	<li><a href="?page=<%= page-1 %>">«</a></li>
+	        	<% } %>
+
 	        	<% for (var i = 1; i <= pages; i++ ) { %>
 	        		<% if ( page == i ){ %>
 		        		<li class="active"><a href="?page=<%= i %>"><%= i %></a></li>
@@ -30,9 +34,13 @@
 		        		<li><a href="?page=<%= i %>"><%= i %></a></li>
 	        		<% } %>
 	        	<% } %>
-	        	<li><a href="?page=<%= page + 1 %>">»</a></li>
+
+	        	<% if( page < pages ){ %>
+		        	<li><a href="?page=<%= page + 1 %>">»</a></li>
+	        	<% } %>
 	        </ul>
 	    </div>
 	<% } %>
 </div>
+</div><!-- end of .container -->
 <%- include ../includes/footer %>

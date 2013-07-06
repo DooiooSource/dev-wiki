@@ -5,6 +5,7 @@ body {
 .footer {
 	background: #444444;
 	color: #939393;
+	margin-top: 50px;
 	min-height: 50px;
 	line-height: 50px;
 	text-align: center;
@@ -12,7 +13,7 @@ body {
 
 .mainbody {
 	min-height: 500px;
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 #header .navbar-inner{
@@ -83,6 +84,9 @@ body {
 }
 .articleList li div {
 	height: 160px;
+	word-break: break-all;
+	overflow:hidden; 
+	text-overflow:ellipsis; 
 }
 .articleList li a {
 	color: #333333;
@@ -116,4 +120,8 @@ body {
 	border: 1px solid #ddd;
 	border-top: none;
 	min-height: 300px;
+}
+
+.btn-toolbar {
+	margin-top: 0;
 }

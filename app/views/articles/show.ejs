@@ -1,7 +1,8 @@
 <%- include ../includes/header %>
+<div class="container mainbody">
 <div class="row">
 	<aside class="span3 outline">
-		<ul>
+		<ul class="affix-top">
 			<li>
 				<a href="">标题一</a>
 			</li>
@@ -12,18 +13,18 @@
 	</aside>	
 	<article class="span9 mdbody">
 		<h1><%= article.title %></h1>
-		<h2><%=: article.createdAt | format_time %></h2>
-		<h2><%=: article.category | parse_category  %></h2>
-			<p>
-				<form action="/articles/<%= article.id %>" method="post" class="center form-inline confirm">
-				  	<a href="/articles/<%= article.id %>/edit" title="edit" class="btn">Edit</a>
-				  	<input type="hidden" name="_method" value="DELETE">
-				  	<button type="submit" class="btn btn-danger">delete</button>
-				</form>
-			</p>
+		<p><%=: article.createdAt | format_time %></p>
+		<p>
+			<form action="/articles/<%= article.id %>" method="post" class="center form-inline confirm">
+			  	<a href="/articles/<%= article.id %>/edit" title="edit" class="btn">Edit</a>
+			  	<input type="hidden" name="_method" value="DELETE">
+			  	<button type="submit" class="btn btn-danger">delete</button>
+			</form>
+		</p>
 		<section>
 			<%- article.body %>	
 		</section>	
 	</article>
 </div>
+</div><!-- end of .container -->
 <%- include ../includes/footer %>

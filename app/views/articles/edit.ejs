@@ -1,24 +1,7 @@
 <%- include ../includes/header %>
+<div class="container mainbody">
 <div class="row span10 offset2">
 	<form action="/articles/<%= article.id %>" method="post">
-<!--         <fieldset>
-            <legend>编辑</legend>
-            <label>标题：</label>
-            <input type="text" name="title" class="span8" value="<%= article.title %>" placeholder="Type title here...">
-            <label>分类：</label>
-            <select name="category">
-                <option value="frontend">前端</option>
-                <option value="backend">后端</option>
-                <option value="IDC">交互</option>
-                <option value="mobile">移动</option>
-                <option value="PM">产品</option>
-            </select>
-            <label>正文：</label>
-            <textarea rows="8" name="body" class="span8"><%= article.body %></textarea><br>
-            <input type="hidden" name="_method" value="PUT">
-            <button type="submit" class="btn btn-primary">提交</button>
-            <a href="/articles" title="cancel" class="btn">Cancel</a>
-        </fieldset> -->
         <fieldset>
             <legend></legend>
             <div class="row">
@@ -35,6 +18,33 @@
                         <option value="mobile">移动</option>
                         <option value="PM">产品</option>
                     </select>           
+                </div>
+            </div>
+            <div class="row">
+                <div class="btn-toolbar js_mdinsert span12">
+                    <div class="btn-group">
+                        <a class="btn" data-insert="h1" href="#">h1</a>
+                        <a class="btn" data-insert="h2" href="#">h2</a>
+                        <a class="btn" data-insert="h3" href="#">h3</a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn" data-insert="link" href="#">link</a>
+                        <a class="btn" data-insert="image" href="#">image</a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn" data-insert="bold" href="#">bold</a>
+                        <a class="btn" data-insert="italic" href="#">italic</a>
+                        <a class="btn" data-insert="code" href="#">code</a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn" data-insert="ul" href="#">ul</a>
+                        <a class="btn" data-insert="ol" href="#">ol</a>
+                        <a class="btn" data-insert="blockquote" href="#">"</a>
+                        <a class="btn" data-insert="hr" href="#">__</a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn function-help" href="#">?</a>
+                    </div>
                 </div>
             </div>
             <ul class="nav nav-tabs">
@@ -61,41 +71,8 @@
         </fieldset>
     </form> 
 </div>
+</div><!-- end of .container -->
 <script type="text/javascript" src="/js/src-min-noconflict/ace.js"></script>
 <script type="text/javascript" src="/js/fileupload.js"></script>
-<script type="text/javascript">
-    var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/github");
-    editor.getSession().setMode("ace/mode/markdown");
-    editor.renderer.setShowGutter(false);
-    editor.setHighlightActiveLine(false);
-    editor.getSession().setUseWrapMode(true); 
-    editor.setShowPrintMargin(false);
-    var code = editor.getSession().getValue();
-
-    editor.on("change", function(){
-        $("#maincontent").val(editor.getSession().getValue());
-    });
-
-
-    $(".tab-write").click(function(){
-        $(this).addClass("active").siblings("li").removeClass("active");
-        $(".panel-preview").hide();
-        $(".panel-write").show();
-    })
-    $(".tab-preview").click(function(){
-        $(this).addClass("active").siblings("li").removeClass("active");
-        var blogcon = $("#maincontent").val();
-        $.post("/parsemd",{"postcon": blogcon}, function(data){
-            if(data !== ""){
-                $(".panel-preview").html(data);
-            } else {
-                $(".panel-preview").html("Nothing to preview");
-            }
-        })
-
-        $(".panel-preview").show();
-        $(".panel-write").hide();
-    });
-</script>
+<script type="text/javascript" src="/js/edit.js"></script>
 <%- include ../includes/footer %>
