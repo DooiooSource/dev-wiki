@@ -55,14 +55,8 @@ body {
 .outline {
 	float: right;
 	min-height: 50px;
-	background: url(/img/outline-bg.png);
 }
 
-.outline-buttom {
-	width: 270px;
-	height: 77px;
-	background: url(/img/outline-buttom.png) center center;
-}
 
 
 .articleList li {
@@ -100,7 +94,16 @@ body {
 	float: none;
 }
 
+.h1title {
+	border-bottom: 2px solid #a5a5a5;
+	margin: 0 0 30px 0;
+	padding: 0 0 10px 0;
+}
 
+.createDate {
+	float: right;
+	font-size: 13px;
+}
 
 #editor { 
 	min-height: 400px;
