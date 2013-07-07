@@ -8,6 +8,14 @@ var mongoose = require('mongoose')
   , Schema = mongoose.Schema
 
 
+var getTags = function (tags) {
+  return tags.join(',')
+}
+
+var setTags = function (tags) {
+  return tags.split(',')
+}
+
 /**
  * //Todo
  * [] tags
@@ -20,6 +28,7 @@ var ArticleSchema = new Schema({
     body: {type: String, default: '', trim: true},
     user: {type: Schema.ObjectId, ref: 'User'},
     category: {type: String, default: '', trim: true},
+    tags: {type: [], get: getTags, set: setTags},
     createdAt: {type: Date, default: Date.now},
     updatedAt: {type: Date}    
 });
