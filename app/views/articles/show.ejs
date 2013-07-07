@@ -3,24 +3,23 @@
 <div class="row">
 	<aside class="span3 outline">
 		<ul class="affix-top">
+			<% article.outline.forEach(function(item){ %>
 			<li>
-				<a href="">标题一</a>
+				<a href=""><%= item %></a>
 			</li>
-			<li>
-				<a href="">标题二</a>
-			</li>
+			<% }) %>
 		</ul>
 	</aside>	
 	<article class="span9 mdbody">
 		<h1><%= article.title %></h1>
 		<p><%=: article.createdAt | format_time %></p>
-		<p>
+		<div>
 			<form action="/articles/<%= article.id %>" method="post" class="center form-inline confirm">
 			  	<a href="/articles/<%= article.id %>/edit" title="edit" class="btn">Edit</a>
 			  	<input type="hidden" name="_method" value="DELETE">
 			  	<button type="submit" class="btn btn-danger">delete</button>
 			</form>
-		</p>
+		</div>
 		<section>
 			<%- article.body %>	
 		</section>	

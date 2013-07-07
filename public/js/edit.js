@@ -30,16 +30,17 @@ $(function(){
         'ol': '1. ',
         'blockquote': '> ',
         'hr': '***\n'
-    }
+    };
+
     // Toolbar
-    $(".js_mdinsert .btn").click(function(){
+
+    $(".js_mdinsert .btn").click(function(e){
+        e.preventDefault();
         var insertVal = $(this).data("insert");
         insertVal = tool[insertVal];
         editor.insert(insertVal);
         editor.focus();
-    })
-
-
+    });
 
     // Write and Preivew
 

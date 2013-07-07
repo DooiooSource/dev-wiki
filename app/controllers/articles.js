@@ -92,8 +92,8 @@ exports.update = function(req, res){
 			if(!err){
 				return res.redirect('/articles/' + article._id);
 			}
-		})
-	})
+		});
+	});
 }
 
 /**
@@ -101,6 +101,10 @@ exports.update = function(req, res){
  */
 
 exports.show = function(req, res){
+	var pattern = /^\#{2}([^\#\n]*)$/gm;
+	var str = req.article.body;
+	var outline = str.match(pattern);
+	req.article.outline = outline;
 	req.article.body = marked.parsemd(req.article.body);
 	res.render('articles/show', {article: req.article});
 }
