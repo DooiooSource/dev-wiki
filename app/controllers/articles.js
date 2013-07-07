@@ -30,7 +30,8 @@ exports.index = function (req, res) {
 	var perPage = 8;
 	var options = {
 		perPage: perPage,
-		page: page
+		page: page,
+		publish: "published"
 	}
 
 	Article.list(options, function(err, articles){

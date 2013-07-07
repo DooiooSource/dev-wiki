@@ -28,6 +28,7 @@ var ArticleSchema = new Schema({
     body: {type: String, default: '', trim: true},
     user: {type: Schema.ObjectId, ref: 'User'},
     category: {type: String, default: '', trim: true},
+    publish: {type: String, default: 'publish', trim: true},
     tags: {type: [], get: getTags, set: setTags},
     createdAt: {type: Date, default: Date.now},
     updatedAt: {type: Date}    

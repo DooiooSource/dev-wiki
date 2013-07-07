@@ -28,7 +28,7 @@ body {
 	background: url(/img/logo.png) no-repeat;
 }
 
-#header .main-nav a{
+#header .main-nav a {
 	height: 85px;
 	line-height: 90px;
 	padding: 0 30px;
@@ -38,15 +38,17 @@ body {
 	border-bottom: 5px solid transparent;
 }
 
-#header .main-nav a:hover{
+#header .main-nav li:hover a,
+#header .main-nav li.active a {
 	border-bottom: 5px solid #a12c2c;
+	background: transparent;
 }
 
 #header .main-nav {
 	margin: 0 0 0 30px;
 }
 
-#header .auth-nav a{
+#header .auth-nav a {
 	padding: 0 10px;
 	height: 90px;	
 	line-height: 90px;
