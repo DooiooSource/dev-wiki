@@ -11,7 +11,10 @@
 						<%=: article.body | truncate:140 %>
 					</div>
 					<p>
-						<%=: article.createdAt | format_time %>
+						<%=: article.createdAt | format_time %> | 
+						<% article.tags.split(',').forEach(function(tag){ %>
+							<a href="/tags/<%= tag%>"><%= tag%></a>
+						<% }) %>
 					</p>
 				</a>
 			</li>
