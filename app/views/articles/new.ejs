@@ -61,6 +61,7 @@
             </section>
             <section class="panel-preview hideit">
             </section>
+            <input name="tags" id="tags"/>
             <p class="insertnote">
                 <input type="file" multiple id="uploadInput" class="hideit">
                 将光标定位到你想要插入图片的位置，然后直接将图片拖入上面区域，或<a href="javascript:;" class="js_insertImg">点击此处添加图片</a>。
@@ -75,6 +76,7 @@
 <script type="text/javascript" src="/js/fileupload.js"></script>
 
 <script type="text/javascript">
+$(function() {
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/github");
     editor.getSession().setMode("ace/mode/markdown");
@@ -108,6 +110,9 @@
         $(".panel-preview").show();
         $(".panel-write").hide();
     });
+
+    $('#tags').tagsInput({width:'auto'});
+});
 
 
 </script>
