@@ -18,22 +18,22 @@
 			<a class="brand" href="/">Dwiki</a>
 			<div class="nav-collapse collapse">
 				<ul class="nav main-nav">
-					<li class="js_index">
+					<li class="<%= navcate == "index" ? "active" : "" %>">
 						<a href="/">首页</a>
 					</li>
-					<li class="js_frontend">
+					<li class="<%= navcate == "frontend" ? "active" : "" %>">
 						<a href="/categories/frontend">前端</a>
 					</li>
-					<li class="js_backend">
+					<li class="<%= navcate == "backend" ? "active" : "" %>">
 						<a href="/categories/backend">后端</a>
 					</li>
-					<li class="js_IDC">
+					<li class="<%= navcate == "IDC" ? "active" : "" %>">
 						<a href="/categories/IDC">交互</a>
 					</li>
-					<li class="js_mobile">
+					<li class="<%= navcate == "mobile" ? "active" : "" %>">
 						<a href="/categories/mobile">移动</a>
 					</li>
-					<li class="js_PM">
+					<li class="<%= navcate == "PM" ? "active" : "" %>">
 						<a href="/categories/PM">产品</a>
 					</li>
 				</ul>

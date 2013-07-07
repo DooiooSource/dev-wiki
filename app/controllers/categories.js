@@ -10,7 +10,7 @@
  */
 
  exports.index = function (req, res) {
- 	var criteria = {category: req.params.category};
+ 	var criteria = {category: req.params.category, status: "published"};
  	var perPage = 8;
 	var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
  	var options = {
@@ -23,8 +23,9 @@
         Article.count(criteria).exec(function(err, count){
         	res.render('articles/index', {
         		articles: articles,
-				page: page + 1,
-				pages: Math.ceil(count / perPage)
+        		page: page + 1,
+        		pages: Math.ceil(count / perPage),
+        		navcate: req.params.category
         	});
         });
  	});

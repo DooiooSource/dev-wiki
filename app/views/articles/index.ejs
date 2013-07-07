@@ -1,22 +1,23 @@
 <%- include ../includes/header %>
-<div class="container mainbody"  data-category="<%= articles[0].category %>">
+<div class="container mainbody"  data-category="<%= navcate %>">
 <div class="row">	
 	<article>
 		<ul class="articleList clearfix">
 			<% articles.forEach(function(article){ %>
 			<li>
 				<a href="/articles/<%= article._id %>">
-					<h4><%= article.title %></h4>
 					<div>
+						<h4><%= article.title %></h4>
 						<%=: article.body | truncate:140 %>
 					</div>
-					<p>
-						<%=: article.createdAt | format_time %> | 
-						<% article.tags.split(',').forEach(function(tag){ %>
-							<a href="/tags/<%= tag%>"><%= tag%></a>
-						<% }) %>
-					</p>
 				</a>
+				<p>
+					<%=: article.createdAt | format_time %> 
+					<%= article.tags == [] ? "" : "|" %>
+					<% article.tags.split(',').forEach(function(tag){ %>
+						<a href="/tags/<%= tag %>"><%= tag %></a>
+					<% }) %>
+				</p>
 			</li>
 			<% }) %>
 		</ul>

@@ -79,7 +79,7 @@ body {
 	box-shadow: #cfc08a 0px 0px 5px;
 }
 .articleList li div {
-	height: 160px;
+	height: 215px;
 	word-break: break-all;
 	overflow:hidden; 
 	text-overflow:ellipsis; 

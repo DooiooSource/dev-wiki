@@ -1,36 +1,34 @@
 <%- include ../includes/header %>
 <div class="container mainbody">
-<div class="span9">
-	<form action="/articles/<%= article.id %>" method="post">
-        <fieldset>
-            <legend>编辑</legend>
+<legend>编辑</legend>
+<div class="row">
+    <form action="/articles/<%= article.id %>" method="post">
+        <div class="span9">
             <div class="row">
-                <div class="span7">
-                    <label>标题：</label>
-                    <input type="text" name="title" class="span7" value="<%= article.title %>" placeholder="Type title here...">
-                </div>
-                <div class="span3">
-                    <label>分类：</label>
-                    <select name="category" class="span3">
-                        <option value="frontend">前端</option>
-                        <option value="backend">后端</option>
-                        <option value="IDC">交互</option>
-                        <option value="mobile">移动</option>
-                        <option value="PM">产品</option>
-                    </select>           
-                </div>
+                <label class="span7">标题：</label>
+                <label class="span2">分类：</label>
             </div>
-            <div class="row">
-                <label>文章状态：</label>
-                <div class="span3">
-                    <select name="publish">
-                        <option value="published">发布</option>
-                        <option value="draft">草稿</option>
-                    </select>
-                </div>
+            <div class="controls controls-row">
+                <input type="text" class="span7" name="title" value="<%= article.title %>" placeholder="标题：">
+                <select name="category" class="span2">
+                    <option>选择分类</option>
+                    <option value="frontend" <%= article.category == "frontend" ? 'selected' : '' %>>前端</option>
+                    <option value="backend" <%= article.category == "backend" ? 'selected' : '' %>>后端</option>
+                    <option value="IDC" <%= article.category == "IDC" ? 'selected' : '' %>>交互</option>
+                    <option value="mobile" <%= article.category == "mobile" ? 'selected' : '' %>>移动</option>
+                    <option value="PM" <%= article.category == "PM" ? 'selected' : '' %>>产品</option>
+                </select>           
             </div>
-            <div class="row">
-                <div class="btn-toolbar js_mdinsert span9">
+            <ul class="nav nav-tabs">
+                <li class="active tab-write">
+                    <a href="#">正文</a>
+                </li>
+                <li class="tab-preview">
+                    <a href="#">预览</a>
+                </li>
+            </ul>
+            <section class="panel-write">
+                <div class="btn-toolbar js_mdinsert">
                     <div class="btn-group">
                         <a class="btn" data-insert="h1" href="#"><b>h1</b></a>
                         <a class="btn" data-insert="h2" href="#"><b>h2</b></a>
@@ -55,22 +53,11 @@
                         <a class="btn function-help" href="#"><i class="icon-question"></i></a>
                     </div>
                 </div>
-            </div>
-            <ul class="nav nav-tabs">
-                <li class="active tab-write">
-                    <a href="#">正文</a>
-                </li>
-                <li class="tab-preview">
-                    <a href="#">预览</a>
-                </li>
-            </ul>
-            <section class="panel-write">
                 <pre id="editor"><%= article.body %></pre>
                 <textarea id="maincontent" rows="8" name="body" class="span10 hideit"><%= article.body %></textarea>
             </section>
             <section class="panel-preview hideit">
             </section>
-            <input name="tags" id="tags" value="<%= article.tags %>"/>
             <p class="insertnote">
                 <input type="file" multiple id="uploadInput" class="hideit">
                 将光标定位到你想要插入图片的位置，然后直接将图片拖入上面区域，或<a href="javascript:;" class="js_insertImg">点击此处添加图片</a>。
@@ -78,7 +65,16 @@
             <input type="hidden" name="_method" value="PUT">
             <button type="submit" class="btn btn-primary">提交</button>
             <a href="/articles" title="cancel" class="btn">取消</a>
-        </fieldset>
+        </div>
+        <div class="span3">
+            <label>状态：</label>
+            <select name="status" class="span3">
+                <option value="published" <%= article.status == 'published' ? "selected" : "" %>>发布</option>
+                <option value="draft" <%= article.status== 'draft' ? "selected" : "" %>>草稿</option>
+            </select>
+            <label>标签：</label>
+            <input name="tags" id="tags" value="<%= article.tags %>"/>
+        </div>
     </form> 
 </div>
 </div><!-- end of .container -->

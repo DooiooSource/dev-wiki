@@ -7,8 +7,4 @@ $(function(){
 		}
 	})
 	
-
-	var category = $(".mainbody").data("category");
-	$(".js_"+category).addClass("active").siblings("li").removeClass("active");
-
 });

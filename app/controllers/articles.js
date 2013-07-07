@@ -31,7 +31,7 @@ exports.index = function (req, res) {
 	var options = {
 		perPage: perPage,
 		page: page,
-		publish: "published"
+		criteria: {'status': 'published'}
 	}
 
 	Article.list(options, function(err, articles){
@@ -41,7 +41,8 @@ exports.index = function (req, res) {
 				title: "首页",
 				articles: articles,
 				page: page + 1,
-				pages: Math.ceil(count / perPage)
+				pages: Math.ceil(count / perPage),
+				navcate: 'index'
 			});
 		})
 	});
@@ -130,9 +131,13 @@ exports.show = function(req, res){
 	var pattern = /^\#{2}([^\#\n]*)$/gm;
 	var str = req.article.body;
 	var outline = str.match(pattern) || [];
+	outline = _.map(outline, function(num){
+		return num.replace(/^\#{2}/g, "");
+	})
+
 	req.article.outline = outline;
 	req.article.body = marked.parsemd(req.article.body);
-	res.render('articles/show', {article: req.article});
+	res.render('articles/show', {article: req.article, navcate: req.article.category});
 }
 
 /**

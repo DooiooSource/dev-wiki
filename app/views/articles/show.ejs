@@ -1,14 +1,8 @@
 <%- include ../includes/header %>
-<div class="container mainbody" data-category="<%= article.category %>">
+<div class="container mainbody">
 	<div class="row">
 		<aside class="span3 outline">
-			<div>
-				<form action="/articles/<%= article.id %>" method="post" class="center form-inline confirm">
-				  	<a href="/articles/<%= article.id %>/edit" title="edit" class="btn">编辑</a>
-				  	<input type="hidden" name="_method" value="DELETE">
-				  	<button type="submit" class="btn btn-danger">删除</button>
-				</form>
-			</div>
+
 			<ul class="affix-top">
 				<% article.outline.forEach(function(item){ %>
 				<li>
@@ -25,6 +19,13 @@
 			<section>
 				<%- article.body %>	
 			</section>	
+					<div>
+				<form action="/articles/<%= article.id %>" method="post" class="center form-inline confirm">
+				  	<a href="/articles/<%= article.id %>/edit" title="edit" class="btn">编辑</a>
+				  	<input type="hidden" name="_method" value="DELETE">
+				  	<button type="submit" class="btn btn-danger">删除</button>
+				</form>
+			</div>
 		</article>
 	</div>
 </div><!-- end of .container -->
