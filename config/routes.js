@@ -28,6 +28,7 @@ module.exports = function (app) {
 	app.get('/articles/:id/edit', articles.edit);
 	app.put('/articles/:id', articles.update);
 	app.del('/articles/:id', articles.destroy);
+	app.get('/search/:keyword', articles.search);
 
 	app.post('/parsemd', articles.parseMarkdown);
 	app.post('/fileupload', articles.fileUpload);
