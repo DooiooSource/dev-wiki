@@ -11,7 +11,7 @@
 
  exports.index = function (req, res) {
  	var criteria = {category: req.params.category};
- 	var perPage = 5;
+ 	var perPage = 8;
 	var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
  	var options = {
  		perPage: perPage,

@@ -47,6 +47,7 @@ $(function(){
         $(this).addClass("active").siblings("li").removeClass("active");
         $(".panel-preview").hide();
         $(".panel-write").show();
+        editor.focus();
     })
     $(".tab-preview").click(function(){
 
