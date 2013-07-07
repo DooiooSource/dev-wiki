@@ -1,6 +1,6 @@
 <%- include ../includes/header %>
 <div class="container mainbody">
-<div class="span10 offset2">
+<div class="span9">
 	<form action="/articles" method="post">
         <fieldset>
             <legend>发布</legend>
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="btn-toolbar js_mdinsert span10">
+                <div class="btn-toolbar js_mdinsert span9">
                     <div class="btn-group">
                         <a class="btn" data-insert="h1" href="#"><b>h1</b></a>
                         <a class="btn" data-insert="h2" href="#"><b>h2</b></a>
@@ -74,7 +74,7 @@
 </div><!-- end of .container -->
 <script type="text/javascript" src="/js/src-min-noconflict/ace.js"></script>
 <script type="text/javascript" src="/js/fileupload.js"></script>
-
+<script type="text/javascript" src="/js/edit.js"></script>
 <script type="text/javascript">
 $(function() {
     var editor = ace.edit("editor");
