@@ -38,4 +38,9 @@ module.exports = function (app) {
 	var categories = require('../app/controllers/categories')
 	app.get('/categories/:category', categories.index);
 
+	// tag routes
+  	var tags = require('../app/controllers/tags')
+  	app.get('/tags/:tag', tags.index)
+
+
 }
