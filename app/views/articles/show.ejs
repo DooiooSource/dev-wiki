@@ -1,29 +1,32 @@
 <%- include ../includes/header %>
-<div class="row">
-	<aside class="span3 outline">
-		<ul>
-			<li>
-				<a href="">标题一</a>
-			</li>
-			<li>
-				<a href="">标题二</a>
-			</li>
-		</ul>
-	</aside>	
-	<article class="span9 mdbody">
-		<h1><%= article.title %></h1>
-		<h2><%=: article.createdAt | format_time %></h2>
-		<h2><%=: article.category | parse_category  %></h2>
-			<p>
+<div class="container mainbody">
+	<div class="row">
+		<aside class="span3 outline">
+
+			<ul class="affix-top">
+				<% article.outline.forEach(function(item){ %>
+				<li>
+					<a href=""><%= item %></a>
+				</li>
+				<% }) %>
+			</ul>
+		</aside>	
+		<article class="span9 mdbody">
+			<h1 class="h1title">
+				<%= article.title %>
+				<span class="createDate"><%=: article.createdAt | format_time %></span>
+			</h1>
+			<section>
+				<%- article.body %>	
+			</section>	
+					<div>
 				<form action="/articles/<%= article.id %>" method="post" class="center form-inline confirm">
-				  	<a href="/articles/<%= article.id %>/edit" title="edit" class="btn">Edit</a>
+				  	<a href="/articles/<%= article.id %>/edit" title="edit" class="btn">编辑</a>
 				  	<input type="hidden" name="_method" value="DELETE">
-				  	<button type="submit" class="btn btn-danger">delete</button>
+				  	<button type="submit" class="btn btn-danger">删除</button>
 				</form>
-			</p>
-		<section>
-			<%- article.body %>	
-		</section>	
-	</article>
-</div>
+			</div>
+		</article>
+	</div>
+</div><!-- end of .container -->
 <%- include ../includes/footer %>

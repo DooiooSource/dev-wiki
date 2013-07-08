@@ -18,6 +18,7 @@
         "request": "*",
         "marked": "*",
         "moment": "*",
-        "highlight.js": "*"
+        "highlight.js": "*",
+        "view-helpers": "*"
     }
 }

@@ -68,11 +68,18 @@
         // connect flash for flash messages - should be declared after sessions
         app.use(flash());
 
+        // set navcate variable default value to avoid undefined error
+        app.use(function (req, res, next) {
+          res.locals.navcate = null;
+          next()
+        })
+
         // routes should be at the last
         app.use(app.router);
 
 
     }); //~end app.configure
+
 
     // development env config
     app.configure('development', function () {

@@ -1,27 +1,28 @@
 <%- include ../includes/header %>
-<!DOCTYPE html>
-<div class="row">
-<article class="span9 mdbody">
-    <legend>登录</legend>
-    <form class="form-horizontal" action="/session" method="post" id="form_updateArticle">
-        <div class="control-group">
-        <label class="control-label">工号</label>
-            <div class="controls">
-                <input type="text" name="empNo">
+<div class="container mainbody">
+    <div class="row">
+    <article class="span10 offset2 mdbody">
+        <legend>登录</legend>
+        <form class="form-horizontal" action="/session" method="post" id="form_updateArticle">
+            <div class="control-group">
+            <label class="control-label">工号</label>
+                <div class="controls">
+                    <input type="text" name="empNo">
+                </div>
             </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">密码</label>
-            <div class="controls">
-                <input type="password" name="password">
+            <div class="control-group">
+                <label class="control-label">密码</label>
+                <div class="controls">
+                    <input type="password" name="password">
+                </div>
             </div>
-        </div>
-        <div class="control-group">
-            <div class="controls">
-                <button type="submit" class="btn">登录</button>
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn">登录</button>
+                </div>
             </div>
-        </div>
-    </form>
-</article>
+        </form>
+    </article>
+    </div>
 </div>
 <%- include ../includes/footer %>

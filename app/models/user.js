@@ -7,7 +7,7 @@ var mongoose = require('mongoose')
   , config = require('../../config/config')[env]
   , Schema = mongoose.Schema
 
-  var UserSchema = new Schema({
+var UserSchema = new Schema({
     empNo: {type: Number},
     username: {type: String, default: '', trim: true},
     createdAt: {type: Date, default: Date.now}

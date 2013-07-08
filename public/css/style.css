@@ -5,6 +5,7 @@ body {
 .footer {
 	background: #444444;
 	color: #939393;
+	margin-top: 50px;
 	min-height: 50px;
 	line-height: 50px;
 	text-align: center;
@@ -12,7 +13,7 @@ body {
 
 .mainbody {
 	min-height: 500px;
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 #header .navbar-inner{
@@ -20,14 +21,14 @@ body {
 }
 #header .brand {
 	text-indent: -9999px;
-	width: 251px;
+	width: 140px;
 	height: 90px;
 	padding: 0;
 	margin: 0;
 	background: url(/img/logo.png) no-repeat;
 }
 
-#header .main-nav a{
+#header .main-nav a {
 	height: 85px;
 	line-height: 90px;
 	padding: 0 30px;
@@ -37,15 +38,17 @@ body {
 	border-bottom: 5px solid transparent;
 }
 
-#header .main-nav a:hover{
+#header .main-nav li:hover a,
+#header .main-nav li.active a {
 	border-bottom: 5px solid #a12c2c;
+	background: transparent;
 }
 
 #header .main-nav {
 	margin: 0 0 0 30px;
 }
 
-#header .auth-nav a{
+#header .auth-nav a {
 	padding: 0 10px;
 	height: 90px;	
 	line-height: 90px;
@@ -54,14 +57,8 @@ body {
 .outline {
 	float: right;
 	min-height: 50px;
-	background: url(/img/outline-bg.png);
 }
 
-.outline-buttom {
-	width: 270px;
-	height: 77px;
-	background: url(/img/outline-buttom.png) center center;
-}
 
 
 .articleList li {
@@ -81,10 +78,17 @@ body {
 	border: 1px solid #cfc08a;	
 	box-shadow: #cfc08a 0px 0px 5px;
 }
+.articleList li h4 {
+	margin: 0 0 5px;
+}
 .articleList li div {
-	height: 160px;
+	height: 215px;
+	word-break: break-all;
+	overflow:hidden; 
+	text-overflow:ellipsis; 
 }
 .articleList li a {
+	text-decoration: none;
 	color: #333333;
 }
 
@@ -96,11 +100,20 @@ body {
 	float: none;
 }
 
+.h1title {
+	border-bottom: 2px solid #a5a5a5;
+	margin: 0 0 30px 0;
+	padding: 0 0 10px 0;
+}
 
+.createDate {
+	float: right;
+	font-size: 13px;
+}
 
-#editor { 
+.ace_editor { 
 	min-height: 400px;
-	border: none;
+	margin: 0;
 }
 
 .hideit {
@@ -112,8 +125,12 @@ body {
 }
 
 .panel-preview, .panel-write {
-	padding: 15px 0 10px 15px;
+	padding: 10px;
 	border: 1px solid #ddd;
 	border-top: none;
 	min-height: 300px;
+}
+
+.btn-toolbar {
+	margin-top: 0;
 }

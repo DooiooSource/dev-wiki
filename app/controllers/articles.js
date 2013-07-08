@@ -7,17 +7,67 @@ var mongoose = require('mongoose')
 
 
 /** 
+* Load
+**/
+
+exports.load = function(req, res, next, id) {
+	var User = mongoose.model('User');
+
+	Article.load(id, function(err, article) {
+		if (err) return next(err);
+		if (!article) return next(new Error('not fuound'));
+		req.article = article;
+		next();
+	});
+}
+
+/** 
 * List
 **/
 
 exports.index = function (req, res) {
+	var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
+	var perPage = 8;
+	var options = {
+		perPage: perPage,
+		page: page,
+		criteria: {'status': 'published'}
+	}
 
-	Article.list(function(err, articles){
+	Article.list(options, function(err, articles){
 		if(err) return res.render('500');
 		Article.count().exec(function(err, count){
 			res.render('articles/index', {
 				title: "首页",
-				articles: articles
+				articles: articles,
+				page: page + 1,
+				pages: Math.ceil(count / perPage),
+				navcate: 'index'
+			});
+		})
+	});
+}
+
+exports.search = function (req, res) {
+	// { $or:[ {'_id':objId}, {'name':param}, {'nickname':param} ]}
+	var keyword = req.param('keyword');
+	var criteria = { $or: [ {'tags': keyword}, {title: new RegExp('^'+ keyword +'$', "i")}] }
+	var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
+	var perPage = 8;
+	var options = {
+		perPage: perPage,
+		page: page,
+		criteria: criteria
+	}
+
+	Article.list(options, function(err, articles){
+		if(err) return res.render('500');
+		Article.count().exec(function(err, count){
+			res.render('articles/index', {
+				title: "搜索",
+				articles: articles,
+				page: page + 1,
+				pages: Math.ceil(count / perPage)
 			});
 		})
 	});
@@ -35,14 +85,6 @@ exports.new = function(req, res){
  * Create an article
  */
 
-exports.show = function(req, res){
-	Article.load(req.params.id, function(err, article){
-		if(err) return res.render('500');
-		article.body = marked.parsemd(article.body);;
-		res.render('articles/show', {article: article});
-	})
-}
-
 exports.create = function(req, res){
 	var article = new Article(req.body);
 	
@@ -57,12 +99,17 @@ exports.create = function(req, res){
 
 }
 
+/**
+ * Edit an article
+ */
+
 exports.edit = function(req, res){
-	Article.load(req.params.id, function(err, article){
-		if(err) return res.render('500');
-		res.render('articles/edit', {article: article});
-	})
+	res.render('articles/edit', {article: req.article});
 }
+
+/**
+ * Update an article
+ */
 
 exports.update = function(req, res){
 	Article.load(req.params.id, function(err, article){
@@ -72,9 +119,30 @@ exports.update = function(req, res){
 			if(!err){
 				return res.redirect('/articles/' + article._id);
 			}
-		})
-	})
+		});
+	});
 }
+
+/**
+ * Show an article
+ */
+
+exports.show = function(req, res){
+	var pattern = /^\#{2}([^\#\n]*)$/gm;
+	var str = req.article.body;
+	var outline = str.match(pattern) || [];
+	outline = _.map(outline, function(num){
+		return num.replace(/^\#{2}/g, "");
+	})
+
+	req.article.outline = outline;
+	req.article.body = marked.parsemd(req.article.body);
+	res.render('articles/show', {article: req.article, navcate: req.article.category});
+}
+
+/**
+ * Delete an article
+ */
 
 exports.destroy= function(req, res){
 	Article.load(req.params.id, function(err, article){
@@ -85,14 +153,20 @@ exports.destroy= function(req, res){
 	})
 }
 
+/**
+ * Parse Markdown to Html
+ */
 
 exports.parseMarkdown = function(req, res){
 	var content = marked.parsemd(req.body.postcon);
 	res.send(content);
 }
 
+/**
+ * Recieve upload files
+ */
+
 exports.fileUpload = function(req, res){
-    // 获得文件的临时路径
     var tmp_path = req.files.thumbnail.path;
     fs.readFile(tmp_path, function(err, data){
     	var newPath = "./uploads/photos/"+req.files.thumbnail.name;

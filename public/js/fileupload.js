@@ -1,19 +1,8 @@
-/*
-Functions:
-	1. use input to select files then upload
-	2. Drap files from desktop to upload them
-	3. checkout if server had the file
-	4. Identifying that the file to be uploaded is the same one already partially uploaded.
-*/
-
-
 $(function(){
 
     // bind hidden file input with click event    
     $("#uploadInput").bind("change", function(){
-
         var fileList = this.files;
-        
         for (var i = 0; i < fileList.length; i++) {
             sendFile(fileList[i])
         }
@@ -38,19 +27,13 @@ $(function(){
                 var dropzone = $("#editor");
                 var databack =  jQuery.parseJSON(xhr.responseText);
                 var imgMd = "![" + databack.alt + "](/photos/"+ databack.url + ")\n";
-                insertAtCursor(dropzone.get(0), imgMd);
+                // insertAtCursor(dropzone.get(0), imgMd);
+                editor.insert(imgMd);
             }
         };
         fd.append('thumbnail', file);
         xhr.send(fd);
     }
-
-
-    function insertAtCursor(myField, myValue){
-        editor.insert(myValue);
-    }
-
-
 
     // drag upload files
     var dropzone = $("#editor");

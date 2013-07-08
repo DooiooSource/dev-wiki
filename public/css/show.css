@@ -282,10 +282,3 @@ blockquote {
     background-color: transparent;
     border: none;
 }
-
-/*编辑删除按钮*/
-.mdbody h1 span.operate a{
-    font-weight: normal;
-    margin: 35px 0 0 8px; 
-    float: right;
-}
