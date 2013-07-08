@@ -9,7 +9,7 @@
                 <label class="span2">分类：</label>
             </div>
             <div class="controls controls-row">
-                <input type="text" class="span7" name="title" placeholder="标题：">
+                <input type="text" class="span7" name="title">
                 <select name="category" class="span2">
                     <option>选择分类</option>
                     <option value="frontend">前端</option>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="btn-group">
                         <a class="btn" data-insert="link" href="#"><i class="icon-link"></i></a>
-                        <a class="btn" data-insert="image" href="#"><i class="icon-picture"></i></a>
+                        <a class="btn js_insertImg" data-insert="image" href="#"><i class="icon-picture"></i></a>
                     </div>
                     <div class="btn-group">
                         <a class="btn" data-insert="bold" href="#"><i class="icon-bold"></i></a>
@@ -76,86 +76,6 @@
         </div>
     </form> 
 </div>
-    
-<!-- <div class="span9">
-    <form action="/articles" method="post">
-        <fieldset>
-            <div class="row">
-                <div class="span7">
-                    <label>标题：</label>
-                    <input type="text" name="title" class="span7" placeholder="Type title here...">
-                </div>
-                <div class="span3">
-                    <label>分类：</label>
-                    <select name="category" class="span3">
-                        <option value="frontend">前端</option>
-                        <option value="backend">后端</option>
-                        <option value="IDC">交互</option>
-                        <option value="mobile">移动</option>
-                        <option value="PM">产品</option>
-                    </select>           
-                </div>
-            </div>
-            <div class="row">
-                <label>文章状态：</label>
-                <div class="span3">
-                    <select name="status">
-                        <option value="published">发布</option>
-                        <option value="draft">草稿</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="btn-toolbar js_mdinsert span9">
-                    <div class="btn-group">
-                        <a class="btn" data-insert="h1" href="#"><b>h1</b></a>
-                        <a class="btn" data-insert="h2" href="#"><b>h2</b></a>
-                        <a class="btn" data-insert="h3" href="#"><b>h3</b></a>
-                    </div>
-                    <div class="btn-group">
-                        <a class="btn" data-insert="link" href="#"><i class="icon-link"></i></a>
-                        <a class="btn" data-insert="image" href="#"><i class="icon-picture"></i></a>
-                    </div>
-                    <div class="btn-group">
-                        <a class="btn" data-insert="bold" href="#"><i class="icon-bold"></i></a>
-                        <a class="btn" data-insert="italic" href="#"><i class="icon-italic"></i></a>
-                        <a class="btn" data-insert="code" href="#"><i class="icon-code"></i></a>
-                    </div>
-                    <div class="btn-group">
-                        <a class="btn" data-insert="ul" href="#"><i class="icon-list-ul"></i></a>
-                        <a class="btn" data-insert="ol" href="#"><i class="icon-list-ol"></i></a>
-                        <a class="btn" data-insert="blockquote" href="#"><i class="icon-quote-right"></i></a>
-                        <a class="btn" data-insert="hr" href="#"><i class="icon-minus"></i></a>
-                    </div>
-                    <div class="btn-group">
-                        <a class="btn function-help" href="#"><i class="icon-question"></i></a>
-                    </div>
-                </div>
-            </div>
-            <ul class="nav nav-tabs">
-                <li class="active tab-write">
-                    <a href="#">正文</a>
-                </li>
-                <li class="tab-preview">
-                    <a href="#">预览</a>
-                </li>
-            </ul>
-            <section class="panel-write">
-                <pre id="editor"></pre>
-                <textarea id="maincontent" rows="8" name="body" class="span10 hideit"></textarea>
-            </section>
-            <section class="panel-preview hideit">
-            </section>
-            <input name="tags" id="tags"/>
-            <p class="insertnote">
-                <input type="file" multiple id="uploadInput" class="hideit">
-                将光标定位到你想要插入图片的位置，然后直接将图片拖入上面区域，或<a href="javascript:;" class="js_insertImg">点击此处添加图片</a>。
-            </p>
-            <button type="submit" class="btn btn-primary">提交</button>
-            <a href="/articles" title="cancel" class="btn">取消</a>
-        </fieldset>
-    </form>	
-</div> -->
 </div><!-- end of .container -->
 <script type="text/javascript" src="/js/src-min-noconflict/ace.js"></script>
 <script type="text/javascript" src="/js/fileupload.js"></script>

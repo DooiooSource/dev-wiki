@@ -9,7 +9,7 @@
                 <label class="span2">分类：</label>
             </div>
             <div class="controls controls-row">
-                <input type="text" class="span7" name="title" value="<%= article.title %>" placeholder="标题：">
+                <input type="text" class="span7" name="title" value="<%= article.title %>">
                 <select name="category" class="span2">
                     <option>选择分类</option>
                     <option value="frontend" <%= article.category == "frontend" ? 'selected' : '' %>>前端</option>
