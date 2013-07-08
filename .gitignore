@@ -1,6 +1,6 @@
 ## Node Ignore
 node_modules/
-uploads/*
+uploads/
 
 
 
