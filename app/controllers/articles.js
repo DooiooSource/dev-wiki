@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
   , Article = mongoose.model('Article')
+  , User = mongoose.model('User')
   , _ = require('underscore')
   , marked = require('./marked.js')
   , fs = require('fs')
@@ -87,16 +88,15 @@ exports.new = function(req, res){
 
 exports.create = function(req, res){
 	var article = new Article(req.body);
-	
-	article.saveit(function(err){
+	article.user = req.session.empNo;
+	article.save(function(err){
 		if(!err){
 			return res.redirect('/articles/' + article._id);
 		}
-		res.render('/articles/new',{
+		res.render('articles/new',{
 			article: article
 		});
 	})
-
 }
 
 /**
@@ -112,10 +112,12 @@ exports.edit = function(req, res){
  */
 
 exports.update = function(req, res){
+
 	Article.load(req.params.id, function(err, article){
 		if(err) return res.render('500');
 		article = _.extend(article, req.body);
-		article.saveit(function(err){
+		article.updater.push(req.session.empNo);
+		article.save(function(err){
 			if(!err){
 				return res.redirect('/articles/' + article._id);
 			}

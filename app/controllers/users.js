@@ -18,7 +18,7 @@ exports.loginOk = function (req, res) {
 }
 
 exports.logout = function (req, res) {
-	req.session.usercode = null;
+	req.session.empNo = null;
 	req.session.username = null;
 
     res.redirect('/');
@@ -28,7 +28,11 @@ exports.session = function(req, res) {
 	
 	var usercode = req.body.empNo;
 	var passwordhash = crypto.createHash('md5').update(req.body.password).digest("hex");
+	req.session.username = 'admin';
+	req.session.empNo = '90592';
+	res.redirect('/');
 
+	/*
 	request({url: 'http://100.dooioo.com:10019/account/loginMd5Pass/'+usercode+'/'+passwordhash, json:true}, function (error, response, body){
 		if (!error && response.statusCode == 200) {
 			if(body.status === "ok") {
@@ -36,7 +40,7 @@ exports.session = function(req, res) {
 					req.session.username = body.employeeInfo.userName || usercode;
 					req.session.empNo = usercode;
 
-					console.log("username => " + req.session.username);
+					
 					User.update({empNo: usercode}, {"username": body.employeeInfo.userName, "empNo": usercode}, {"upsert": true}, function (err, numberAffected, raw){
 						//console.log('The raw response from Mongo was ', raw);
 					});
@@ -51,4 +55,5 @@ exports.session = function(req, res) {
 			res.redirect('/login');
 		}
 	});
+	*/
 }

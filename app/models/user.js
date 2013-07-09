@@ -10,7 +10,8 @@ var mongoose = require('mongoose')
 var UserSchema = new Schema({
     empNo: {type: Number},
     username: {type: String, default: '', trim: true},
-    createdAt: {type: Date, default: Date.now}
+    createdAt: {type: Date, default: Date.now},
+    articles: [{ type: Schema.Types.ObjectId, ref: 'Article' }]
 });
 
 mongoose.model('User', UserSchema);

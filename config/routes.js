@@ -22,12 +22,12 @@ module.exports = function (app) {
 	var articles = require('../app/controllers/articles');
 	app.get('/', articles.index);
 	app.get('/articles', articles.index);
-	app.get('/articles/new', articles.new);
-	app.post('/articles', articles.create);
+	app.get('/articles/new',  auth.requiresLogin, articles.new);
+	app.post('/articles',  auth.requiresLogin, articles.create);
 	app.get('/articles/:id', articles.show);
-	app.get('/articles/:id/edit', articles.edit);
-	app.put('/articles/:id', articles.update);
-	app.del('/articles/:id', articles.destroy);
+	app.get('/articles/:id/edit',  auth.requiresLogin, articles.edit);
+	app.put('/articles/:id', auth.requiresLogin, articles.update);
+	app.del('/articles/:id', auth.requiresLogin, articles.destroy);
 	app.get('/search/:keyword', articles.search);
 
 	app.post('/parsemd', articles.parseMarkdown);
