@@ -100,17 +100,6 @@ body {
 	float: none;
 }
 
-.h1title {
-	border-bottom: 2px solid #a5a5a5;
-	margin: 0 0 30px 0;
-	padding: 0 0 10px 0;
-}
-
-.createDate {
-	float: right;
-	font-size: 13px;
-}
-
 .ace_editor { 
 	min-height: 400px;
 	margin: 0;
