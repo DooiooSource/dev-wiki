@@ -13,10 +13,7 @@
 				</a>
 				<p>
 					<%=: article.createdAt | format_time %> 
-					<%= article.tags == [] ? "" : "|" %>
-					<% article.tags.split(',').forEach(function(tag){ %>
-						<a href="/tags/<%= tag %>"><%= tag %></a>
-					<% }) %>
+					<%= article.username %>
 				</p>
 			</li>
 			<% }) %>

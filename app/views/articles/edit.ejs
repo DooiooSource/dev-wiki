@@ -62,9 +62,7 @@
                 <input type="file" multiple id="uploadInput" class="hideit">
                 将光标定位到你想要插入图片的位置，然后直接将图片拖入上面区域，或<a href="javascript:;" class="js_insertImg">点击此处添加图片</a>。
             </p>
-            <input type="hidden" name="_method" value="PUT">
-            <button type="submit" class="btn btn-primary">提交</button>
-            <a href="/articles" title="cancel" class="btn">取消</a>
+
         </div>
         <div class="span3">
             <label>状态：</label>
@@ -74,6 +72,12 @@
             </select>
             <label>标签：</label>
             <input name="tags" id="tags" value="<%= article.tags %>"/>
+            <p>
+                <input type="hidden" name="_method" value="PUT">
+                <button type="submit" class="btn btn-primary">提交</button>
+                <a href="/articles" title="cancel" class="btn">取消</a>
+            </p>
+
         </div>
     </form> 
 </div>

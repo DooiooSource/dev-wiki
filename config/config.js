@@ -11,7 +11,7 @@ module.exports = {
     root: rootPath
   },
   production: {
-  	db: 'mongodb://127.0.0.1/dev-wiki',
+  	db: 'mongodb://192.168.0.133:27017/dev-wiki',
   	root: rootPath
   }
 }
