@@ -31,11 +31,14 @@
 				</h1>
 				<small>
 					<span class="createDate"><i class="icon-time"></i> <%=: article.createdAt | format_time %></span>
-					<%= article.tags == [] ? "" : "|" %>
-					<% article.tags.split(',').forEach(function(tag){ %>
-						<a href="/tags/<%= tag %>"><i class="icon-tags"></i> <%= tag %></a>
-					<% }) %>
-					<span><%= article.user.username %></span>
+					by 
+					<span><i class="icon-user"></i> <%= article.user.username %></span>
+					<% if(article.tags.length > 1) { %>
+						|
+						<% article.tags.split(',').forEach(function(tag){ %>
+							<a href="/tags/<%= tag %>"><i class="icon-tags"></i> <%= tag %></a>
+						<% }) %>
+					<% } %>
 				</small>
 			</header>
 			<section>

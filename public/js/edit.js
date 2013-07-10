@@ -68,4 +68,54 @@ $(function(){
         $(".panel-write").hide();
     });
 
+
+    // bind hidden file input with click event    
+    $("#uploadInput").bind("change", function(){
+        var fileList = this.files;
+        for (var i = 0; i < fileList.length; i++) {
+            sendFile(fileList[i])
+        }
+        return false;
+    });
+
+    // when click the link trigger input click event
+    $(".js_insertImg").click(function(){
+        $("#uploadInput").trigger("click");
+    })
+
+    // send file to server by XMLHttpRequest
+    function sendFile(file) {
+        var uri = "/fileupload";
+        var xhr = new XMLHttpRequest();
+        var fd = new FormData();
+         
+        xhr.open("POST", uri, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // Handle response.
+                var databack =  jQuery.parseJSON(xhr.responseText);
+                var imgMd = "![" + databack.alt + "](/photos/"+ databack.url + ")\n";
+                editor.insert(imgMd);
+                editor.focus();
+            }
+        };
+        fd.append('thumbnail', file);
+        xhr.send(fd);
+    }    
+
+    // 添加tag
+    $('#tags').tagsInput({width:'auto'});
+
+    // 未保存提示
+    var submitClick = false;
+    window.onbeforeunload = function() {
+        if(!submitClick){
+            return "你的文档还未保存";
+        }
+    }
+    $(".js_postSubmit").click(function(e){
+        submitClick = true;
+        e.preventDefault();
+        $("#postform").submit();
+    });
 })

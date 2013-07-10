@@ -2,7 +2,7 @@
 <div class="container mainbody">
 <legend>编辑</legend>
 <div class="row">
-    <form action="/articles/<%= article.id %>" method="post">
+    <form action="/articles/<%= article.id %>" method="post" id="postform">
         <div class="span9">
             <div class="row">
                 <label class="span7">标题：</label>
@@ -60,7 +60,7 @@
             </section>
             <p class="insertnote">
                 <input type="file" multiple id="uploadInput" class="hideit">
-                将光标定位到你想要插入图片的位置，然后直接将图片拖入上面区域，或<a href="javascript:;" class="js_insertImg">点击此处添加图片</a>。
+                将光标定位到你想要插入图片的位置，<a href="javascript:;" class="js_insertImg">点击此处添加图片</a>。
             </p>
 
         </div>
@@ -72,10 +72,10 @@
             </select>
             <label>标签：</label>
             <input name="tags" id="tags" value="<%= article.tags %>"/>
-            <p>
+            <p class="submit-area">
                 <input type="hidden" name="_method" value="PUT">
-                <button type="submit" class="btn btn-primary">提交</button>
-                <a href="/articles" title="cancel" class="btn">取消</a>
+                <button type="submit" class="btn btn-primary js_postSubmit"><i class="icon-save"></i> 提交</button>
+                <a href="/articles" title="cancel" class="btn"><i class="icon-mail-reply"></i> 取消</a>
             </p>
 
         </div>
@@ -83,11 +83,5 @@
 </div>
 </div><!-- end of .container -->
 <script type="text/javascript" src="/js/src-min-noconflict/ace.js"></script>
-<script type="text/javascript" src="/js/fileupload.js"></script>
 <script type="text/javascript" src="/js/edit.js"></script>
-<script type="text/javascript">
-$(function() {
-    $('#tags').tagsInput({width:'auto'});
-}); 
-</script>
 <%- include ../includes/footer %>
