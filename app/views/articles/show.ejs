@@ -27,6 +27,7 @@
 			<header>
 				<h1>
 					<%= article.title %>
+					
 				</h1>
 				<small>
 					<span class="createDate"><i class="icon-time"></i> <%=: article.createdAt | format_time %></span>
@@ -34,6 +35,7 @@
 					<% article.tags.split(',').forEach(function(tag){ %>
 						<a href="/tags/<%= tag %>"><i class="icon-tags"></i> <%= tag %></a>
 					<% }) %>
+					<span><%= article.user.username %></span>
 				</small>
 			</header>
 			<section>

@@ -26,7 +26,7 @@ var setTags = function (tags) {
 var ArticleSchema = new Schema({
     title: {type: String, default: '', trim: true},
     body: {type: String, default: '', trim: true},
-    user: {type: Number, ref: 'User'},
+    user: {type: Schema.Types.ObjectId, ref: 'User'},
     updater: {type: Array, ref: 'User'},
     category: {type: String, default: '', trim: true},
     status: {type: String, default: 'published', trim: true},
@@ -51,13 +51,15 @@ ArticleSchema.methods = {
 
  ArticleSchema.statics = {
     load: function(id, cb){
-        this.findOne({_id: id}).exec(cb);
+        this.findOne({_id: id})
+        .populate('user', 'username empNo')
+        .exec(cb);
     },
 
     list: function(options, cb){
         var criteria = options.criteria || {};
         this.find(criteria)
-        // .populate('user')
+        .populate('user', 'username empNo')
         .sort({'createdAt': -1})
         .limit(options.perPage)
         .skip(options.perPage * options.page)

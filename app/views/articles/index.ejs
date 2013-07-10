@@ -12,7 +12,7 @@
 					</div>
 				</a>
 				<p>
-					<%=: article.createdAt | format_time %> by <%= article.user %>
+					<%=: article.createdAt | format_time %> by <%= article.user.username || '' %>
 				</p>
 			</li>
 			<% }) %>
