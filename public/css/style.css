@@ -127,3 +127,17 @@ body {
 .submit-area {
 	margin: 20px 0 0 0;
 }
+
+.btn-toolbar .btn b,
+.btn-toolbar .btn i {
+	color: #6d6d6d;
+}
+
+.helptable {
+	font-size:12px; 
+	margin-bottom:10px;
+}
+.helptable h6 {
+	border-left: 3px solid #f5f5f5;
+	text-indent: 8px;
+}

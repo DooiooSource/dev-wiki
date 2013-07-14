@@ -30,9 +30,9 @@ exports.session = function(req, res) {
 	var passwordhash = crypto.createHash('md5').update(req.body.password).digest("hex");
 
 
-	// req.session.username = 'admin';
-	// req.session.empNo = '90592';
-	// res.redirect('/');
+	req.session.username = 'admin';
+	req.session.empNo = '90592';
+	res.redirect('/');
 
 	
 	request({url: 'http://100.dooioo.com:10019/account/loginMd5Pass/'+usercode+'/'+passwordhash, json:true}, function (error, response, body){

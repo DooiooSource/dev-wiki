@@ -10,6 +10,7 @@ $(function(){
     editor.setHighlightActiveLine(false);
     editor.getSession().setUseWrapMode(true); 
     editor.setShowPrintMargin(false);
+    editor.setFontSize(14);
 
     var code = editor.getSession().getValue();
 
@@ -23,9 +24,9 @@ $(function(){
         'h3': '### ',
         'link': '[文字](地址)',
         'image': '![文字](图片)',
-        'bold': '**texthere**',
-        'italic': '_texthere_',
-        'code': '```code```',
+        'bold': '**',
+        'italic': '_',
+        'code': '`',
         'ul': '- ',
         'ol': '1. ',
         'blockquote': '> ',
@@ -34,14 +35,33 @@ $(function(){
 
     // Toolbar
 
-    $(".js_mdinsert .btn").click(function(e){
+    $(".js_mdinsert .js_pre").click(function(e){
         e.preventDefault();
+
         var insertVal = $(this).data("insert");
-        insertVal = tool[insertVal];
+        if($(this).data("insert") === "blockquote"){
+            var sel = editor.session.getTextRange(editor.getSelectionRange());
+        } else {
+            if(editor.selection.isMultiLine()){
+                var sel = editor.session.getTextRange(editor.getSelectionRange()).replace(/\n/gm, '\n'+tool[insertVal]);
+            } else {
+                var sel = editor.session.getTextRange(editor.getSelectionRange());
+            }
+        }
+        insertVal = tool[insertVal] + sel;
+
         editor.insert(insertVal);
         editor.focus();
     });
 
+    $(".js_mdinsert .js_wrap").click(function(e){
+        e.preventDefault();
+        var insertVal = $(this).data("insert");
+        var sel = editor.session.getTextRange(editor.getSelectionRange());
+        insertVal = tool[insertVal] + sel + tool[insertVal];
+        editor.insert(insertVal);
+        editor.focus();       
+    })
     // Write and Preivew
 
     $(".tab-write").click(function(){
@@ -68,6 +88,11 @@ $(function(){
         $(".panel-write").hide();
     });
 
+    $(".js_help").click(function(e){
+        e.preventDefault();
+        $(".js_helpbody").slideToggle('fast');
+    })
+
 
     // bind hidden file input with click event    
     $("#uploadInput").bind("change", function(){
@@ -79,9 +104,20 @@ $(function(){
     });
 
     // when click the link trigger input click event
-    $(".js_insertImg").click(function(){
+    $(".js_insertImg").click(function(e){
+        e.preventDefault();
         $("#uploadInput").trigger("click");
     })
+
+    $(".js_insertMdLink").click(function(e){
+        e.preventDefault();
+        var mdLinkStr = '['+ $(".js_linktext").val() +']('+ $(".js_linkurl").val() +')';
+            $('#mdLinkModal').modal('hide')
+            editor.insert(mdLinkStr);
+            editor.focus();
+    })
+
+    // $(".js_insertLink").modal();
 
     // send file to server by XMLHttpRequest
     function sendFile(file) {
@@ -95,6 +131,7 @@ $(function(){
                 // Handle response.
                 var databack =  jQuery.parseJSON(xhr.responseText);
                 var imgMd = "![" + databack.alt + "](/photos/"+ databack.url + ")\n";
+
                 editor.insert(imgMd);
                 editor.focus();
             }

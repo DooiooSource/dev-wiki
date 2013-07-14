@@ -30,29 +30,89 @@
             <section class="panel-write">
                 <div class="btn-toolbar js_mdinsert">
                     <div class="btn-group">
-                        <a class="btn" data-insert="h1" href="#"><b>h1</b></a>
-                        <a class="btn" data-insert="h2" href="#"><b>h2</b></a>
-                        <a class="btn" data-insert="h3" href="#"><b>h3</b></a>
+                        <a class="btn js_pre" data-insert="h1" href="#"><b>h1</b></a>
+                        <a class="btn js_pre" data-insert="h2" href="#"><b>h2</b></a>
+                        <a class="btn js_pre" data-insert="h3" href="#"><b>h3</b></a>
                     </div>
                     <div class="btn-group">
-                        <a class="btn" data-insert="link" href="#"><i class="icon-link"></i></a>
+                        <a class="btn js_insertLink" role="button" data-toggle="modal" data-insert="link" href="#mdLinkModal"><i class="icon-link"></i></a>
                         <a class="btn js_insertImg" data-insert="image" href="#"><i class="icon-picture"></i></a>
                     </div>
                     <div class="btn-group">
-                        <a class="btn" data-insert="bold" href="#"><i class="icon-bold"></i></a>
-                        <a class="btn" data-insert="italic" href="#"><i class="icon-italic"></i></a>
-                        <a class="btn" data-insert="code" href="#"><i class="icon-code"></i></a>
+                        <a class="btn js_wrap" data-insert="bold" href="#"><i class="icon-bold"></i></a>
+                        <a class="btn js_wrap" data-insert="italic" href="#"><i class="icon-italic"></i></a>
+                        <a class="btn js_wrap" data-insert="code" href="#"><i class="icon-code"></i></a>
                     </div>
                     <div class="btn-group">
-                        <a class="btn" data-insert="ul" href="#"><i class="icon-list-ul"></i></a>
-                        <a class="btn" data-insert="ol" href="#"><i class="icon-list-ol"></i></a>
-                        <a class="btn" data-insert="blockquote" href="#"><i class="icon-quote-right"></i></a>
-                        <a class="btn" data-insert="hr" href="#"><i class="icon-minus"></i></a>
+                        <a class="btn js_pre" data-insert="ul" href="#"><i class="icon-list-ul"></i></a>
+                        <a class="btn js_pre" data-insert="ol" href="#"><i class="icon-list-ol"></i></a>
+                        <a class="btn js_pre" data-insert="blockquote" href="#"><i class="icon-quote-right"></i></a>
+                        <a class="btn js_pre" data-insert="hr" href="#"><i class="icon-minus"></i></a>
                     </div>
                     <div class="btn-group">
-                        <a class="btn function-help" href="#"><i class="icon-question"></i></a>
+                        <a class="btn js_help" href="#"><i class="icon-question-sign"></i></a>
                     </div>
                 </div>
+                <div class="js_helpbody" style="display:none">
+                    <table class="table table-bordered helptable">
+                        <tr>
+                            <td>
+                                <h6>标题</h6>
+                                # 标题h1,字体最大<br>
+                                ## 标题h2<br>
+                                ...<br>
+                                ###### 标题h6,字体最小<br>
+                                <hr>
+                                <h6>段落</h6>
+                                段落（分段落就是直接空一行）<br>
+                                    <br>
+                                段落2<br>
+                            </td>
+                            <td>
+                                <h6>列表</h6>
+                                - 无序列表<br>
+                                - 无序列表<br>
+                                <br>
+                                1. 有序列表<br>
+                                2. 有序列表<br>
+                                <hr>
+                                <h6>文字</h6>
+                                **粗体**<br>
+                                _斜体_<br>
+                                <hr>
+                                <h6>水平线</h6>
+                                ***
+                            </td>
+                            <td>
+                                <h6>引用块</h6>
+                                > 引用块<br>
+                                <hr>
+                                <h6>链接</h6>
+                                [文字](http://linkurl)
+                                <hr>
+                                <h6>图片</h6>
+                                ![alt文字](http://picurl)<br>
+                                （图片的标记只比链接多一个感叹号哦~）
+                            </td>
+                            <td>
+                                <h6>代码</h6>
+                                `行内代码` <br>
+                                <br>
+                                ```
+                                多行代码
+                                ```
+                                <hr>
+                                <h6>表格</h6>
+                                |表头|表头|<br>
+                                |--- |--- |<br>  
+                                |内容|内容|<br>
+                                |内容|内容|<br>
+                            </td>
+                        </tr>
+                    </table>
+                   
+                </div>
+
                 <pre id="editor"></pre>
                 <textarea id="maincontent" rows="8" name="body" class="span10 hideit"></textarea>
             </section>
@@ -60,7 +120,7 @@
             </section>
             <p class="insertnote">
                 <input type="file" multiple id="uploadInput" class="hideit">
-                将光标定位到你想要插入图片的位置，<a href="javascript:;" class="js_insertImg">点击此处添加图片</a>。
+                <!-- 将光标定位到你想要插入图片的位置，<a href="javascript:;" class="js_insertImg">点击此处添加图片</a>。 -->
             </p>
 
         </div>
@@ -80,6 +140,25 @@
     </form> 
 </div>
 </div><!-- end of .container -->
+
+
+<div id="mdLinkModal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>插入链接</h3>
+    </div>
+    <div class="modal-body">
+        <label>文本</label>
+        <input type="text" class="js_linktext">
+        <label>URL地址</label>
+        <input type="text" class="js_linkurl">
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">取消</a>
+        <a href="#" class="btn btn-primary js_insertMdLink">确定</a>
+    </div>
+</div> 
+
 <script type="text/javascript" src="/js/src-min-noconflict/ace.js"></script>
 <script type="text/javascript" src="/js/edit.js"></script>
 <%- include ../includes/footer %>
