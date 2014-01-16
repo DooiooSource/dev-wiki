@@ -1,45 +1,69 @@
 <%- include ../includes/header %>
 <div class="container mainbody"  data-category="<%= navcate %>">
-<div class="row">	
-	<article>
-		<ul class="articleList clearfix">
-			<% articles.forEach(function(article){ %>
-			<li>
-				<a href="/articles/<%= article._id %>">
-					<div>
-						<h4><%= article.title %></h4>
-						<%=: article.body | truncate:140 %>
-					</div>
-				</a>
-				<p>
-					<%=: article.createdAt | format_time %> by <%= article.user.username || '' %>
-				</p>
-			</li>
-			<% }) %>
-		</ul>
-	</article>
+    <div class="row">
 
-	<% if(pages > 1){ %>
-		<div class="pagination pagination-right">
-	        <ul>
-	        	<% if( page > 1 ){ %>
-		        	<li><a href="?page=<%= page-1 %>">«</a></li>
-	        	<% } %>
+        <!-- 文章列表 -->
+        <div class="col-md-8">
+            <ul class="item-list">
+                <% articles.forEach(function(article){ %>
+                <li class="clearfix">
 
-	        	<% for (var i = 1; i <= pages; i++ ) { %>
-	        		<% if ( page == i ){ %>
-		        		<li class="active"><a href="?page=<%= i %>"><%= i %></a></li>
-	        		<% } else { %>
-		        		<li><a href="?page=<%= i %>"><%= i %></a></li>
-	        		<% } %>
-	        	<% } %>
 
-	        	<% if( page < pages ){ %>
-		        	<li><a href="?page=<%= page + 1 %>">»</a></li>
-	        	<% } %>
-	        </ul>
-	    </div>
-	<% } %>
+                    <div class="pull-left"><a href="#" class="avatar" style="background-image:url(http://100.dooioo.com:7070/photos/<%= article.user.empNo %>_60x80.jpg)"></a></div>
+                    <div class="pull-left">
+                        <a href="/articles/<%= article._id %>"> <%= article.title %> </a>
+                        <br>
+                        <span class="f12 grey"> <%=: article.createdAt | format_time %>   by:</span>
+                        <a href="/articles/<%= article._id %>" class="f12 grey"> <%= article.user.username %> </a>
+                    </div>
+                    <div class="pull-right">
+                        <!-- <span class="badge"><%= article.comments.length %></span> -->
+                        <span class="label label-default"><%=: article.category | parse_category %></span>
+                    </div>
+
+                    <!-- <span class="pull-right"> <%=: article.createdAt | format_time:'YYYY-MM-DD' %>  </span> -->
+                </li>
+                <% }) %>
+            </ul>
+            <!-- 翻页 -->
+            <% if(pages > 1){ %>
+            <ul class="pagination pull-right">
+            <%- createPagination(pages, page) %>
+            </ul>
+            <% } %>
+        </div>
+
+        <!-- 前端文档 -->
+        <% if(navcate !== 'breakdown'){ %>
+        <div class="col-md-2 col-md-offset-1 dui-doc-list">
+            <h4>UI组件库：</h4>
+            <ul>
+                <li>
+                    <a target="_blank" href="http://dui.dooioo.com/public/demo/DUI.htm">DUI标准UI组件库</a>
+                </li>
+                <li>
+                    <a href="http://dev.dooioo.com/articles/51dcfd9044917d0000000002">CSS原子类</a>
+                </li>
+            </ul>
+            <h4>jQuery组件库</h4>
+            <ul>
+                <li><a target="_blank" href="http://dui.dooioo.com/public/demo/tips.htm">Tips</a></li>
+                <li><a target="_blank" href="http://dui.dooioo.com/public/demo/dui_edit.htm">字段编辑组件</a></li>
+                <li><a target="_blank" href="http://dui.dooioo.com/public/demo/dui_AddRemove.htm">添加删除行组件</a></li>
+                <li><a target="_blank" href="http://dui.dooioo.com/public/demo/datePicker.htm">日期选择组件</a></li>
+                <li><a target="_blank" href="http://dui.dooioo.com/public/demo/autocomplete.htm">自动完成组件</a></li>
+                <li><a  href="http://dui.dooioo.com/public/demo/tree/index.htm">组织架构树</a></li>
+            </ul>
+            <h4>Angular组件库</h4>
+            <ul>
+                <li>
+                    <a target="_blank" href="http://dui.dooioo.com/public/demo/angular/directive.html">全局指令</a>
+                </li>
+            </ul>
+        </div>
+        <% } %>
+
+
 </div>
 </div><!-- end of .container -->
 <%- include ../includes/footer %>

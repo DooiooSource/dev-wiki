@@ -1,26 +1,20 @@
 <%- include ../includes/header %>
 <div class="container mainbody">
     <div class="row">
-    <article class="span10 offset2 mdbody">
+    <article class="col-md-10 col-md-offset-2">
         <legend>登录</legend>
-        <form class="form-horizontal" action="/session" method="post" id="form_updateArticle">
-            <div class="control-group">
-            <label class="control-label">工号</label>
-                <div class="controls">
-                    <input type="text" name="empNo">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">密码</label>
-                <div class="controls">
-                    <input type="password" name="password">
-                </div>
-            </div>
-            <div class="control-group">
-                <div class="controls">
-                    <button type="submit" class="btn">登录</button>
-                </div>
-            </div>
+
+        <form class="form-inline" role="form" action="/login?from=<%=from%>" method="post" id="form_updateArticle">
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputEmail2">Email address</label>
+            <input type="input" name="empNo" class="form-control" placeholder="工号" required>
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword2">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="密码" required>
+          </div>
+        
+          <button type="submit" class="btn btn-default">登录</button>
         </form>
     </article>
     </div>

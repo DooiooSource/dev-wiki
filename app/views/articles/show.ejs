@@ -1,51 +1,67 @@
 <%- include ../includes/header %>
 <div class="container mainbody">
 	<div class="row">
-		<aside class="span3 outline">
-			<div data-spy="affix" data-offset-top="10">
-				<div>
-					<% if(username) { %>
-					<form action="/articles/<%= article.id %>" method="post" class="center form-inline confirm">
-					  	<a href="/articles/<%= article.id %>/edit" title="edit" class="btn"><i class="icon-edit"></i> 编辑</a>
-					  	<input type="hidden" name="_method" value="DELETE">
-					  	<button type="submit" class="btn btn-danger js_deletePost"><i class="icon-trash"></i> 删除</button>
-					</form>
-					<% } %>
-				</div>
-				<h3>文章目录</h3>
-				<ul class="affix-top">
-					<% article.outline.forEach(function(item){ %>
-					<li>
-						<a href=""><%= item %></a>
-					</li>
-					<% }) %>
-				</ul>
-			</div>
+		<aside class="col-md-4 outline ">
+
 		</aside>	
 		
-		<article class="span9 mdbody">
+		<article class="col-md-8 mdbody">
 			<header>
 				<h1>
 					<%= article.title %>
-					
 				</h1>
-				<small>
-					<span class="createDate"><i class="icon-time"></i> <%=: article.createdAt | format_time %></span>
-					by 
-					<span><i class="icon-user"></i> <%= article.user.username %></span>
-					<% if(article.tags.length > 1) { %>
-						|
-						<% article.tags.split(',').forEach(function(tag){ %>
-							<a href="/tags/<%= tag %>"><i class="icon-tags"></i> <%= tag %></a>
-						<% }) %>
-					<% } %>
-				</small>
 			</header>
-			<section>
-				<%- article.body %>	
-			</section>	
 
+			<section>
+				<%-: article.body | parse_markdown %>	
+			</section>	
+			<small class="pull-right">
+				<% if (username) { %>
+					<a href="/articles/<%= article.id %>/edit" title="edit">编辑</a>
+				<% } %>
+				<span class="createDate"><%=: article.createdAt | format_time %></span>
+				by 
+				<span><%= article.user.username %></span>
+			</small><br>
+			<div  class="pull-right">
+				<% if(username === article.user.username) { %>
+				<form action="/articles/<%= article.id %>" method="post" class="center form-inline confirm">
+				  	<input type="hidden" name="_method" value="DELETE">
+				  	<button type="submit" class="btn btn-danger js_deletePost">删  除</button>
+				</form>
+				<% } %>
+			</div>
 		</article>
+		
+		<div class="col-md-8 comment-panel">
+			<h4>评论</h4>
+			<ul class="item-list comment-list">
+                <% article.comments.forEach(function(comment){ %>
+                <li class="clearfix">
+	                <div class="pull-left">
+	                    <a href="" class="avatar" style="background-image:url(http://100.dooioo.com:7070/photos/<%= comment.user.empNo %>_60x80.jpg)"></a>
+	                </div>
+	                <div class="pull-left" style="width: 674px;">
+                        <div>
+                            <a href="/articles/<%= article._id %>" class="left"> <%= comment.user.username %> </a>
+                            <small class="pull-right"> <%=: comment.createdAt | format_time:'YYYY-MM-DD HH:mm' %> </small>
+                        </div>
+	                    <div> <%= comment.body %>  </div>
+	                </div>
+                </li>
+                <% })%>
+            </ul>
+            <% if (username) { %>
+			<form action="/articles/<%= article.id %>/comments" method="post">
+				<textarea name="body" class="form-control comment-input" rows="3"></textarea>
+				<button type="submit" class="btn btn-primary pull-right">评论</button>
+			</form>
+            <% } else { %>
+                <p style="text-align: right">
+                    <a href="/login?from=/articles/<%= article.id %>" target="_blank">登录</a>后可评论。
+                </p>
+            <% } %>
+		</div>
 	</div>
 </div><!-- end of .container -->
 <%- include ../includes/footer %>

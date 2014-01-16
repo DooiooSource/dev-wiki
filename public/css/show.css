@@ -2,17 +2,23 @@
     border-bottom: 1px solid #ddd;
     margin-bottom: 20px;
 }
+.mdbody header h1 {
+    margin: 0;
+    padding-bottom: 8px;
+}
 .mdbody iframe {
-    width: auto;
+    width: 100%;
     border:none;
     outline: 1px dashed #ddd;
-    width: 870px;
-    min-height: 500px;
 }
+
 .mdbody {
     font-size: 15px;
     line-height: 1.7;
     overflow: hidden;
+}
+.mdbody p {
+    font-size: 15px;
 }
 .mdbody>*:first-child {
     margin-top: 0 !important;
@@ -21,14 +27,13 @@
     margin-bottom: 0 !important;
 }
 .mdbody h1 {
-    font-size: 2.2em;
-    margin-bottom: 0px;
+    font-size: 1.6em;
 }
 .mdbody h2 {
-    font-size: 1.8em;
+    font-size: 1.5em;
 }
 .mdbody h3 {
-    font-size: 1.5em;
+    font-size: 1.4em;
 }
 .mdbody h4 {
     font-size: 1.2em;
@@ -44,15 +49,6 @@
     margin: 15px 0;
 }
 
-/*.mdbody hr {
-    background: transparent url("/images/dirty-shade.png") repeat-x 0 0;
-    border: 0 none;
-    color: #ccc;
-    height: 4px;
-    padding: 0;
-    margin: 15px 0;
-}
-*/
 .mdbody li p.first {
     display: inline-block;
 }
@@ -119,6 +115,11 @@
 }
 
 
-.affix {
-    top: 10px;
+
+.dui-doc-list h4 {
+    margin-top: 0;
+}
+
+.comment-panel {
+    margin: 50px 0 ;
 }

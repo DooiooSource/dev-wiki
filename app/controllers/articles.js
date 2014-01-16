@@ -1,7 +1,6 @@
 var mongoose = require('mongoose')
   , Article = mongoose.model('Article')
   , _ = require('underscore')
-  , marked = require('./marked.js')
   , fs = require('fs')
   , path = require('path')
 
@@ -27,14 +26,14 @@ exports.load = function(req, res, next, id) {
 
 exports.index = function (req, res) {
 	var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
-	var perPage = 8;
+	var perPage = 10;
 	var options = {
 		perPage: perPage,
-		page: page,
-		criteria: {'status': 'published'}
+		page: page
 	}
-
 	Article.list(options, function(err, articles){
+
+        console.log(err);
 		if(err) return res.render('500');
 		Article.count().exec(function(err, count){
 			res.render('articles/index', {
@@ -51,7 +50,8 @@ exports.index = function (req, res) {
 exports.search = function (req, res) {
 	// { $or:[ {'_id':objId}, {'name':param}, {'nickname':param} ]}
 	var keyword = req.param('keyword');
-	var criteria = { $or: [ {'tags': keyword}, {title: new RegExp('^'+ keyword +'$', "i")}] }
+	// var criteria = { $or: [ {title: new RegExp('^'+ keyword +'$', "i")}] }
+	var criteria = { title: new RegExp('.*'+ keyword +'.*', "i")}
 	var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
 	var perPage = 8;
 	var options = {
@@ -62,12 +62,13 @@ exports.search = function (req, res) {
 
 	Article.list(options, function(err, articles){
 		if(err) return res.render('500');
-		Article.count().exec(function(err, count){
+		Article.count(criteria).exec(function(err, count){
 			res.render('articles/index', {
 				title: "搜索",
 				articles: articles,
 				page: page + 1,
-				pages: Math.ceil(count / perPage)
+				pages: Math.ceil(count / perPage),
+                keyword: keyword
 			});
 		})
 	});
@@ -78,7 +79,13 @@ exports.search = function (req, res) {
  */
 
 exports.new = function(req, res){
-	res.render('articles/new', {"title": "发布"});
+	var mockArticle = {
+		id: '',
+		category: '',
+		body: '',
+		title: ''
+	}
+	res.render('articles/editpage', {title: "发布", article: mockArticle});
 }
 
 /**
@@ -108,7 +115,7 @@ exports.create = function(req, res){
  */
 
 exports.edit = function(req, res){
-	res.render('articles/edit', {article: req.article});
+	res.render('articles/editpage', {article: req.article});
 }
 
 /**
@@ -119,10 +126,12 @@ exports.update = function(req, res){
 	Article.load(req.params.id, function(err, article){
 		if(err) return res.render('500');
 		article = _.extend(article, req.body);
-		article.updater.push(req.session.empNo);
+        // 暂时去除更新者字段
+//		article.updater.push(req.session.empNo);
+//        article.updater = _.uniq(article.updater);
 		article.save(function(err){
 			if(!err){
-				return res.redirect('/articles/' + article._id);
+				res.redirect('/articles/' + article._id);
 			}
 		});
 	});
@@ -132,16 +141,7 @@ exports.update = function(req, res){
  * Show an article
  */
 
-exports.show = function(req, res){
-	var pattern = /^\#{2}([^\#\n]*)$/gm;
-	var str = req.article.body;
-	var outline = str.match(pattern) || [];
-	outline = _.map(outline, function(num){
-		return num.replace(/^\#{2}/g, "");
-	})
-
-	req.article.outline = outline;
-	req.article.body = marked.parsemd(req.article.body);
+exports.show = function(req, res){    
 	res.render('articles/show', {article: req.article, navcate: req.article.category});
 }
 
@@ -156,15 +156,6 @@ exports.destroy= function(req, res){
 			res.redirect('/articles');
 		})
 	})
-}
-
-/**
- * Parse Markdown to Html
- */
-
-exports.parseMarkdown = function(req, res){
-	var content = marked.parsemd(req.body.postcon);
-	res.send(content);
 }
 
 /**

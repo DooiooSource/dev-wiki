@@ -1,19 +1,22 @@
 body {
-	font-family: "微软雅黑";
+	/*font-family: "微软雅黑";*/
 }
-
+.bg {
+	background: url(/img/subtle-pattern-11.jpg);
+}
 .footer {
-	background: #444444;
+	border-top: 1px solid #ddd;
 	color: #939393;
-	margin-top: 50px;
-	min-height: 50px;
-	line-height: 50px;
+	margin-top: 5px;
+	height: 80px;
+	line-height: 80px;
 	text-align: center;
 }
 
 .mainbody {
-	min-height: 500px;
-	margin-top: 20px;
+	min-height: 600px;
+	margin-top: 50px;
+	padding-top: 20px;
 }
 
 #header .navbar-inner{
@@ -59,85 +62,52 @@ body {
 	min-height: 50px;
 }
 
-
-
-.articleList li {
-	list-style: none;
-	float: left;
-	width: 220px;
-	height: 230px;
-	padding: 20px;
-	margin: 15px;
+.item-list {
 	background: #fff;
-	border-radius: 4px;
-	border: 1px solid #fff;	
-	box-shadow: #ccc 0px 0px 5px;
-}
-.articleList li:hover {
-	background: #fffec8;
-	border: 1px solid #cfc08a;	
-	box-shadow: #cfc08a 0px 0px 5px;
-}
-.articleList li h4 {
-	margin: 0 0 5px;
-}
-.articleList li div {
-	height: 215px;
-	word-break: break-all;
-	overflow:hidden; 
-	text-overflow:ellipsis; 
-}
-.articleList li a {
-	text-decoration: none;
-	color: #333333;
-}
-
-.breadcrumbWrapper {
-	background: #f5f5f5;
-}
-.breadcrumb {
-	margin: 0 auto;
-	float: none;
-}
-
-.ace_editor { 
-	min-height: 400px;
 	margin: 0;
+	padding: 0;
+	border: 1px solid #ddd;	
+	border-radius: 3px;
 }
-
-.hideit {
-	display: none;
-}
-
-.nav-tabs {
-	margin: 0;
-}
-
-.panel-preview, .panel-write {
+.item-list li {
+	list-style: none;
+	display: block;
 	padding: 10px;
-	border: 1px solid #ddd;
-	border-top: none;
-	min-height: 300px;
+	border-bottom: 1px solid #ddd;
+}
+.item-list li:last-child {
+	border-bottom: none;
+}
+.item-list li > div {
+	min-width: 42px;
+
+	min-height: 42px;
 }
 
-.btn-toolbar {
-	margin-top: 0;
+.comment-list {
+	margin-bottom: 10px;
+}
+.comment-list li > div {
+	max-width: 675px;
 }
 
-.submit-area {
-	margin: 20px 0 0 0;
+.comment-input {
+	margin: 10px 0;
 }
 
-.btn-toolbar .btn b,
-.btn-toolbar .btn i {
-	color: #6d6d6d;
+.f12 {
+	font-size: 12px;
+}
+.grey {
+	color: grey;
 }
 
-.helptable {
-	font-size:12px; 
-	margin-bottom:10px;
-}
-.helptable h6 {
-	border-left: 3px solid #f5f5f5;
-	text-indent: 8px;
+.avatar {
+	display: block;
+	width: 42px;
+	height: 42px;
+	margin-right: 10px;
+	background: url(/img/short-hair.jpg) no-repeat center -2px;
+	background-size: 42px;
+	border-radius: 50%;
 }

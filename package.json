@@ -16,9 +16,8 @@
         "async": "*",
         "forever": "*",
         "request": "*",
-        "marked": "*",
+        "pagedown": "*",
         "moment": "*",
-        "highlight.js": "*",
         "view-helpers": "*"
     }
 }

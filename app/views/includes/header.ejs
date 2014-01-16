@@ -1,55 +1,77 @@
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
-<!-- <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="/css/bootstrap-responsive.css"> -->
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/tomorrow.css">
 <link rel="stylesheet" type="text/css" href="/css/show.css">
-<link rel="stylesheet" type="text/css" href="/css/jquery.tagsinput.css">
-<script type="text/javascript" src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="/js/bootstrap.js"></script>
-<script type="text/javascript" src="/js/jquery.tagsinput.min.js"></script>
-<script type="text/javascript" src="/js/script.js"></script>
-<body>
-<div id="header" class="navbar navbar-inverse navbar-static-top">
-	<div class="navbar-inner">
-		<div class="container">
-			<a class="brand" href="/">Dwiki</a>
-			<div class="nav-collapse collapse">
-				<ul class="nav main-nav">
-					<li class="<%= navcate == "index" ? "active" : "" %>">
-						<a href="/">首页</a>
-					</li>
-					<li class="<%= navcate == "frontend" ? "active" : "" %>">
-						<a href="/categories/frontend">前端</a>
-					</li>
-					<li class="<%= navcate == "backend" ? "active" : "" %>">
-						<a href="/categories/backend">后端</a>
-					</li>
-					<li class="<%= navcate == "IDC" ? "active" : "" %>">
-						<a href="/categories/IDC">交互</a>
-					</li>
-					<li class="<%= navcate == "PM" ? "active" : "" %>">
-						<a href="/categories/PM">产品</a>
-					</li>
-					<li class="<%= navcate == "mobile" ? "active" : "" %>">
-						<a href="/categories/mobile">移动</a>
-					</li>
-				</ul>
-				<ul class="nav auth-nav pull-right">
-				    <% if(username) { %>
-						<li> <a href="/articles/new"><i class="icon-plus"></i> 发布 </a> </li>
-						<li> <a href="/logout"><i class="icon-power-off"></i> 退出 </a> </li>
-						<li> <a href="#"><i class="icon-user"></i> <%= username %></a> </li>
-					<% } else {%>	
-						<li> <a href="/login"><i class="icon-user"></i> 登录</a> </li>
-					<% } %>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>	
+<script type="text/javascript" src="/js/prettify.js"></script>
+<!-- <script type="text/javascript" src="/js/pdfobject.js"></script> -->
+<script type="text/javascript" src="/js/showpage.js"></script>
+<body class="bg">
+
+<header class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="../" class="navbar-brand">Dev.dooioo.com</a>
+    </div>
+    <nav class="collapse navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+			<li class="<%= navcate == "share" ? "active" : "" %>">
+				<a href="/categories/share">中心分享</a>
+			</li>
+            <li class="<%= navcate == "frontend" ? "active" : "" %>">
+              <a href="/categories/frontend">前端</a>
+            </li>
+            <li class="<%= navcate == "backend" ? "active" : "" %>">
+                <a href="/categories/backend">后端</a>
+            </li>
+            <li class="<%= navcate == "mobile" ? "active" : "" %>">
+              <a href="/categories/mobile">移动</a>
+            </li>
+            <li class="<%= navcate == "itom" ? "active" : "" %>">
+              <a href="/categories/itom">IT运维</a>
+            </li>
+			<li class="<%= navcate == "breakdown" ? "active" : "" %>">
+				<a href="/categories/breakdown">故障记录</a>
+			</li>
+      <li>
+        <a href="http://192.168.0.97:88/zentao" target="_blank"><span class="glyphicon glyphicon-new-window"></span> 禅道</a>
+      </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+		    <% if (username) { %>
+				<li> <a href="/articles/new"><i class="icon-plus"></i> 发布 </a> </li>
+				<li> <a href="/logout"><i class="icon-power-off"></i> 退出 </a> </li>
+				<li> <a href="#"><i class="icon-user"></i> <%= username %></a> </li>
+			<% } else { %>
+				<li> <a href="/login"><i class="icon-user"></i> 登录</a> </li>
+			<% } %>
+      </ul>
+      <div class="col-lg-3 navbar-left" style="margin-top:8px;">
+        <form action="/search">
+          <div class="input-group">
+              <% if(locals.keyword){ %>
+                <input type="text" name="keyword" class="form-control" value="<%= keyword %>">
+              <% }else{ %>
+                <input type="text" name="keyword" class="form-control">
+              <% } %>
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
+          </div>
+        </form>
+      </div>
+    </nav>
+  </div>
+</header>
 
 

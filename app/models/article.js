@@ -8,18 +8,8 @@ var mongoose = require('mongoose')
  , Schema = mongoose.Schema
 
 
-var getTags = function (tags) {
-    return tags.join(',')
-}
-
-var setTags = function (tags) {
-    return tags.split(',')
-}
-
 /**
  * //Todo
- * [] tags
- * [] comments
  * [] editHistory
  */
 
@@ -28,9 +18,12 @@ var ArticleSchema = new Schema({
     body: {type: String, default: '', trim: true},
     user: {type: Schema.Types.ObjectId, ref: 'User'},
     updater: {type: Array, ref: 'User'},
+    comments: [{
+        body: {type: String, default: ''},
+        user: {type: Schema.Types.ObjectId, ref: 'User'},
+        createdAt: {type: Date, default: Date.now}
+    }],
     category: {type: String, default: '', trim: true},
-    status: {type: String, default: 'published', trim: true},
-    tags: {type: [], get: getTags, set: setTags},
     createdAt: {type: Date, default: Date.now},
     updatedAt: {type: Date}    
 });
@@ -40,9 +33,16 @@ var ArticleSchema = new Schema({
  */
 
 ArticleSchema.methods = {
-    // saveit: function(cb){
-    //     this.save(cb);
-    // }
+
+    addComment: function(userId, comment, cb){
+        this.comments.push({
+            body: comment.body,
+            user: userId
+        })
+
+        this.save(cb)
+    }
+
 }
 
 /**
@@ -53,6 +53,7 @@ ArticleSchema.methods = {
     load: function(id, cb){
         this.findOne({_id: id})
         .populate('user', 'username empNo')
+        .populate('comments.user')
         .exec(cb);
     },
 

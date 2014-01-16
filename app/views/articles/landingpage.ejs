@@ -1,0 +1,99 @@
+<%- include ../includes/header %>
+<div class="container mainbody"  data-category="<%= navcate %>">
+    <div class="row">
+        <article>
+            <!--<% if(navcate !== 'index'){ %>-->
+            <!--<p class="tag_list">-->
+            <!--<b>按标签分类：</b>-->
+            <!--<% tags.forEach(function(tag){ %>-->
+            <!--<a href="/tags/<%= tag %>" class="<% if(typeof currenttag != 'undefined') { %><%= tag === currenttag ? 'active' : '' %><% } %>"><%= tag %></a>-->
+            <!--<% }) %>-->
+            <!--</p>-->
+            <!--<% } %>-->
+
+            <% if(navcate === 'frontend'){ %>
+            <section class="span5 pull-left">
+                <h4>DUI规范与组件</h4>
+                <ul class="titleList clearfix">
+                    <% articles.forEach(function(article){ %>
+                    <li>
+                        <a href="/articles/<%= article._id %>">
+                            <span><%= article.title %></span>
+                        </a>
+                        <span class="pull-right"> <%=: article.createdAt | format_time %>  </span>
+                    </li>
+                    <% }) %>
+                </ul>
+            </section>
+            <section class="span5 pull-right">
+                <h4>Angularjs公用组件</h4>
+                <ul class="titleList clearfix">
+                    <% articles.forEach(function(article){ %>
+                    <li>
+                        <a href="/articles/<%= article._id %>">
+                            <span><%= article.title %></span>
+                        </a>
+                        <span class="pull-right"> <%=: article.createdAt | format_time %>  </span>
+                    </li>
+                    <% }) %>
+                </ul>
+            </section>
+            <section class="span5 pull-left">
+                <h4>前端分享</h4>
+                <ul class="titleList clearfix">
+                    <% articles.forEach(function(article){ %>
+                    <li>
+                        <a href="/articles/<%= article._id %>">
+                            <span><%= article.title %></span>
+                        </a>
+                        <span class="pull-right"> <%=: article.createdAt | format_time %>  </span>
+                    </li>
+                    <% }) %>
+                </ul>
+            </section>
+            <% } else { %>
+            <ul class="articleList clearfix">
+                <% articles.forEach(function(article){ %>
+                <li>
+                    <a href="/articles/<%= article._id %>">
+                        <div>
+                            <h4><%= article.title %></h4>
+                            <%=: article.body | truncate:140 %>
+                        </div>
+                    </a>
+                    <p>
+                        <%=: article.createdAt | format_time %> by <%= article.user.username || '' %>
+                    </p>
+                </li>
+                <% }) %>
+            </ul>
+            <% } %>
+
+
+        </article>
+
+        <% if(pages > 1){ %>
+        <div class="pagination pagination-right">
+
+            <ul>
+                <% if( page > 1 ){ %>
+                <li><a href="?page=<%= page-1 %>">«</a></li>
+                <% } %>
+
+                <% for (var i = 1; i <= pages; i++ ) { %>
+                <% if ( page == i ){ %>
+                <li class="active"><a href="?page=<%= i %>"><%= i %></a></li>
+                <% } else { %>
+                <li><a href="?page=<%= i %>"><%= i %></a></li>
+                <% } %>
+                <% } %>
+
+                <% if( page < pages ){ %>
+                <li><a href="?page=<%= page + 1 %>">»</a></li>
+                <% } %>
+            </ul>
+        </div>
+        <% } %>
+    </div>
+</div><!-- end of .container -->
+<%- include ../includes/footer %>
