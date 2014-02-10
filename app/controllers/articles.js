@@ -2,7 +2,9 @@ var mongoose = require('mongoose')
   , Article = mongoose.model('Article')
   , _ = require('underscore')
   , fs = require('fs')
-  , path = require('path')
+  , path = require('path');
+
+  ObjectId = mongoose.Types.ObjectId;
 
 
 /** 
@@ -33,7 +35,6 @@ exports.index = function (req, res) {
 	}
 	Article.list(options, function(err, articles){
 
-        console.log(err);
 		if(err) return res.render('500');
 		Article.count().exec(function(err, count){
 			res.render('articles/index', {
@@ -46,6 +47,47 @@ exports.index = function (req, res) {
 		})
 	});
 }
+
+
+
+/**
+ * 个人主页
+ * @param req
+ * @param res
+ */
+
+exports.userhome = function(req, res){
+    var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
+    var perPage = 10;
+
+	var User = mongoose.model('User');
+
+    User.find({empNo: req.params.empNo}).exec(function(err, user){
+        var options = {
+            perPage: perPage,
+            page: page,
+            criteria: {
+	            user: user[0]._id
+            }
+        };
+
+        Article.list(options, function(err, articles){
+            if(err) return res.render('500');
+            Article.count({user: user[0]._id}).exec(function(err, count){
+	            res.render('articles/index', {
+	                title: "首页",
+	                articles: articles,
+	                page: page + 1,
+	                pages: Math.ceil(count / perPage),
+	                navcate: 'index'
+	            });
+	        })
+        });
+    });
+
+};
+
+
 
 exports.search = function (req, res) {
 	// { $or:[ {'_id':objId}, {'name':param}, {'nickname':param} ]}

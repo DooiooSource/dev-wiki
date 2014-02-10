@@ -30,6 +30,7 @@ module.exports = function (app) {
 	app.del('/articles/:id', auth.requiresLogin, articles.destroy);
 	app.get('/search', articles.search);
 
+	app.get('/user/:empNo', articles.userhome);
 	app.post('/fileupload', articles.fileUpload);
 
 	// 路由参数预处理

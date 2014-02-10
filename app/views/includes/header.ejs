@@ -25,27 +25,27 @@
     </div>
     <nav class="collapse navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
-			<li class="<%= navcate == "share" ? "active" : "" %>">
-				<a href="/categories/share">中心分享</a>
-			</li>
-            <li class="<%= navcate == "frontend" ? "active" : "" %>">
-              <a href="/categories/frontend">前端</a>
-            </li>
-            <li class="<%= navcate == "backend" ? "active" : "" %>">
-                <a href="/categories/backend">后端</a>
-            </li>
-            <li class="<%= navcate == "mobile" ? "active" : "" %>">
-              <a href="/categories/mobile">移动</a>
-            </li>
-            <li class="<%= navcate == "itom" ? "active" : "" %>">
-              <a href="/categories/itom">IT运维</a>
-            </li>
-			<li class="<%= navcate == "breakdown" ? "active" : "" %>">
-				<a href="/categories/breakdown">故障记录</a>
-			</li>
-      <li>
-        <a href="http://192.168.0.97:88/zentao" target="_blank"><span class="glyphicon glyphicon-new-window"></span> 禅道</a>
-      </li>
+  			<li class="<%= navcate == "share" ? "active" : "" %>">
+  				<a href="/categories/share">中心分享</a>
+  			</li>
+        <li class="<%= navcate == "frontend" ? "active" : "" %>">
+          <a href="/categories/frontend">前端</a>
+        </li>
+        <li class="<%= navcate == "backend" ? "active" : "" %>">
+            <a href="/categories/backend">后端</a>
+        </li>
+        <li class="<%= navcate == "mobile" ? "active" : "" %>">
+          <a href="/categories/mobile">移动</a>
+        </li>
+        <li class="<%= navcate == "itom" ? "active" : "" %>">
+          <a href="/categories/itom">IT运维</a>
+        </li>
+  			<li class="<%= navcate == "breakdown" ? "active" : "" %>">
+  				<a href="/categories/breakdown">故障记录</a>
+  			</li>
+        <li>
+          <a href="http://192.168.0.97:88/zentao" target="_blank"><span class="glyphicon glyphicon-new-window"></span> 禅道</a>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
 		    <% if (username) { %>
@@ -56,7 +56,7 @@
 				<li> <a href="/login"><i class="icon-user"></i> 登录</a> </li>
 			<% } %>
       </ul>
-      <div class="col-lg-3 navbar-left" style="margin-top:8px;">
+      <div class="col-sm-3 col-md-3 nav-search" style="margin-top:8px;">
         <form action="/search">
           <div class="input-group">
               <% if(locals.keyword){ %>

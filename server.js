@@ -69,6 +69,7 @@ require('./config/express')(app, config)
 require('./config/routes')(app)
 
 // Record Pid
+/*
 var pidfile = path.join(__dirname, 'run/app.pid');
 fs.writeFileSync(pidfile, process.pid);
 process.on('SIGTERM', function(){
@@ -77,9 +78,10 @@ process.on('SIGTERM', function(){
     }
     process.exit(0);
 });
+*/
 
 // Start the app by listening on <port>
-var port = process.env.PORT || 2000;
+var port = process.env.PORT || 3000;
 app.listen(port);
 console.log('Express app started on port '+port);
 

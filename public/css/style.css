@@ -111,3 +111,10 @@ body {
 	background-size: 42px;
 	border-radius: 50%;
 }
+
+
+@media (max-width: 1200px) {
+  .nav-search {
+  	display: none;
+  }
+}
