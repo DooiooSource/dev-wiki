@@ -8,13 +8,14 @@
                 <% articles.forEach(function(article){ %>
                 <li class="clearfix">
 
-
-                    <div class="pull-left"><a href="#" class="avatar" style="background-image:url(http://100.dooioo.com:7070/photos/<%= article.user.empNo %>_60x80.jpg)"></a></div>
+                    <!--
+                    <div class="pull-left"><a href="/user/<%= article.user.empNo %>" class="avatar" style="background-image:url(http://100.dooioo.com:7070/photos/<%= article.user.empNo %>_60x80.jpg)"></a></div>
+                    -->
                     <div class="pull-left">
                         <a href="/articles/<%= article._id %>"> <%= article.title %> </a>
                         <br>
                         <span class="f12 grey"> <%=: article.createdAt | format_time %>   by:</span>
-                        <a href="/articles/<%= article._id %>" class="f12 grey"> <%= article.user.username %> </a>
+                        <a href="/user/<%= article.user.empNo %>" class="f12 grey"> <%= article.user.username %> </a>
                     </div>
                     <div class="pull-right">
                         <!-- <span class="badge"><%= article.comments.length %></span> -->
