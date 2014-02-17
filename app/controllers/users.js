@@ -29,6 +29,7 @@ exports.session = function(req, res) {
 	var passwordhash = crypto.createHash('md5').update(req.body.password).digest("hex");
 
 	// 本地测试
+	/*
 	req.session.username = '胡大康';
 	req.session.empNo = '90592';
 
@@ -36,29 +37,25 @@ exports.session = function(req, res) {
 		console.log('The raw response from Mongo was ', raw);
 	});
 	res.redirect('/');
-
-	/*
+	*/
 	// 本地测试－end
 	request({url: 'http://100.dooioo.com:10019/account/loginMd5Pass/'+usercode+'/'+passwordhash, json:true}, function (error, response, body){
 
 		if(body.status === 'ok'){
+			//写入session
+			req.session.username = body.employeeInfo.userName;
+			req.session.empNo = usercode;
 
-			request({url:'http://100.dooioo.com:10019/account/info/'+usercode, json:true}, function(error, response, body){
-				//写入session
-				req.session.username = body.employeeInfo.userName;
-				req.session.empNo = usercode;
-				// 更新数据库 工号-姓名 
-				User.update({empNo: usercode}, {"username": body.employeeInfo.userName, "empNo": usercode}, {"upsert": true}, function (err, numberAffected, raw){});
+            return res.redirect("/");
 
-                if(req.query.from && req.query.from !== 'undefined'){
-                    return res.redirect(req.query.from);
-                }
-				return res.redirect("/");
-            });
+			// request({url:'http://100.dooioo.com:10019/account/info/'+usercode, json:true}, function(error, response, body){
+			// 	// 更新数据库 工号-姓名 
+			// 	User.update({empNo: usercode}, {"username": body.employeeInfo.userName, "empNo": usercode}, {"upsert": true}, function (err, numberAffected, raw){});
+   //          });
+
 
 		}else{
 			return res.render('user/index', {title: 'Login'});
 		}
 	});
-	*/
 }

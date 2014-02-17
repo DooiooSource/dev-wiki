@@ -1,0 +1,44 @@
+<%- include ../includes/header %>
+<div class="container mainbody"  data-category="<%= navcate %>">
+    <div class="row">
+
+        <!-- 文章列表 -->
+        <div class="col-md-8">
+            <ul class="item-list">
+                <% articles.forEach(function(article){ %>
+                <li class="clearfix">
+
+                    <!--
+                    <div class="pull-left"><a href="/user/<%= article.user.empNo %>" class="avatar" style="background-image:url(http://100.dooioo.com:7070/photos/<%= article.user.empNo %>_60x80.jpg)"></a></div>
+                    -->
+                    <div class="pull-left">
+                        <a href="/articles/<%= article._id %>"> <%= article.title %> </a>
+                        <br>
+                        <span class="f12 grey"> <%=: article.createdAt | format_time %>   by:</span>
+                        <a href="/user/<%= article.user.empNo %>" class="f12 grey"> <%= article.user.username %> </a>
+                    </div>
+                    <div class="pull-right">
+                        <!-- <span class="badge"><%= article.comments.length %></span> -->
+                        <span class="label label-default"><%=: article.category | parse_category %></span>
+                    </div>
+
+                    <!-- <span class="pull-right"> <%=: article.createdAt | format_time:'YYYY-MM-DD' %>  </span> -->
+                </li>
+                <% }) %>
+            </ul>
+            <!-- 翻页 -->
+            <% if(pages > 1){ %>
+            <ul class="pagination pull-right">
+            <%- createPagination(pages, page) %>
+            </ul>
+            <% } %>
+        </div>
+
+        <div class="col-md-3">
+            <a href="/user/<%= user.empNo %>" class="big-avatar" style="background-image:url(http://100.dooioo.com:7070/photos/<%= user.empNo %>_150x200.jpg)">
+            </a>
+            <h4 class="center"><%= user.username %></h4>
+        </div>
+</div>
+</div><!-- end of .container -->
+<%- include ../includes/footer %>

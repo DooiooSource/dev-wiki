@@ -74,12 +74,13 @@ exports.userhome = function(req, res){
         Article.list(options, function(err, articles){
             if(err) return res.render('500');
             Article.count({user: user[0]._id}).exec(function(err, count){
-	            res.render('articles/index', {
+	            res.render('articles/userhome', {
 	                title: "首页",
 	                articles: articles,
+	                user: user[0],
 	                page: page + 1,
 	                pages: Math.ceil(count / perPage),
-	                navcate: 'index'
+	                navcate: 'userhome'
 	            });
 	        })
         });

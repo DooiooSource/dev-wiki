@@ -51,7 +51,7 @@
 		    <% if (username) { %>
 				<li> <a href="/articles/new"><i class="icon-plus"></i> 发布 </a> </li>
 				<li> <a href="/logout"><i class="icon-power-off"></i> 退出 </a> </li>
-				<li> <a href="#"><i class="icon-user"></i> <%= username %></a> </li>
+				<li class="<%= navcate == "userhome" ? "active" : "" %>"> <a href="/user/<%= empNo %>"><i class="icon-user"></i> <%= username %></a> </li>
 			<% } else { %>
 				<li> <a href="/login"><i class="icon-user"></i> 登录</a> </li>
 			<% } %>
