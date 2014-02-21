@@ -3,7 +3,7 @@
     <div class="row">
 
         <!-- 文章列表 -->
-        <div class="col-md-8">
+        <div class="col-md-8 clearfix">
             <ul class="item-list">
                 <% articles.forEach(function(article){ %>
                 <li class="clearfix">
@@ -34,7 +34,7 @@
             <% } %>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <a href="/user/<%= user.empNo %>" class="big-avatar" style="background-image:url(http://100.dooioo.com:7070/photos/<%= user.empNo %>_150x200.jpg)">
             </a>
             <h4 class="center"><%= user.username %></h4>

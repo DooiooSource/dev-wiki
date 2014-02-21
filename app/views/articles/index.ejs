@@ -3,7 +3,7 @@
     <div class="row">
 
         <!-- 文章列表 -->
-        <div class="col-md-8">
+        <div class="col-md-8 clearfix">
             <ul class="item-list">
                 <% articles.forEach(function(article){ %>
                 <li class="clearfix">
@@ -34,8 +34,27 @@
             <% } %>
         </div>
 
-        <!-- 前端文档 -->
-        <% if(navcate !== 'breakdown'){ %>
+
+        <div class="col-md-2 col-md-offset-1">
+            <div id="jstree_demo_div"><div>
+        </div>
+
+        <script type="text/javascript">
+            $(function () { 
+                $('#jstree_demo_div').jstree({ 'core' : {
+                    'data' : [
+                       { "id" : "ajson1", "parent" : "#", "text" : "前端", "state": {
+                            opened: true
+                       }},
+                       { "id" : "ajson2", "parent" : "ajson1", "text" : "Angular组件库" },
+                       { "id" : "ajson3", "parent" : "ajson1", "text" : "jQuery组件库" },
+                       { "id" : "ajson4", "parent" : "ajson2", "text" : "指令", "icon": "glyphicon glyphicon-file"}
+                    ]
+            } });
+            });
+
+        </script>
+        <!-- 前端文档
         <div class="col-md-2 col-md-offset-1 dui-doc-list">
             <h4>UI组件库：</h4>
             <ul>
@@ -62,9 +81,7 @@
                 </li>
             </ul>
         </div>
-        <% } %>
-
-
-</div>
-</div><!-- end of .container -->
+        -->
+    </div>
+</div><!-- end of .container
 <%- include ../includes/footer %>

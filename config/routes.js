@@ -17,8 +17,6 @@ module.exports = function (app) {
     app.post('/login', users.session);
 	app.get('/logout', users.logout);
 
-
-	// app.get('/articles/new', auth.requiresLogin, articles.new);
 	var articles = require('../app/controllers/articles');
 	app.get('/', articles.index);
 	app.get('/articles', articles.index);
@@ -30,11 +28,19 @@ module.exports = function (app) {
 	app.del('/articles/:id', auth.requiresLogin, articles.destroy);
 	app.get('/search', articles.search);
 
+
 	app.get('/user/:empNo', articles.userhome);
 	app.post('/fileupload', articles.fileUpload);
 
 	// 路由参数预处理
 	app.param('id', articles.load);
+
+	// 标签树管理
+	var trees = require('../app/controllers/trees');
+	app.get('/treemanage', trees.index);
+	app.post('/trees/new', auth,requiresLogin, trees.new);
+	app.put('/trees/:node', auth,requiresLogin, trees.update);
+	app.del('/trees/:node', auth.requiresLogin, trees.destroy);
 
 	// 评论
 	var comments = require('../app/controllers/comments');
