@@ -16,7 +16,7 @@ var TreeSchema = new Schema({
 /**
  * Methods
  */
-
+ 
 TreeSchema.methods = {
 
 }

@@ -6,7 +6,7 @@ var request = require('request')
 exports.login = function (req, res) {
 	res.render('user/index', {
 		title: 'Login',
-        from: req.query.from
+        from: req.query.from || ''
 	})
 }
 
@@ -42,20 +42,22 @@ exports.session = function(req, res) {
 	request({url: 'http://100.dooioo.com:10019/account/loginMd5Pass/'+usercode+'/'+passwordhash, json:true}, function (error, response, body){
 
 		if(body.status === 'ok'){
-			//写入session
-			req.session.username = body.employeeInfo.userName;
-			req.session.empNo = usercode;
 
-            return res.redirect("/");
+			request({url:'http://100.dooioo.com:10019/account/info/'+usercode, json:true}, function(error, response, body){
+				//写入session
+				req.session.username = body.employeeInfo.userName;
+				req.session.empNo = usercode;
+				// 更新数据库 工号-姓名 
+				User.update({empNo: usercode}, {"username": body.employeeInfo.userName, "empNo": usercode}, {"upsert": true}, function (err, numberAffected, raw){});
 
-			// request({url:'http://100.dooioo.com:10019/account/info/'+usercode, json:true}, function(error, response, body){
-			// 	// 更新数据库 工号-姓名 
-			// 	User.update({empNo: usercode}, {"username": body.employeeInfo.userName, "empNo": usercode}, {"upsert": true}, function (err, numberAffected, raw){});
-   //          });
-
+                if(req.query.from && req.query.from !== 'undefined'){
+                    return res.redirect(req.query.from);
+                }
+				return res.redirect("/");
+            });
 
 		}else{
-			return res.render('user/index', {title: 'Login'});
+			return res.render('user/index', {title: 'Login', from: '/'});
 		}
 	});
 }
