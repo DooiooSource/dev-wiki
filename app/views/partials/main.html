@@ -1,0 +1,82 @@
+<div ng-include="'partials/navbar'"></div>
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="highlight">
+                <h4>DUI设计规范</h4>
+                <a href="http://dui.dooioo.com/public/demo/DUI.htm" target="_blank">http://dui.dooioo.com/public/demo/DUI.htm</a>
+                <a href="http://dui.dooioo.com/public/demo/DUI.htm" target="_blank">
+                    <img src="images/dui.png" width="600" alt=""/>
+                </a>
+            </div>
+
+            <div class="highlight dui-plug-list-wrapper">
+                <div class="inner-wrapper">
+                <h4>DUI组件</h4>
+
+                <div class="clearfix">
+                    <div class="menu">
+                        <h4>目录</h4>
+                        <nav>
+                            <a ng-href="/doc/{{d.link}}" ng-repeat="d in docs">{{d.text}}</a>
+                        </nav>
+                    </div>
+                    <div class="preview">
+                        <ul class="dui-list clearfix">
+                            <li ng-repeat="d in docs">
+                                <a ng-href="/doc/{{d.link}}">
+                                    <img ng-src="http://dui.dooioo.com/public/demonew/{{d.link}}/preview.png"
+                                         onerror="this.src='images/yeoman.png'">
+                                    <h4>{{d.text}}</h4>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="highlight new-articles-wrapper">
+                <h4>最新文章</h4>
+                <ul>
+                    <li ng-repeat="a in articles">
+                        <a ng-href="/article/{{a._id}}" class="title"> {{a.title}} </a>
+                        <span class="pull-right">{{a.user.username}} {{a.createdAt | date: 'MM.dd'}}</span>
+                    </li>
+                </ul>
+                <p class="clearfix">
+                    <a href="/category/share" class="pull-right">查看更多</a>
+                </p>
+            </div>
+        </div>
+
+        <!--
+        <div class="col-sm-4" ng-repeat="item in articleArr">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+
+                    {{item.cateText}}
+                    <a href="/category/{{item.cateName}}" class="pull-right">更多</a>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="article in item.articles">
+                        <a class="article-title" ng-href="/article/{{article._id}}"> {{article.title}} </a>
+                        <span class="pull-right">
+                            {{article.createdAt | date:'MM.dd'}}
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        -->
+    </div>
+
+    <br>
+    <br>
+    <hr>
+    <footer>
+        <p>© Dooioo 2014</p>
+    </footer>
+</div>

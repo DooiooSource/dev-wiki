@@ -1,0 +1,38 @@
+<div ng-include="'partials/navbar'"></div>
+
+<div class="container">
+
+    <!--<pre>{{params | json}}</pre>-->
+
+    <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-12 col-sm-9 col-xs-offset-1">
+            <form name="postForm" ng-submit="submit()">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="params.title" placeholder="请输入文章标题" required/>
+            </div>
+            <textarea id="htmlEditor" autofocus></textarea>
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-sm-3">
+                    <select name="" class="form-control" ng-model="params.category" ng-options="c.name as c.text for c in categories" required>
+                        <option value="">请选择分类</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <select name="" class="form-control" ng-model="params.tags" ng-options="c for c in tagList">
+                        <option value="">子分类（可选）</option>
+                    </select>
+                </div>
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-primary pull-right">提交</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    <br>
+    <br>
+    <hr>
+    <footer>
+        <p>© Dooioo 2014</p>
+    </footer>
+</div>

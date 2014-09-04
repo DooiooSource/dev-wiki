@@ -1,0 +1,83 @@
+<div class="navbar navbar-default" ng-controller="NavbarCtrl">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="../" class="navbar-brand">
+                DEV
+                <!--<img src="images/logo.png" height="44" alt=""/>-->
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav">
+                <li ng-repeat="item in categories" ng-class="{active: isActive(item.name)}">
+                    <a href="/category/{{item.name}}">{{item.text}}</a>
+                </li>
+                <!--<li ng-class="{active: isActive('dui')}">-->
+                    <!--<a href="/dui">DUI</a>-->
+                <!--</li>-->
+                <li>
+                    <a href="http://chandao.dooioo.com/zentao/user-login-L3plbnRhby8=.html" target="_blank">
+                        <span class="glyphicon glyphicon-new-window"></span> 禅道
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/new"> <span class="glyphicon glyphicon-plus"></span> 发布</a>
+                </li>
+                <li class="dropdown" ng-if="currentUser.username">
+                    <a href="javascript:;" class="dropdown-toggle" dropdown>
+                        {{currentUser.username}} <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/people/{{currentUser.empNo}}">我的文章</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" ng-click="logout()">退出</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown" ng-class="{'open': openLogin}" ng-if="!currentUser.username">
+                    <a href="javascript:;" class="dropdown-toggle" ng-click="openLogin = !openLogin">
+                        登录
+                    </a>
+                    <div class="dropdown-menu">
+                        <form id="loginForm" name="loginForm" role="form" style="margin: 6px 10px;"
+                              ng-submit="login(loginForm)">
+                            <div class="form-group">
+                                <input type="input" name="empNo" ng-model="user.empNo" class="form-control"
+                                       placeholder="工号" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password" ng-model="user.password"
+                                       placeholder="密码" required>
+                            </div>
+                            <button type="submit" class="btn btn-default">登录</button>
+                        </form>
+                    </div>
+                </li>
+                <li class="dropdown" ng-class="{'open': openLogin2}">
+                    <a href="javascript:;" class="dropdown-toggle" ng-click="openLogin2 = !openLogin2">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </a>
+                    <div class="dropdown-menu search-panel">
+                        <form id="searchForm" name="searchForm" role="form" style="margin: 6px 10px;"
+                              ng-submit="search(form)">
+                            <div class="form-group">
+                                <input type="input" name="keyword" ng-model="keyword" class="form-control"
+                                       placeholder="输入关键字，按Enter键搜索" required>
+                                <!--<button type="submit" class="btn btn-default">搜索</button>-->
+                            </div>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

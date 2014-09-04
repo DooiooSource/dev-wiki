@@ -1,0 +1,61 @@
+<div ng-include="'partials/navbar'"></div>
+<div class="container">
+    <div class="row row-offcanvas row-offcanvas-right">
+        <!-- 文章列表 -->
+        <div class="col-sm-9">
+            <header class="article-header">
+                <h1> {{article.title}} </h1>
+                <p>
+                    <a href="/people/{{article.user.empNo}}"> {{article.user.username}}</a> 创建于{{article.createdAt | date:'yyyy-MM-dd HH:mm'}}
+                    <span ng-if="article.updater">
+                        ，最后由 <a href="/people/{{article.updater.empNo}}"> {{article.updater.username}} </a> 更新于{{article.updatedAt | date: 'yyyy-MM-dd HH:mm'}}
+                    </span>
+
+                    <a href="javascript:;" ng-click="deleteArticle()" ng-if="currentUser.username" class="pull-right text-danger ml_15"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+
+                    <a href="/article/{{article._id}}/edit" class="pull-right"><span class="glyphicon glyphicon-edit"></span> 我要修改</a>
+                </p>
+            </header>
+            <section ng-bind-html="article.html" class="mdbody">
+            </section>
+
+
+            <div class="comment-panel">
+                <h4>评论</h4>
+                <ul class="comment-list">
+                    <li class="clearfix" ng-repeat="c in article.comments">
+                        <div class="col-avatar">
+                            <a href="" class="avatar" style="background-image:url(http://100.dooioo.com:7070/photos/{{c.user.empNo}}_60x80.jpg)"></a>
+                        </div>
+                        <div class="col-content">
+                            <div>
+                                <a href="/people/{{c.user.empNo}}">{{c.user.username}}</a>
+                                <small class="pull-right grey">{{c.createdAt | date: 'yyyy-MM-dd HH:mm'}}</small>
+                            </div>
+                            <div>
+                                {{c.body}}
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <form name="commentForm" ng-submit="comment(commentForm)" ng-if="currentUser.username">
+                    <textarea name="body" ng-model="$parent.commentContent" class="form-control comment-input" rows="3" required></textarea>
+                    <button type="submit" class="btn btn-primary pull-right">评论</button>
+                </form>
+                <p style="text-align: right" ng-if="!currentUser.username">
+                    <a href="/login">登录</a>后可评论。
+                </p>
+            </div>
+
+        </div>
+        <div class="col-sm-3" id="sidebar" role="navigation">
+            <div id="toc" class="hidden-print hidden-xs hidden-sm"></div>
+        </div>
+
+    </div>
+    <br><br>
+    <hr>
+    <footer>
+        <p>© Dooioo 2014</p>
+    </footer>
+</div>

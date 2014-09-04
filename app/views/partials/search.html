@@ -1,0 +1,38 @@
+<div ng-include="'partials/navbar'"></div>
+<div class="container">
+    <div class="row row-offcanvas row-offcanvas-right">
+        <!-- 文章列表 -->
+        <div class="col-xs-12 col-sm-9">
+            <h4>搜索结果：</h4>
+            <p ng-if="articles.length <= 0">
+                没有符合条件的文章
+            </p>
+            <ul class="item-list" ng-if="articles.length > 0">
+                <li class="clearfix" ng-repeat="article in articles">
+                    <div class="pull-left">
+                        <a ng-href="/article/{{article._id}}"> {{article.title}} </a>
+                    </div>
+                    <div class="pull-right update-info" ng-show="article.updater.empNo">
+                        <!--<a href="/article/{{article._id}}/edit">编辑</a>-->
+                        <a href="/people/{{article.user.empNo}}"> {{article.updater.username}} </a>
+                        更新于
+                        <span>{{article.updatedAt | date:'yyyy-MM-dd HH:mm'}}</span>
+                    </div>
+                    <div class="pull-right update-info" ng-hide="article.updater.empNo">
+                        <!--<a href="/article/{{article._id}}/edit">编辑</a>-->
+                        <a href="/people/{{article.user.empNo}}"> {{article.user.username}} </a>
+                        创建于
+                        <span>{{article.createdAt | date:'yyyy-MM-dd HH:mm'}}</span>
+                    </div>
+                </li>
+            </ul>
+            <pagination class="pull-right" ng-if="articles.length > 0" page-count="pageCount" current-page="currentPage"></pagination>
+        </div>
+    </div>
+    <br>
+    <br>
+    <hr>
+    <footer>
+        <p>© Dooioo 2014</p>
+    </footer>
+</div>

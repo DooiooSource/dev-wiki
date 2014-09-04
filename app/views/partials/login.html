@@ -1,0 +1,24 @@
+<div ng-include="'partials/navbar.html'"></div>
+<div class="container">
+    <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-sm-12">
+
+            <legend>登录</legend>
+
+            <form class="form-inline" name="loginForm" ng-submit="login(loginForm)">
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                    <input type="input" name="empNo" ng-model="user.empNo" class="form-control" placeholder="工号"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInputPassword2">Password</label>
+                    <input type="password" class="form-control" name="password" ng-model="user.password"
+                           placeholder="密码" required>
+                </div>
+
+                <button type="submit" class="btn btn-default">登录</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="myeditor" ng-repeat="demo in demoshow">
+    <ul class="nav nav-tabs" ng-init="demo.currentShow = 'demo'; demo.currentIndex = '-1'">
+        <li><a href="javascript:;" ng-click="demo.currentShow = 'demo'; demo.currentIndex = '-1'" ng-class="{'active': demo.currentIndex == '-1'}">{{demo.title}}</a></li>
+        <li ng-repeat="d in demo.filelist"><a href="javascript:;" ng-click="changeTag(d, demo, $index)" ng-class="{'active': demo.currentIndex == $index}">{{d.path | surfix}}</a></li>
+    </ul>
+    <div ng-show="demo.currentShow == 'demo'" class="demo-view mycontent">
+        <iframe ng-src="{{demo.iframeUrl}}" frameborder="0"></iframe>
+    </div>
+    <div ng-hide="demo.currentShow == 'demo'" class="mycontent" ng-class="{'code-view': false, 'mdbody': true}">
+        <div class="hljs">
+            <pre class="code-pre" ng-bind-html="demo.content"></pre>
+        </div>
+    </div>
+</div>
