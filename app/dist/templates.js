@@ -175,7 +175,7 @@ angular.module('dwikiApp').run(['$templateCache', function($templateCache) {
     "    <meta charset=\"utf-8\">\n" +
     "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
     "    <base href=\"/\">\n" +
-    "    <title></title>\n" +
+    "    <title>DEV -- 德佑地产</title>\n" +
     "    <meta name=\"description\" content=\"\">\n" +
     "    <meta name=\"viewport\" content=\"width=device-width\">\n" +
     "    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->\n" +
@@ -184,12 +184,12 @@ angular.module('dwikiApp').run(['$templateCache', function($templateCache) {
     "    <!-- endbower -->\n" +
     "    <!-- endbuild -->\n" +
     "    <!-- build:css({.tmp,app}) styles/main.css -->\n" +
-    "    <link rel=\"stylesheet\" href=\"bower_components/bootstrap/dist/css/bootstrap.css\"/>\n" +
+    "    <link rel=\"stylesheet\" href=\"vendor/bootstrap/assets/stylesheets/bootstrap.css\"/>\n" +
+    "    <link rel=\"stylesheet\" href=\"vendor/simditor-1.0.5/styles/simditor.css\">\n" +
+    "    <link rel=\"stylesheet\" href=\"vendor/simditor-1.0.5/styles/font-awesome.css\">\n" +
     "    <link rel=\"stylesheet\" href=\"dist/app.css\">\n" +
     "    <link rel=\"stylesheet\" href=\"dist/tomorrow.css\">\n" +
-    "    <link rel=\"stylesheet\" href=\"bower_components/simditor-1.0.3/styles/simditor.css\">\n" +
-    "    <link rel=\"stylesheet\" href=\"bower_components/simditor-1.0.3/styles/font-awesome.css\">\n" +
-    "    <link rel=\"stylesheet\" href=\"bower_components/editr/editr.css\">\n" +
+    "    <link rel=\"stylesheet\" href=\"vendor/default.min.css\">\n" +
     "    <!-- endbuild -->\n" +
     "</head>\n" +
     "\n" +
@@ -208,7 +208,7 @@ angular.module('dwikiApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "    <!-- build:js(app) scripts/vendor.js -->\n" +
     "    <!-- bower:js -->\n" +
-    "    <script src=\"bower_components/jquery/dist/jquery.js\"></script>\n" +
+    "    <script src=\"vendor/jquery/dist/jquery.js\"></script>\n" +
     "    <script src=\"bower_components/angular/angular.js\"></script>\n" +
     "    <script src=\"bower_components/angular-resource/angular-resource.js\"></script>\n" +
     "    <script src=\"bower_components/angular-cookies/angular-cookies.js\"></script>\n" +
@@ -216,90 +216,45 @@ angular.module('dwikiApp').run(['$templateCache', function($templateCache) {
     "    <script src=\"bower_components/angular-route/angular-route.js\"></script>\n" +
     "    <script src=\"bower_components/angular-bootstrap/ui-bootstrap.js\"></script>\n" +
     "    <!-- endbower -->\n" +
-    "    <script src=\"bower_components/simditor-1.0.3/scripts/js/simditor-all.js\"></script>\n" +
-    "    <script src=\"bower_components/simditor-markdown.js\"></script>\n" +
+    "    <script src=\"vendor/simditor-1.0.5/scripts/js/simditor-all.js\"></script>\n" +
+    "    <script src=\"vendor/simditor-markdown.js\"></script>\n" +
+    "    <script src=\"vendor/highlight.min.js\"></script>\n" +
+    "    <script src=\"vendor/marked.js\"></script>\n" +
     "\n" +
-    "\n" +
-    "    <!--\n" +
-    "    <script type=\"text/javascript\">\n" +
-    "    function initEditor(type) {\n" +
-    "        var editor;\n" +
-    "        if (type === 'markdown') {\n" +
-    "            editor = new EpicEditor({\n" +
-    "                container: 'markdownEditor',\n" +
-    "                basePath: '/bower_components/EpicEditor-v0.2.2',\n" +
-    "                useNativeFullscreen: false,\n" +
-    "                clientSideStorage: false,\n" +
-    "                textarea: 'markdownSync',\n" +
-    "                theme: {\n" +
-    "                    base: '/themes/base/epiceditor.css',\n" +
-    "                    preview: '/themes/preview/github.css',\n" +
-    "                    editor: '/themes/editor/epic-dark.css'\n" +
-    "                },\n" +
-    "                string: {\n" +
-    "                    togglePreview: '切换到预览模式',\n" +
-    "                    toggleEdit: '切换到编辑模式',\n" +
-    "                    toggleFullscreen: '进入全屏'\n" +
-    "                },\n" +
-    "                autogrow: {\n" +
-    "                    minHeight: 500,\n" +
-    "                    maxHeight: 500,\n" +
-    "                    scroll: true\n" +
-    "                }\n" +
-    "            }).load();\n" +
-    "            editor.getValue = function() {\n" +
-    "                return $(\"#markdownSync\").val();\n" +
-    "            }\n" +
-    "\n" +
-    "        } else if (type === 'html') {\n" +
-    "            editor = new Simditor({\n" +
-    "                textarea: $('#htmlEditor'),\n" +
-    "                placeholder: '输入正文...',\n" +
-    "                pasteImage: true,\n" +
-    "                toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', '|', 'ol', 'ul', 'blockquote', 'code', 'table', 'link', 'image', 'hr', 'indent', 'outdent'],\n" +
-    "                defaultImage: 'assets/images/image.png',\n" +
-    "                upload: {\n" +
-    "                    url: '/api/upload'\n" +
-    "                },\n" +
-    "                markdown: true\n" +
-    "            });\n" +
-    "\n" +
-    "        }\n" +
-    "        return editor;\n" +
-    "    };\n" +
-    "    </script>\n" +
-    "    -->\n" +
+    "    <script src=\"vendor/toc.js\"></script>\n" +
+    "    <!--<script src=\"/socket.io/socket.io.js\"></script>-->\n" +
     "\n" +
     "    <!-- endbuild -->\n" +
     "\n" +
     "    <!-- build:js({.tmp,app}) scripts/scripts.js -->\n" +
     "    <script src=\"scripts/app.js\"></script>\n" +
+    "\n" +
     "    <script src=\"scripts/controllers/main.js\"></script>\n" +
     "    <script src=\"scripts/controllers/navbar.js\"></script>\n" +
     "    <script src=\"scripts/controllers/login.js\"></script>\n" +
     "    <script src=\"scripts/controllers/signup.js\"></script>\n" +
     "    <script src=\"scripts/controllers/settings.js\"></script>\n" +
-    "    <script src=\"scripts/services/auth.js\"></script>\n" +
-    "    <script src=\"scripts/services/session.js\"></script>\n" +
-    "    <script src=\"scripts/services/user.js\"></script>\n" +
-    "    <script src=\"scripts/directives/mongooseError.js\"></script>\n" +
     "    <script src=\"scripts/controllers/article.js\"></script>\n" +
+    "    <script src=\"scripts/controllers/people.js\"></script>\n" +
     "    <script src=\"scripts/controllers/category.js\"></script>\n" +
     "    <script src=\"scripts/controllers/new.js\"></script>\n" +
     "    <script src=\"scripts/controllers/edit.js\"></script>\n" +
-    "    <script src=\"scripts/directives/editor.js\"></script>\n" +
+    "    <script src=\"scripts/controllers/doc.js\"></script>\n" +
+    "    <script src=\"scripts/controllers/dui.js\"></script>\n" +
+    "    <script src=\"scripts/controllers/search.js\"></script>\n" +
+    "\n" +
+    "    <script src=\"scripts/services/auth.js\"></script>\n" +
+    "    <script src=\"scripts/services/session.js\"></script>\n" +
+    "    <script src=\"scripts/services/user.js\"></script>\n" +
+    "\n" +
     "    <script src=\"scripts/directives/pagination.js\"></script>\n" +
     "    <script src=\"scripts/directives/dropdown.js\"></script>\n" +
-    "    <script src=\"scripts/controllers/dui.js\"></script>\n" +
+    "    <script src=\"scripts/directives/demoshow.js\"></script>\n" +
+    "    <script src=\"scripts/directives/mongooseError.js\"></script>\n" +
+    "\n" +
     "    <script src=\"scripts/filters/catename.js\"></script>\n" +
-    "    <script src=\"scripts/controllers/doc.js\"></script>\n" +
-    "    <script src=\"scripts/directives/playground.js\"></script>\n" +
-    "    <script src=\"scripts/directives/fileupload.js\"></script>\n" +
-    "    <script src=\"scripts/services/uploader.js\"></script>\n" +
+    "    <script src=\"scripts/filters/surfix.js\"></script>\n" +
     "    <!-- endbuild -->\n" +
-    "\n" +
-    "\n" +
-    "\n" +
     "</body>\n" +
     "\n" +
     "</html>\n"

@@ -15,23 +15,21 @@
                         <span ng-if="article.tags[0]">【{{article.tags[0]}}】</span>
                         <a ng-href="/article/{{article._id}}"> {{article.title}} </a>
                     </div>
-                    <div class="pull-right update-info" ng-show="article.updater.empNo">
-                        <!--<a href="/article/{{article._id}}/edit">编辑</a>-->
-                        <a href="/people/{{article.user.empNo}}"> {{article.updater.username}} </a>
-                        更新于
-                        <span>{{article.updatedAt | date:'yyyy-MM-dd HH:mm'}}</span>
-                    </div>
-                    <div class="pull-right update-info" ng-hide="article.updater.empNo">
-                        <!--<a href="/article/{{article._id}}/edit">编辑</a>-->
+                    <div class="pull-right update-info" ng-hide="article.updater.empNo || article.lastComment">
                         <a href="/people/{{article.user.empNo}}"> {{article.user.username}} </a>
                         创建于
                         <span>{{article.createdAt | date:'yyyy-MM-dd HH:mm'}}</span>
                     </div>
-                    <!--<div class="pull-right update-info" ng-hide="article.updater.empNo">-->
-                        <!--<a href="/people/{{article.user.empNo}}"> {{article.user.username}} </a>-->
-                        <!--回复于-->
-                        <!--<span>{{article.createdAt | date:'yyyy-MM-dd HH:mm'}}</span>-->
-                    <!--</div>-->
+                    <div class="pull-right update-info" ng-hide="!article.updater.empNo || article.updatedAt < article.lastComment.createdAt">
+                        <a href="/people/{{article.user.empNo}}"> {{article.updater.username}} </a>
+                        更新于
+                        <span>{{article.updatedAt | date:'yyyy-MM-dd HH:mm'}}</span>
+                    </div>
+                    <div class="pull-right update-info" ng-show="article.updatedAt < article.lastComment.createdAt">
+                        <a href="/people/{{article.lastComment.user.empNo}}"> {{article.lastComment.user.username}} </a>
+                        评论于
+                        <span>{{article.lastComment.createdAt | date:'yyyy-MM-dd HH:mm'}}</span>
+                    </div>
                 </li>
             </ul>
             <pagination class="pull-right" ng-if="articles.length > 0" page-count="pageCount" current-page="currentPage"></pagination>

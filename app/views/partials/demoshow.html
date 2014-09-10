@@ -3,6 +3,7 @@
         <li><a href="javascript:;" ng-click="demo.currentShow = 'demo'; demo.currentIndex = '-1'" ng-class="{'active': demo.currentIndex == '-1'}">{{demo.title}}</a></li>
         <li ng-repeat="d in demo.filelist"><a href="javascript:;" ng-click="changeTag(d, demo, $index)" ng-class="{'active': demo.currentIndex == $index}">{{d.path | surfix}}</a></li>
     </ul>
+    <img src="http://dui.dooioo.com/public/images/loading-small.gif" alt=""/>
     <div ng-show="demo.currentShow == 'demo'" class="demo-view mycontent">
         <iframe ng-src="{{demo.iframeUrl}}" frameborder="0"></iframe>
     </div>

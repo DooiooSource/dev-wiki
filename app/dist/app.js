@@ -289,7 +289,13 @@ angular.module('dwikiApp')
                 tags: $routeParams.tags
             }
         }).success(function(data) {
+            data.articles.forEach(function(item, index){
+                if(item.comments && item.comments.length > 0){
+                    item.lastComment = item.comments[item.comments.length -1];
+                }
+            });
             $scope.articles = data.articles;
+            console.log($scope.articles)
             $scope.pageCount = data.pages;
         });
 
