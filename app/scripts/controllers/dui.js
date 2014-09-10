@@ -3,6 +3,11 @@
 angular.module('dwikiApp')
     .controller('DuiCtrl', function ($rootScope, $scope, $http) {
         $rootScope.currentCategory = 'dui';
+
+        $http.get('http://dui.dooioo.com/public/demonew/main.json').success(function(data){
+            console.log(data);
+        });
+
         $scope.docs =
             [{
                 "text": "自动完成",
