@@ -4,75 +4,57 @@
     <div class="row">
         <div class="col-sm-8">
             <div class="highlight">
-                <h4>DUI设计规范</h4>
-                <a href="http://dui.dooioo.com/public/demonew/DUI/dui_new.html" target="_blank">http://dui.dooioo.com/public/demonew/DUI/dui_new.html</a>
-                <a href="http://dui.dooioo.com/public/demonew/DUI/dui_new.html" target="_blank">
-                    <img src="images/dui3.png" width="100%" alt=""/>
+                <h4>DUI</h4>
+                <a href="http://dui.dooioo.com/public/demonew/DUI/dui_new.html" target="_blank" style="text-align: center; font-size: 18px; display: block; margin-bottom: 10px;">请点击查看DUI规范详情！</a>
+                <a href="http://dui.dooioo.com/public/demonew/DUI/dui_new.html">
+                    <img src="images/dui2.png" width="100%" height="195" alt="DUI"/>
                 </a>
-            </div>
-
-            <div class="highlight dui-plug-list-wrapper">
-                <h4>DUI组件</h4>
-                <div class="inner-wrapper">
-                <div class="clearfix">
-                    <div class="menu">
-                        <h4>目录</h4>
-                        <nav>
-                            <a ng-href="/doc/{{d.link}}" ng-repeat="d in docs">{{d.text}}</a>
-                        </nav>
-                    </div>
-                    <div class="preview">
-                        <ul class="dui-list clearfix">
-                            <li ng-repeat="d in docs">
-                                <a ng-href="/doc/{{d.link}}">
-                                    <img ng-src="http://dui.dooioo.com/public/demonew/{{d.link}}/preview.png"
-                                         onerror="this.src='images/yeoman.png'">
-                                    <h4>{{d.text}}</h4>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                </div>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="highlight new-articles-wrapper">
-                <h4>最新文章</h4>
+                <h4>
+                    最新文章
+                    <a href="/category/share" class="pull-right" style="font-size: 14px; font-weight: normal">更多...</a>
+                </h4>
                 <ul>
                     <li ng-repeat="a in articles">
                         <a ng-href="/article/{{a._id}}" class="title"> {{a.title}} </a>
-                        <span class="pull-right">{{a.user.username}} {{a.createdAt | date: 'MM.dd'}}</span>
-                    </li>
-                </ul>
-                <p class="clearfix">
-                    <a href="/category/share" class="pull-right">查看更多</a>
-                </p>
-            </div>
-        </div>
-
-        <!--
-        <div class="col-sm-4" ng-repeat="item in articleArr">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-
-                    {{item.cateText}}
-                    <a href="/category/{{item.cateName}}" class="pull-right">更多</a>
-                </div>
-                <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="article in item.articles">
-                        <a class="article-title" ng-href="/article/{{article._id}}"> {{article.title}} </a>
-                        <span class="pull-right">
-                            {{article.createdAt | date:'MM.dd'}}
-                        </span>
+                        <span class="pull-right" style="color: #999">{{a.user.username}} {{a.createdAt | date: 'MM.dd'}}</span>
                     </li>
                 </ul>
             </div>
         </div>
-        -->
     </div>
 
-    <br>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="highlight dui-plug-list-wrapper">
+                <h4>组件库</h4>
+                <div>
+                    <div class="clearfix">
+                        <div class="menu">
+                            <nav>
+                                <a ng-href="/doc/{{d.link}}" ng-repeat="d in docs">{{d.text}}</a>
+                            </nav>
+                        </div>
+                        <div class="preview">
+                            <ul class="dui-list clearfix">
+                                <li ng-repeat="d in docs">
+                                    <a ng-href="/doc/{{d.link}}">
+                                        <img ng-src="http://dui.dooioo.com/public/demonew/{{d.link}}/preview.png"
+                                             onerror="this.src='images/yeoman.png'">
+                                    </a>
+                                    <h4>{{d.text}}</h4>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <br>
     <hr>
     <footer>
