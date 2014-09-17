@@ -289,7 +289,13 @@ angular.module('dwikiApp')
                 tags: $routeParams.tags
             }
         }).success(function(data) {
+            data.articles.forEach(function(item, index){
+                if(item.comments && item.comments.length > 0){
+                    item.lastComment = item.comments[item.comments.length -1];
+                }
+            });
             $scope.articles = data.articles;
+            console.log($scope.articles)
             $scope.pageCount = data.pages;
         });
 
@@ -315,6 +321,11 @@ angular.module('dwikiApp')
 angular.module('dwikiApp')
     .controller('DuiCtrl', function ($rootScope, $scope, $http) {
         $rootScope.currentCategory = 'dui';
+
+        $http.get('http://dui.dooioo.com/public/demonew/main.json').success(function(data){
+            console.log(data);
+        });
+
         $scope.docs =
             [{
                 "text": "自动完成",
@@ -498,54 +509,11 @@ angular.module('dwikiApp')
     .controller('MainCtrl', function ($scope, $rootScope, $http, $routeParams) {
         $http.get('/api/articles').success(function (data) {
             $scope.articles = data.articles;
-        })
+        });
 
-        $scope.docs = [
-            {
-                "text": "自动完成",
-                "link": "autocomplete"
-            },
-            {
-                "text": "组织架构树(新树)",
-                "link": "tree"
-            },
-            {
-                "text": "组织架构树(老树)",
-                "link": "tree-v3.0"
-            },
-            {
-                "text": "表单验证",
-                "link": "validation"
-            },
-            {
-                "text": "日期选择控件",
-                "link": "datepicker"
-            },
-            {
-                "text": "添加删除行",
-                "link": "addremove"
-            },
-            {
-                "text": "字段编辑组件",
-                "link": "dui_edit"
-            },
-            {
-                "text": "Tips组件",
-                "link": "tips"
-            },
-            {
-                "text": "分页指令",
-                "link": "pagenation"
-            },
-            {
-                "text": "查询过滤器",
-                "link": "search_filter"
-            },
-            {
-                "text": "checkbox选择框",
-                "link": "checkbox"
-            }
-        ]
+        $http.get('http://dui.dooioo.com/public/demonew/main.json').success(function(data){
+            $scope.docs = data;
+        });
     });
 ;'use strict';
 
@@ -918,11 +886,10 @@ angular.module('dwikiApp')
             templateUrl: 'partials/demoshow.html',
             link: function (scope, element, attrs) {
 
-
                 scope.initData = {
                     currentShow: 'demo',
                     currentIndex: '-1'
-                }
+                };
 
                 marked.setOptions({
                     gfm: true,
@@ -938,7 +905,7 @@ angular.module('dwikiApp')
                 });
 
                 if(scope.mainlink){
-                    $http.get('/api/crossget?path=' + scope.mainlink).success(function(data){
+                    $http.get(scope.mainlink).success(function(data){
                         // iframe引用url处理
                         angular.forEach(data.demoshow, function(item){
                             item.iframeUrl = $sce.trustAsResourceUrl(item.filelist[0].path);
@@ -951,7 +918,7 @@ angular.module('dwikiApp')
                 scope.changeTag = function(d, demo, i){
                     demo.currentIndex = i;
                     demo.currentShow = 'code';
-                    $http.get('/api/crossget?path=' + d.path, {cache: false}).success(function(data){
+                    $http.get(d.path, {cache: false}).success(function(data){
                         var content = '';
                         if(d.type === 'md'){
                             content = marked(data);

@@ -15,11 +15,10 @@ angular.module('dwikiApp')
             templateUrl: 'partials/demoshow.html',
             link: function (scope, element, attrs) {
 
-
                 scope.initData = {
                     currentShow: 'demo',
                     currentIndex: '-1'
-                }
+                };
 
                 marked.setOptions({
                     gfm: true,
@@ -35,7 +34,7 @@ angular.module('dwikiApp')
                 });
 
                 if(scope.mainlink){
-                    $http.get('/api/crossget?path=' + scope.mainlink).success(function(data){
+                    $http.get(scope.mainlink).success(function(data){
                         // iframe引用url处理
                         angular.forEach(data.demoshow, function(item){
                             item.iframeUrl = $sce.trustAsResourceUrl(item.filelist[0].path);
@@ -48,7 +47,7 @@ angular.module('dwikiApp')
                 scope.changeTag = function(d, demo, i){
                     demo.currentIndex = i;
                     demo.currentShow = 'code';
-                    $http.get('/api/crossget?path=' + d.path, {cache: false}).success(function(data){
+                    $http.get(d.path, {cache: false}).success(function(data){
                         var content = '';
                         if(d.type === 'md'){
                             content = marked(data);
