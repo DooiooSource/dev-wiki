@@ -1,6 +1,7 @@
 ## Node Ignore
 node_modules/
 uploads/
+app/dist/
 
 .idea/
 
