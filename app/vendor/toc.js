@@ -111,7 +111,7 @@ $.fn.toc = function(options) {
     //build TOC
     var el = $(this);
     var ul = $(opts.listType);
-
+    if(headings.length) {el.append('<div class="toc_nav_side"><div class="toc_nav_top"></div><div class="toc_nav_bottom"></div></div>');}
     headings.each(function(i, heading) {
       var $h = $(heading);
       headingOffsets.push($h.offset().top - opts.highlightOffset);
@@ -137,11 +137,10 @@ $.fn.toc = function(options) {
 
       var li = $('<li/>')
         .addClass(opts.itemClass(i, heading, $h, opts.prefix))
-        .append(a);
-
-      ul.append(li);
+        .append(a).append('<i class="toc_dot"></i>');
+      ul.append(li).addClass('toc_content');
     });
-    el.html(ul);
+    el.append(ul);
   });
 };
 
@@ -165,10 +164,11 @@ jQuery.fn.toc.defaults = {
   highlightOffset: 100,
   anchorName: function(i, heading, prefix) {
     if(heading.id.length) {
-      return heading.id;
+      return heading.id+i;
     }
 
-    var candidateId = $(heading).text().replace(/[^a-z0-9]/ig, ' ').replace(/\s+/g, '-').toLowerCase();
+    var candidateId = $(heading).text().replace(/[^a-z0-9]/ig, ' ').replace(/\s+/g, '-').toLowerCase()+i;
+
     if (verboseIdCache[candidateId]) {
       var j = 2;
       

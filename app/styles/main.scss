@@ -249,7 +249,7 @@ body {
 
 
 
-// 文章详细页
+// article detail
 .article-header {
   border-bottom: 1px solid #eee;
   margin-bottom: 24px;
@@ -392,60 +392,180 @@ body {
   box-sizing: border-box;
 }
 
-
-
-
+//top nav css
+/*#toc {
+  position: fixed;
+  opacity: 1;
+  left: 1%;
+  top: 30%;
+  z-index: 8;
+  min-width: 130px;
+  width: 175px;
+  background: #d9d9d9
+}*/
 #toc {
-//  top: 80px;
-//  right: 0px;
-//  height: 80%;
-//  position: fixed;
-//  background: #333;
-//  box-shadow: inset -5px 0 5px 0px #000;
-//  width: 150px;
-//  max-width: 300px;
-  padding-top: 20px;
-//  padding-left: 20px;
   color: #999;
   position: fixed;
-//  overflow-y: auto;
+}
+.toc_nav_side {
+  position: absolute;
+  left: 5px;
+  top: 0;
+  width: 0;
+  min-height: 40px;
+  background-color: #fff;
+  border: 1px solid #39c;
+  border-top: 0;
+  border-bottom: 0;
+  height: 100%;
 }
 
-#toc ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.toc_nav_top {
+  position: absolute;
+  left: -5px;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  border: 2px solid #39c;
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  box-sizing: content-box;
 }
 
-#toc li {
-  padding: 5px 10px;
+.toc_nav_bottom {
+  position: absolute;
+  left: -5px;
+  bottom: 0;
+  width: 6px;
+  height: 6px;
+  border: 2px solid #39c;
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  box-sizing: content-box;
 }
 
-#toc a {
-  text-decoration: none;
-  color: #999;
+.toc_content {
+  height: auto;
+  max-height: 90%;
+  padding-left: 7px;
+  overflow: hidden;
+  margin: 20px 0;
+  position: relative;
+}
+
+.toc_content li {
+  padding-left: 15px;
+  position: relative;
+  color: #666;
+  list-style: none
+}
+
+.toc_content li em {
+  display: inline-block;
+  vertical-align: top;
+  max-width: 16px;
+  height: 22px;
+  margin-right: 4px
+}
+
+.toc_content li a:hover {
+  color: #39c
+}
+
+.toc_content li a {
+  display: inline-block;
+  vertical-align: top;
+  max-width: 100%;
+  height: 22px;
+  line-height: 22px;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: bold;
+  -webkit-text-overflow: ellipsis;
+  -khtml-text-overflow: ellipsis;
+  -icab-text-overflow: ellipsis;
+  -moz-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  color: #555;
+  text-decoration: none
+}
+
+.toc_content li:hover .toc_dot {
+  background-color: #39c
+}
+
+.toc_content li[class~=toc-active]:hover .toc_dot {
+  width: 16px;
+  height: 12px;
   display: block;
-  padding-left: 20px;
-}
-#toc a:hover {
-  border-left: 1px solid #00b3ee;
-  color: #00b3ee;
-  padding-left: 19px;
-}
-
-#toc .toc-h2 {
-  padding-left: 10px;
+  background-image: url("../images/li_active.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  border-radius: 0;
+  border: 0;
+  background-color: transparent
 }
 
-#toc .toc-h3 {
-  padding-left: 20px;
+.toc_content .toc-h2 {
+  margin-left: 0;
+  font-size: 13px;
+  line-height: 24px
 }
 
-#toc .toc-active {
-//  background: #336699;
-//  box-shadow: inset -5px 0px 10px -5px #000;
+.toc_content .toc-h3 a {
+  max-width: 136px;
+  font-weight: normal
 }
 
+.toc_content .toc-h3 {
+  margin-left: 0;
+  font-size: 12px;
+  line-height: 20px
+}
+
+.toc_dot {
+  position: absolute;
+  height: 2px;
+  width: 2px;
+  border-radius: 5px;
+  background: #ffffff;
+  border: 2px solid #39c;
+  font-size: 12px;
+  left: -4px;
+  top: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  box-sizing: content-box;
+}
+.toc-h3 a{
+  text-indent: 1em;
+}
+.toc-h3 .toc_dot {
+  width: 6px;
+  height: 6px;
+  left: 5px;
+  border-radius: 10px;
+  border: 0;
+  background-color: transparent
+}
+
+.toc-active .toc_dot {
+  background: #39c;
+  top: 5px;
+  left: -7px;
+  width: 16px;
+  height: 12px;
+  display: block;
+  background-image: url("../images/li_active.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  border-radius: 0;
+  border: none;
+  background-color: transparent
+}
 
 .ml_15 {
   margin-left: 15px;
@@ -453,7 +573,7 @@ body {
 
 
 /**
- * 覆盖编辑器样式
+ * editor reset
  */
 
 .simditor .simditor-body {
