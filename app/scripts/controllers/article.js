@@ -9,6 +9,18 @@ angular.module('dwikiApp')
         });
 
         $timeout(function(){
+            //执行代码高亮处理
+            //console.log(hljs);
+            hljs.configure({tabReplace: '    '})
+            $('pre').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+            /*hljs.configure({classPrefix: 'hljs-'});
+            hljs.initHighlightingOnLoad();*/
+            /*hljs.configure({classPrefix: 'hljs-',tabReplace: '    '});
+            hljs.initHighlightingOnLoad();*/
+
+            //生成右侧导航
             $('#toc').toc({
                 'selector': 'h1,h2',
                 'container': '.mdbody'
