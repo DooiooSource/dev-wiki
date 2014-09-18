@@ -176,7 +176,6 @@ jQuery.fn.toc.defaults = {
         j++;
       }
       candidateId = candidateId + '-' + j;
-      
     }
     verboseIdCache[candidateId] = true;
 
