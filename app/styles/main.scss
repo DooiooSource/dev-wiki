@@ -406,6 +406,8 @@ body {
 #toc {
   color: #999;
   position: fixed;
+  max-height: 80%;
+  overflow-y: auto;
 }
 .toc_nav_side {
   position: absolute;
@@ -448,7 +450,7 @@ body {
 
 .toc_content {
   height: auto;
-  max-height: 90%;
+//  max-height: 90%;
   padding-left: 7px;
   overflow: hidden;
   margin: 20px 0;
