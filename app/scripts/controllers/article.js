@@ -21,12 +21,12 @@ angular.module('dwikiApp')
             hljs.initHighlightingOnLoad();*/
 
             //生成右侧导航
-            $('#toc').toc({
-                'selector': 'h1,h2',
-                'container': '.mdbody'
+            $('#toc').tocPlugin({
+                'selector': 'h2,h3,h4',
+                'container': '.mdbody',
+                'scrollToOffset': 100
             });
         }, 250);
-
 
         $scope.deleteArticle = function(){
             if(!confirm('文章删除后无法恢复，您确定要删除该文章吗？')){
@@ -56,7 +56,6 @@ angular.module('dwikiApp')
 
             if (form.$valid) {
                 $http.post('/api/comments', params).success(function(data){
-                    console.log(data);
                     if(data.status == 'fail'){
                         alert(data.message);
                     }else{
@@ -67,6 +66,16 @@ angular.module('dwikiApp')
                         });
                     }
                 })
+            }
+        };
+
+
+        $scope.scrollTo = function(e){
+            e.preventDefault();
+            if(e.target.tagName.toLowerCase() === 'a') {
+                var aid = $(e.target).attr('href'),
+                    top = $(aid).offset().top;
+                $(window).scrollTop(top);
             }
         };
     });
