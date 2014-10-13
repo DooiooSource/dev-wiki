@@ -22,7 +22,7 @@ angular.module('dwikiApp')
 
             //生成右侧导航
             $('#toc').tocPlugin({
-                'selector': 'h2,h3,h4',
+                'selector': 'h1,h2,h3,h4',
                 'container': '.mdbody',
                 'scrollToOffset': 100
             });

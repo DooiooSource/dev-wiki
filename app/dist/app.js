@@ -227,12 +227,24 @@ angular.module('dwikiApp')
         });
 
         $timeout(function(){
-            $('#toc').toc({
-                'selector': 'h1,h2',
-                'container': '.mdbody'
+            //执行代码高亮处理
+            //console.log(hljs);
+            hljs.configure({tabReplace: '    '})
+            $('pre').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+            /*hljs.configure({classPrefix: 'hljs-'});
+            hljs.initHighlightingOnLoad();*/
+            /*hljs.configure({classPrefix: 'hljs-',tabReplace: '    '});
+            hljs.initHighlightingOnLoad();*/
+
+            //生成右侧导航
+            $('#toc').tocPlugin({
+                'selector': 'h1,h2,h3,h4',
+                'container': '.mdbody',
+                'scrollToOffset': 100
             });
         }, 250);
-
 
         $scope.deleteArticle = function(){
             if(!confirm('文章删除后无法恢复，您确定要删除该文章吗？')){
@@ -262,7 +274,6 @@ angular.module('dwikiApp')
 
             if (form.$valid) {
                 $http.post('/api/comments', params).success(function(data){
-                    console.log(data);
                     if(data.status == 'fail'){
                         alert(data.message);
                     }else{
@@ -273,6 +284,16 @@ angular.module('dwikiApp')
                         });
                     }
                 })
+            }
+        };
+
+
+        $scope.scrollTo = function(e){
+            e.preventDefault();
+            if(e.target.tagName.toLowerCase() === 'a') {
+                var aid = $(e.target).attr('href'),
+                    top = $(aid).offset().top;
+                $(window).scrollTop(top);
             }
         };
     });;'use strict';
@@ -314,6 +335,39 @@ angular.module('dwikiApp')
         $scope.mainlink = 'http://dui.dooioo.com/public/demonew/' + $routeParams.name + '/main.json';
 
         $scope.pluginName = '';
+
+
+        $scope.commentContent = '';
+        /**
+         * 添加评论
+         */
+        $scope.comment = function (form) {
+            $scope.submitted = true;
+
+            var params = {
+                linkTo: $routeParams.name,
+                body: $scope.commentContent,
+                empNo: $scope.currentUser.empNo
+            };
+
+            if (form.$valid) {
+                $http.post('/api/feedbacks', params).success(function(data){
+                    if(data.status == 'fail'){
+                        alert(data.message);
+                    }else{
+                        $scope.commentContent = '';
+                        // 更新评论
+                        $http.get('/api/feedbacks?linkTo=' + $routeParams.name).success(function(data) {
+                            $scope.feedbacks = data;
+                        });
+                    }
+                })
+            }
+        };
+
+        $http.get('/api/feedbacks?linkTo=' + $routeParams.name).success(function(data) {
+            $scope.feedbacks = data;
+        });
 
     });
 ;'use strict';
@@ -508,7 +562,7 @@ angular.module('dwikiApp')
 angular.module('dwikiApp')
     .controller('MainCtrl', function ($scope, $rootScope, $http, $routeParams) {
         $http.get('/api/articles').success(function (data) {
-            $scope.articles = data.articles;
+            $scope.articles = data.articles.splice(0, 10);
         });
 
         $http.get('http://dui.dooioo.com/public/demonew/main.json').success(function(data){

@@ -6,7 +6,36 @@
         <li class="active">{{pluginName}}</li>
     </ol>
 
-    <demoshow mainlink="mainlink"></demoshow>
+    <div ng-repeat="demo in demoshowList">
+        <demoshow mainlink="mainlink" datasource="demo"></demoshow>
+    </div>
+
+    <div class="comment-panel">
+        <h4>反馈</h4>
+        <ul class="comment-list">
+            <li class="clearfix" ng-repeat="c in feedbacks">
+                <div class="col-avatar">
+                    <a href="" class="avatar" style="background-image:url(http://100.dooioo.com:7070/photos/{{c.user.empNo}}_60x80.jpg)"></a>
+                </div>
+                <div class="col-content">
+                    <div>
+                        <a href="/people/{{c.user.empNo}}">{{c.user.username}}</a>
+                        <small class="pull-right grey">{{c.createdAt | date: 'yyyy-MM-dd HH:mm'}}</small>
+                    </div>
+                    <div>
+                        {{c.body}}
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <form name="commentForm" ng-submit="comment(commentForm)" ng-if="currentUser.username">
+            <textarea name="body" ng-model="$parent.commentContent" class="form-control comment-input" rows="3" required></textarea>
+            <button type="submit" class="btn btn-primary pull-right">提交</button>
+        </form>
+        <p style="text-align: right" ng-if="!currentUser.username">
+            <a href="/login">登录</a>后可评论。
+        </p>
+    </div>
 
     <br/>
     <br/>
