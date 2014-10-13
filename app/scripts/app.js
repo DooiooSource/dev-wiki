@@ -22,7 +22,7 @@ angular.module('dwikiApp', [
             })
             .when('/settings', {
                 templateUrl: 'partials/settings',
-                controller: 'SettingsCtrl',
+                controller: 'SettingsCtrl'
 //                authenticate: true
             })
             .when('/article/:id', {
@@ -97,8 +97,4 @@ angular.module('dwikiApp', [
         }).success(function(data) {
             $rootScope.categories = data;
         });
-
-
-
-
     });

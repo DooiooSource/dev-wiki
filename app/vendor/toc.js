@@ -16,7 +16,6 @@
             headingOffsets = [],
             activeClassName = opts.prefix + opts.activeClass,
             activeOpenClassName = opts.prefix + opts.activeOpenClassName;
-
         //获取下标
         function getIndex(arr,text) {
             for(var i = 0; i<arr.length; i++){
