@@ -6,7 +6,14 @@ angular.module('dwikiApp')
             $scope.articles = data.articles.splice(0, 10);
         });
 
-        $http.get('http://dui.dooioo.com/public/demonew/main.json').success(function(data){
+        /*$http.get('http://dui.dooioo.com/public/demonew/main.json').success(function(data){
             $scope.docs = data;
+        });*/
+        $http.get('http://10.8.204.104/workspace/dui/doc/main.json').success(function(data){
+            $scope.docs = data;
+        });
+
+        $http.get('/api/articles?attr=1').success(function(data){
+            $scope.test = data.articles;
         });
     });

@@ -22,7 +22,10 @@
                         <option value="">子分类（可选）</option>
                     </select>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
+                    <label ><input type="checkbox" name="attr" ng-true-value="1" ng-false-value="0" ng-model="params.attr" ng-checked="params.attr == 1"/>推荐到首页</label>
+                </div>
+                <div class="col-sm-3">
                     <button type="submit" class="btn btn-primary pull-right">提交</button>
                 </div>
             </div>

@@ -11,7 +11,8 @@ angular.module('dwikiApp')
             title: '',
             html: '',
             category: '',
-            tags: []
+            tags: [],
+            attr: 0
         };
 
         //内容改变时，把数据重新到localStorage中

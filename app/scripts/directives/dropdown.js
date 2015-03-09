@@ -17,7 +17,7 @@ angular.module('dwikiApp')
                 });
                 element.siblings('.cate-panel').find('.glyphicon-remove').bind('click', function(){
                     closeMenu();
-                })
+                });
                 element.bind('click', function(event) {
 
                     var elementWasOpen = (element === openElement);

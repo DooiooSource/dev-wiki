@@ -26,7 +26,8 @@ angular.module('dwikiApp')
                 html: data.html,
                 category: data.category,
                 tags: data.tags,
-                updatedAt: (new Date(data.updatedAt)).getTime()
+                updatedAt: (new Date(data.updatedAt)).getTime(),
+                attr:data.attr
             };
 
 
@@ -112,9 +113,4 @@ angular.module('dwikiApp')
                 }
             })
         };
-
-
-        
-
-
     });

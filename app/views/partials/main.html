@@ -1,21 +1,53 @@
 <div ng-include="'partials/navbar'"></div>
 <div class="container">
-
     <div class="row">
         <div class="col-sm-8">
-            <div class="highlight">
-                <h4>DUI</h4>
-                <a href="http://dui.dooioo.com/public/demonew/DUI/dui_new.html" target="_blank" style="text-align: center; font-size: 18px; display: block; margin-bottom: 10px;">请点击查看DUI规范详情！</a>
-                <a href="http://dui.dooioo.com/public/demonew/DUI/dui_new.html">
-                    <img src="images/dui2.png" width="100%" height="195" alt="DUI"/>
+            <div class="home-dui">
+                <a class="home-dui" href="http://dui.dooioo.com/public/demonew/DUI/dui_new.html">
+                    <img class="animate" src="images/dui2.png" width="100%" height="195" alt="DUI"/>
+                    <div class="dui-layer animate">
+                        <i class="home-dui-ui">德佑UI标准规范</i>
+                    </div>
                 </a>
+            </div>
+            <div class="highlight dui-plug-list-wrapper" home-list>
+                <div class="nav-component" nav>
+                    <!--<a href="#nav-1" class="current">Angular组件库</a>
+                    <a href="#nav-2">jQuery组件库</a>-->
+                    <a href="#nav-{{$index}}" ng-class="{'current': $index==0}" ng-repeat="i in docs">{{i.text}}</a>
+                </div>
+                <div class="clearfix" content>
+                    <h2 id="nav-{{$index}}" ng-repeat-start="i in docs">{{i.text}}</h2>
+                    <div class="preview" ng-repeat-end>
+                        <ul class="dui-list clearfix">
+                            <li ng-repeat="d in i.list">
+                                <a ng-href="http://10.8.204.104/workspace/dui/doc/Component/{{d.link}}/{{i.link}}/" target="_blank">
+                                    <img ng-src="http://10.8.204.104/workspace/dui/doc/Component/{{d.link}}/{{i.link}}/preview.png" onerror="this.src='images/yeoman.png'">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </a>
+                                <h4>{{d.text}}</h4>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="highlight new-articles-wrapper">
                 <h4>
+                    推荐文章
+                </h4>
+                <ul>
+                    <li ng-repeat="a in test">
+                        <a ng-href="/article/{{a._id}}" class="title"> {{a.title}} </a>
+                        <span class="pull-right" style="color: #999">{{a.user.username}} {{a.createdAt | date: 'MM.dd'}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="highlight new-articles-wrapper">
+                <h4>
                     最新文章
-                    <a href="/category/share" class="pull-right" style="font-size: 14px; font-weight: normal">更多...</a>
+                    <a href="/category/share" class="pull-right" style="font-size: 14px; font-weight: normal">更多</a>
                 </h4>
                 <ul>
                     <li ng-repeat="a in articles">
@@ -26,35 +58,6 @@
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="highlight dui-plug-list-wrapper">
-                <h4>组件库</h4>
-                <div>
-                    <div class="clearfix">
-                        <div class="menu">
-                            <nav>
-                                <a ng-href="/doc/{{d.link}}" ng-repeat="d in docs">{{d.text}}</a>
-                            </nav>
-                        </div>
-                        <div class="preview">
-                            <ul class="dui-list clearfix">
-                                <li ng-repeat="d in docs">
-                                    <a ng-href="/doc/{{d.link}}">
-                                        <img ng-src="http://dui.dooioo.com/public/demonew/{{d.link}}/preview.png"
-                                             onerror="this.src='images/yeoman.png'">
-                                    </a>
-                                    <h4>{{d.text}}</h4>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <br>
     <hr>
     <footer>

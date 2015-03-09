@@ -28,6 +28,17 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
+                    <form id="searchForm" name="searchForm" role="form" style="margin: 6px 0;"
+                          ng-submit="search(form)">
+                        <div class="input-group input-group-sm" style="max-width: 150px;">
+                                <input type="input" name="keyword" ng-model="keyword" class="form-control"
+                                       placeholder="输入关键字，按Enter键搜索" required>
+                            <span ng-click="search(form)" class="input-group-addon glyphicon glyphicon-search"  id="sizing-addon3">
+                            </span>
+                        </div>
+                    </form>
+                </li>
+                <li>
                     <a href="/new"> <span class="glyphicon glyphicon-plus"></span> 发布</a>
                 </li>
                 <li class="dropdown" ng-if="currentUser.username">
@@ -59,21 +70,6 @@
                                        placeholder="密码" required>
                             </div>
                             <button type="submit" class="btn btn-default">登录</button>
-                        </form>
-                    </div>
-                </li>
-                <li class="dropdown" ng-class="{'open': openLogin2}">
-                    <a href="javascript:;" class="dropdown-toggle" ng-click="openLogin2 = !openLogin2">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </a>
-                    <div class="dropdown-menu search-panel">
-                        <form id="searchForm" name="searchForm" role="form" style="margin: 6px 10px;"
-                              ng-submit="search(form)">
-                            <div class="form-group">
-                                <input type="input" name="keyword" ng-model="keyword" class="form-control"
-                                       placeholder="输入关键字，按Enter键搜索" required>
-                                <!--<button type="submit" class="btn btn-default">搜索</button>-->
-                            </div>
                         </form>
                     </div>
                 </li>

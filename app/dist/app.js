@@ -22,7 +22,7 @@ angular.module('dwikiApp', [
             })
             .when('/settings', {
                 templateUrl: 'partials/settings',
-                controller: 'SettingsCtrl',
+                controller: 'SettingsCtrl'
 //                authenticate: true
             })
             .when('/article/:id', {
@@ -97,12 +97,7 @@ angular.module('dwikiApp', [
         }).success(function(data) {
             $rootScope.categories = data;
         });
-
-
-
-
-    });
-;'use strict';
+    });;'use strict';
 
 angular.module('dwikiApp')
     .factory('Auth', function Auth($location, $rootScope, $cookies, Session, User, $cookieStore) {
@@ -240,9 +235,8 @@ angular.module('dwikiApp')
 
             //生成右侧导航
             $('#toc').tocPlugin({
-                'selector': 'h1,h2,h3,h4',
-                'container': '.mdbody',
-                'scrollToOffset': 100
+                'selectors': 'h2,h3,h4',
+                'container': '.mdbody'
             });
         }, 250);
 
@@ -336,11 +330,19 @@ angular.module('dwikiApp')
 
         $scope.pluginName = '';
 
-
-        $scope.commentContent = '';
-        /**
-         * 添加评论
+        /*
+         * 获取组件数据
          */
+        $http.get($scope.mainlink).success(function(data){
+            console.info('返回数据：', data);
+            $scope.demoshowList = data.demoshow;
+        });
+
+
+        /**
+         * 评论
+         */
+        $scope.commentContent = '';
         $scope.comment = function (form) {
             $scope.submitted = true;
 
@@ -364,7 +366,6 @@ angular.module('dwikiApp')
                 })
             }
         };
-
         $http.get('/api/feedbacks?linkTo=' + $routeParams.name).success(function(data) {
             $scope.feedbacks = data;
         });
@@ -443,7 +444,8 @@ angular.module('dwikiApp')
                 html: data.html,
                 category: data.category,
                 tags: data.tags,
-                updatedAt: (new Date(data.updatedAt)).getTime()
+                updatedAt: (new Date(data.updatedAt)).getTime(),
+                attr:data.attr
             };
 
 
@@ -529,11 +531,6 @@ angular.module('dwikiApp')
                 }
             })
         };
-
-
-        
-
-
     });
 ;'use strict';
 
@@ -565,8 +562,15 @@ angular.module('dwikiApp')
             $scope.articles = data.articles.splice(0, 10);
         });
 
-        $http.get('http://dui.dooioo.com/public/demonew/main.json').success(function(data){
+        /*$http.get('http://dui.dooioo.com/public/demonew/main.json').success(function(data){
             $scope.docs = data;
+        });*/
+        $http.get('http://10.8.204.104/workspace/dui/doc/main.json').success(function(data){
+            $scope.docs = data;
+        });
+
+        $http.get('/api/articles?attr=1').success(function(data){
+            $scope.test = data.articles;
         });
     });
 ;'use strict';
@@ -621,14 +625,22 @@ angular.module('dwikiApp')
 angular.module('dwikiApp')
     .controller('NewCtrl', function($scope, $http, $routeParams, $q, $location) {
 
-        $scope.params = {
+        //从localStorage中获取相关数据
+        var params = window.localStorage && window.localStorage.getItem("new");
+        params = JSON.parse(params);
+
+        $scope.params = params || {
             title: '',
             html: '',
             category: '',
-            tags: []
+            tags: [],
+            attr: 0
         };
 
-        $scope.tagList = [];
+        //内容改变时，把数据重新到localStorage中
+        $scope.$watch('params',function(newVal, oldVal){
+            window.localStorage.new = JSON.stringify($scope.params);
+        },true);
 
         $scope.$watch('params.category', function(newVal, oldVal){
             if(newVal === oldVal) return;
@@ -653,6 +665,18 @@ angular.module('dwikiApp')
             markdown: true
         });
 
+        //把以前编辑内容写到编辑器中
+        newEditor.setValue($scope.params.html);
+
+        //监听编辑器内容的改变
+        newEditor.on('valuechanged',function(){
+            var html = newEditor.getValue();
+            $scope.$apply(function(){
+                $scope.params.html = html;
+            });
+        });
+
+
         $scope.submit = function() {
             $scope.params.html = newEditor.getValue();
             if(angular.isString($scope.params.tags)){
@@ -660,9 +684,11 @@ angular.module('dwikiApp')
             };
             $http.post('/api/articles', $scope.params).success(function(data) {
                 if(data.status == 'ok'){
+                    //清空定时器，清除本地文档
+                    window.localStorage.removeItem("new");
                     $location.path('/article/' + data.articleId);
                 }
-            })
+            });
         };
     });
 ;'use strict';
@@ -925,6 +951,8 @@ angular.module('dwikiApp')
     });
 ;/**
  * Created by welkang on 14-7-31.
+ * 支持iframe显示文档或demo
+ * 根据type字段来区别是显示html还是文档内容
  */
 
 'use strict';
@@ -935,16 +963,37 @@ angular.module('dwikiApp')
             restrict: 'AE',
             scope: {
                 mainlink: '=',
-                title: '@'
+                title: '@',
+                datasource: '='
             },
             templateUrl: 'partials/demoshow.html',
             link: function (scope, element, attrs) {
 
                 scope.initData = {
-                    currentShow: 'demo',
                     currentIndex: '-1'
                 };
 
+                console.log(scope.datasource);
+                scope.changeTag = function(d, i){
+                    scope.initData.currentIndex = i;
+                    scope.currentIframeUrl = $sce.trustAsResourceUrl(d.path);
+
+                    /*
+                     $http.get(d.path, {cache: false}).success(function(data){
+                     var content = '';
+                     if(d.type === 'md'){
+                     content = marked(data);
+                     }else{
+                     content = hljs.highlightAuto(data).value
+                     }
+                     demo.content = $sce.trustAsHtml(content);
+                     })
+                     */
+                };
+                scope.changeTag(scope.datasource.filelist[0], 0);
+
+
+                /*
                 marked.setOptions({
                     gfm: true,
                     tables: true,
@@ -960,29 +1009,22 @@ angular.module('dwikiApp')
 
                 if(scope.mainlink){
                     $http.get(scope.mainlink).success(function(data){
+                        console.log(data);
                         // iframe引用url处理
                         angular.forEach(data.demoshow, function(item){
                             item.iframeUrl = $sce.trustAsResourceUrl(item.filelist[0].path);
                         });
                         scope.$parent.pluginName = data.title;
                         scope.demoshow = data.demoshow;
+
+                        scope.currentIframeUrl = $sce.trustAsResourceUrl(d.path);
                     });
                 }
+                */
 
-                scope.changeTag = function(d, demo, i){
-                    demo.currentIndex = i;
-                    demo.currentShow = 'code';
-                    $http.get(d.path, {cache: false}).success(function(data){
-                        var content = '';
-                        if(d.type === 'md'){
-                            content = marked(data);
-                        }else{
-                            content = hljs.highlightAuto(data).value
-                        }
-                        demo.content = $sce.trustAsHtml(content);
-                    })
-                }
-                
+
+
+
             }
         };
     });
@@ -1005,7 +1047,7 @@ angular.module('dwikiApp')
                 });
                 element.siblings('.cate-panel').find('.glyphicon-remove').bind('click', function(){
                     closeMenu();
-                })
+                });
                 element.bind('click', function(event) {
 
                     var elementWasOpen = (element === openElement);
@@ -1080,6 +1122,78 @@ angular.module('dwikiApp')
             }
         };
     });
+;/**
+ * Created by LiuYang on 15-02-27.
+ * DEV首页中的所有组件展示
+ */
+'use strict';
+angular.module('dwikiApp').directive('homeList',function($window){
+    return function(scope,ele,attrs) {
+        var listener = function (e) {
+
+            //导航固定
+            var scrollTop = $(window).scrollTop();
+            if(scrollTop >= pos.top) {
+                !isFixed && nav.addClass('fixed').css('paddingLeft', pos.left);
+                isFixed = true;
+            } else {
+                isFixed && nav.removeClass('fixed').css('paddingLeft', 0);
+                isFixed = false;
+            }
+            //更新位置信息
+            updateposArr();
+            //对比当前位置与位置信息
+            for(var i = posArr.length-1 ; i>=0 ; i--) {
+                if(posArr[i] - scrollTop <= 60) {
+                    !(lastIndex === i) && nav.find('a[href]').removeClass('current').eq(i).addClass('current');
+                    lastIndex = i;
+                    break;
+                }
+            }
+        };
+        var p = ele,
+            nav = p.find('div[nav]'),
+            content = p.find('div[content]'),
+            pos = nav.offset(),
+            isFixed = false,
+            posArr = [],
+            timer = null,
+            isUpdate = true,
+            lastIndex;
+
+        var updateposArr = function(){
+            isUpdate && nav.find('a[href]').each(function(i){
+                posArr[i] = $($(this).attr('href')).offset().top;
+            });
+            clearTimeout(timer);
+            isUpdate = false;
+            timer = setTimeout(function(){
+                isUpdate = true;
+            },500);
+        };
+
+        nav.wrap('<div/>').parent().css({
+            'width':nav.width(),
+            'height':nav.height()
+        });
+        //指令调用时绑定事件
+        nav.on('click',function(e){
+            //如果不是点击在a链接标签上
+            if(!e.target.matches('a[href^="#"]')) return ;
+            //如果点击在a链接标签上
+            e.preventDefault();
+            var pos = $($(e.target).attr('href')).offset();
+            $('html,body').animate({
+                'scrollTop':pos.top-40
+            },'slow');
+        });
+        $(window).on('scroll',listener);
+        //在控制器作用域被销毁时，直接去清除事件绑定
+        scope.$on('$destroy',function(e){
+            $(window).off('scroll',listener);
+        });
+    }
+});
 ;'use strict';
 
 angular.module('dwikiApp')
