@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row row-offcanvas row-offcanvas-right">
         <!-- 文章列表 -->
-        <div class="col-sm-9">
+        <div class="col-sm-9" style="background-color: #fff;">
             <header class="article-header">
                 <h1> {{article.title}} </h1>
                 <p>
@@ -48,14 +48,15 @@
 
         </div>
         <div class="col-sm-3" id="sidebar" role="navigation">
-            <div id="toc" class="hidden-print hidden-xs hidden-sm toc-menu toc-empty" ng-click="scrollTo($event)">
-                <div class="toc-nav-side">
-                    <div class="toc-nav-top"></div>
-                    <div class="toc-nav-bottom"></div>
+            <div class="toc-menu-p hidden-print hidden-xs hidden-sm"  ng-click="scrollTo($event)">
+                <div id="toc" class="toc-empty toc-menu">
+                    <div class="toc-nav-side">
+                        <div class="toc-nav-top"></div>
+                        <div class="toc-nav-bottom"></div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
     <br><br>
     <hr>

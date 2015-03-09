@@ -30,11 +30,9 @@
                 <li>
                     <form id="searchForm" name="searchForm" role="form" style="margin: 6px 0;"
                           ng-submit="search(form)">
-                        <div class="input-group input-group-sm" style="max-width: 150px;">
-                                <input type="input" name="keyword" ng-model="keyword" class="form-control"
-                                       placeholder="输入关键字，按Enter键搜索" required>
-                            <span ng-click="search(form)" class="input-group-addon glyphicon glyphicon-search"  id="sizing-addon3">
-                            </span>
+                        <div class="input-group input-group-sm" style="max-width: 220px;">
+                                <input type="input" name="keyword" ng-model="keyword" class="form-control" placeholder="输入关键字，按Enter键搜索" required>
+                            <span ng-click="search(form)" class="input-group-addon glyphicon glyphicon-search" style="top: 0;cursor: pointer;"  id="sizing-addon3"></span>
                         </div>
                     </form>
                 </li>
